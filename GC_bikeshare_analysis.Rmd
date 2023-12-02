@@ -1,0 +1,182 @@
+---
+title: "DS241 Final Proeject - DC Bikeshare "
+output: html_notebook
+author: "Alexis Alexander, Gianna Capoccia, Morgan Eaton, and Mateo Sarabia"
+date: "09 December 2023"
+---
+
+## Background Information
+
+The purpose of our analysis involves exploring potential methods of increasing ridership for the DC Captial Bikeshare program. This motivation in focusing on ridership aligns with the DC Bikeshare's main mission in transforming the Washingtion Metropolitan Area and residing communities by providing an affordable bicycle transit system. The goals outlined in this targeted reformation includes decreasing traffic congestion, promoting health and wellness, decreasing air pollution, and expanding transportation options. The DC Biekshare program is owned by several jurisdictions however, is mainly managed by the DC local government.  
+
+More information pertaining to the bikeshare program can be found by following this link: https://capitalbikeshare.com/
+
+## Business Understanding 
+
+Following the methods outline in the CRISP-DM Methodology, we initially focused on understanding the various business aspects to our problem before analyzing any data. We determine our business objectives by researching the background of the DC Bikeshare program, as seen above. Next, we determine our data mining goals and identified a overall question we aim to solve for our analysis.
+
+This question pertains to the following: How do we make it safer for people to ride bikes as a means of increasing ridership?
+
+
+## Installing Packages 
+
+Below are the packages should be installed:
+
+```{r}
+install.packages("tidyverse")
+install.packages("janitor")
+install.packages("lubridate")
+install.packages("here")
+install.packages("mapview")
+install.packages("gbfs")
+install.packages("sf")
+install.packages("tmap")
+install.packages("tidycensus")
+```
+
+Baseline packages for our analysis: 
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(lubridate) # because we will probably see some dates
+library(here) # more easily access files in your project
+library(mapview)
+library(gbfs)
+library(sf) # working with simple features - geospatial
+library(tmap)
+library(tidycensus)
+library(ggplot2)
+```
+
+## Accessing and Loading the Databases 
+
+We are initially looking at the following three data sets:
+
+1. The DC Bikeshare System Data for September 2023: https://capitalbikeshare.com/system-data
+2. The DC Protected vs Unprotected Bikelane Dataset: https://opendata.dc.gov/datasets/bicycle-lanes/explore
+3. The DC Crimes and Accidents Dataset: https://opendata.dc.gov/datasets/crashes-in-dc/explore
+
+```{r}
+bikes <- read_csv(here("data_raw","202309-capitalbikeshare-tripdata.csv"))%>% clean_names() # bike share data
+lanes <- read_csv(here("data_raw", "Bicycle_Lanes-2.csv")) %>% clean_names() # bike lane data
+crashes <- read_csv(here("data_raw", "Crashes_in_DC-2.csv")) %>% clean_names() # bike accident data
+```
+This code first merges the two datasets on ROUTEID. It then creates a new column TOTAL_CRASHES which is a sum of all types of bicycle injuries.
+The first plot compares the total number of crashes based on the type of bike lane. Here, we assume the TOTALBIKELANES variable represents the type of bike lane. If it's not the case, you may replace it with the correct variable.
+The LANE_ADJACENT column is created to store the type of lane the bike lane is adjacent to. If the bike lane is adjacent to a parking lane, it is labeled as "Parking Lane", if it's adjacent to a throughlane, it's labeled as "Throughlane", if it's adjacent to a pocketlane, it's labeled as "Pocketlane", otherwise it's labeled as "Contraflow".
+The second scatter plot shows the relationship between the type of adjacent lane and the total number of crashes.
+
+```{r}
+colnames(bikes)
+```
+
+```{r}
+colnames(lanes)
+```
+```{r}
+colnames(crashes)
+```
+
+
+```{r}
+
+
+```
+
+```{r}
+# Convert 'routeid' in 'lanes' to character
+lanes$routeid <- as.character(lanes$routeid)
+
+# Join datasets
+crashes_lanes <- left_join(crashes, lanes, by = "routeid")
+
+# Check the joined data
+head(crashes_lanes)
+```
+
+```{r}
+crashes_by_lane <- crashes_lanes %>%
+  group_by(bikelane_parkinglane_adjacent, 
+           bikelane_throughlane_adjacent, 
+           bikelane_pocketlane_adjacent, 
+           bikelane_contraflow) %>%
+  summarise(crashes = n(), .groups = "drop") 
+```
+
+
+
+
+
+```{r}
+summary_crashes <- list(
+  bikelane_parkinglane_adjacent = table(crashes_lanes$bikelane_parkinglane_adjacent),
+  bikelane_throughlane_adjacent = table(crashes_lanes$bikelane_throughlane_adjacent),
+  bikelane_pocketlane_adjacent = table(crashes_lanes$bikelane_pocketlane_adjacent),
+  bikelane_contraflow = table(crashes_lanes$bikelane_contraflow)
+)
+
+print(summary_crashes)
+```
+
+
+```{r}
+# Transform the list into a tidy data frame
+summary_crashes_df <- do.call(rbind, lapply(names(summary_crashes), function(x) {
+  data.frame(lane_type = x, 
+             adjacent_lane_type = names(summary_crashes[[x]]), 
+             count = as.vector(summary_crashes[[x]]))
+}))
+
+# Plot the data
+ggplot(summary_crashes_df, aes(x = lane_type, y = count, fill = adjacent_lane_type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Type of bikelane", y = "Number of Crashes", fill = "Type of adjacent lane")
+```
+1.do.call(rbind, lapply(names(summary_crashes), function(x) {...})):
+This code combines the use of lapply and do.call functions. lapply applies a function to each element in the list (summary_crashes), and do.call combines the outputs of lapply into a single data frame.
+2.lapply(names(summary_crashes), function(x) {...}):
+This function applies a given function (in this case, everything within the {...}) to each element in the list summary_crashes. The names(summary_crashes) part provides the names of each element in the list (which are the different lane types).
+3.data.frame(lane_type = x, adjacent_lane_type = names(summary_crashes[[x]]), count = as.vector(summary_crashes[[x]])):
+This is the function that lapply applies to each element in the list. For each element, it creates a data frame with three columns:
+lane_type, which is the name of the element (lane type),
+adjacent_lane_type, which is the names of the counts in the table (the types of adjacent lanes), and
+count, which is the counts themselves.
+4.ggplot(summary_crashes_df, aes(x = lane_type, y = count, fill = adjacent_lane_type)) + geom_bar(stat = "identity", position = "dodge") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + labs(x = "Type of bikelane", y = "Count", fill = "Type of adjacent lane"):
+This part creates the bar plot. It uses the ggplot2 package to plot count against lane_type, using different colors (fill) for different adjacent_lane_type. The geom_bar(stat = "identity", position = "dodge") part makes it a bar plot where each bar represents a lane type, and the different colors in each bar represent the counts for each adjacent lane type. The theme and labs parts control the appearance and labels of the plot.
+Overall, this code transforms the list summary_crashes into a tidy data frame where each row corresponds to a single observation, and then plots this data frame to show the count of each type of bike lane for each type of adjacent lane.
+
+
+Step 3:
+```{r}
+
+
+bikes$start_station_id <- as.character(bikes$start_station_id)
+bikes$end_station_id <- as.character(bikes$end_station_id)
+
+lanes_long <- lanes %>%
+  gather(key = "lane_type", value = "presence", bikelane_parkinglane_adjacent:bikelane_buffered) %>%
+  filter(presence == "Yes")
+# Join the bikes and lanes_long datasets based on the start_station_id and routeid
+bikes_start_lanes <- left_join(bikes, lanes_long, by = c("start_station_id" = "routeid"))
+
+# Join the bikes and lanes_long datasets based on the end_station_id and routeid
+bikes_end_lanes <- left_join(bikes, lanes_long, by = c("end_station_id" = "routeid"))
+
+# Combine the two joined datasets
+bikes_lanes <- bind_rows(bikes_start_lanes, bikes_end_lanes)
+
+# Calculate the total ridership for each type of bike lane
+ridership_by_lanetype <- bikes_lanes %>%
+  filter(!is.na(lane_type)) %>%
+  group_by(lane_type) %>%
+  summarise(ridership = n(), .groups = "drop")
+`
+# Plot the ridership by bike lane type
+ggplot(ridership_by_lanetype, aes(x = lane_type, y = ridership)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Type of Bike Lane", y = "Total Ridership")
+```
+
