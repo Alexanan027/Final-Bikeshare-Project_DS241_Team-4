@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Alexis Alexander, Morgan Eaton, Gianna Capoccia, and Mateo Sarabia" />
+<meta name="author" content="Alexis Alexander,Gianna Capoccia, Morgan Eaton, and Mateo Sarabia" />
 
 <meta name="date" content="2023-12-09" />
 
@@ -1758,7 +1758,7 @@ pre code {
 
 
 <h1 class="title toc-ignore">DS241 Final Proeject - DC Bikeshare</h1>
-<h4 class="author">Alexis Alexander, Morgan Eaton, Gianna Capoccia, and
+<h4 class="author">Alexis Alexander,Gianna Capoccia, Morgan Eaton, and
 Mateo Sarabia</h4>
 <h4 class="date">09 December 2023</h4>
 
@@ -1826,98 +1826,152 @@ Baseline packages for our analysis:
 &lt;!-- rnb-chunk-begin --&gt;
 
 
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGphbml0b3IpXG5saWJyYXJ5KGx1YnJpZGF0ZSkgIyBiZWNhdXNlIHdlIHdpbGwgcHJvYmFibHkgc2VlIHNvbWUgZGF0ZXNcbmxpYnJhcnkoaGVyZSkgIyBtb3JlIGVhc2lseSBhY2Nlc3MgZmlsZXMgaW4geW91ciBwcm9qZWN0XG5saWJyYXJ5KG1hcHZpZXcpXG5saWJyYXJ5KGdiZnMpXG5saWJyYXJ5KHNmKSAjIHdvcmtpbmcgd2l0aCBzaW1wbGUgZmVhdHVyZXMgLSBnZW9zcGF0aWFsXG5saWJyYXJ5KHRtYXApXG5saWJyYXJ5KHRpZHljZW5zdXMpXG5gYGBcbmBgYCJ9 --&gt;
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== --&gt;
 
 ```r
-```r
-library(tidyverse)
-library(janitor)
-library(lubridate) # because we will probably see some dates
-library(here) # more easily access files in your project
-library(mapview)
-library(gbfs)
-library(sf) # working with simple features - geospatial
-library(tmap)
-library(tidycensus)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-## Accessing and Loading the Databases 
-
-We are initially looking at the following three data sets:
-
-1. The DC Bikeshare System Data for September 2023: https://capitalbikeshare.com/system-data
-2. The DC Protected vs Unprotected Bikelane Dataset: https://opendata.dc.gov/datasets/bicycle-lanes/explore
-3. The DC Crimes and Accidents Dataset: https://opendata.dc.gov/datasets/crashes-in-dc/explore
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYmlrZXNfc2VwdGVtYmVyIDwtIHJlYWRfY3N2KGhlcmUoXFxkYXRhX3Jhd1xcLFxcMjAyMzA5LWNhcGl0YWxiaWtlc2hhcmUtdHJpcGRhdGEuY3N2XFwpKSU+JSBjbGVhbl9uYW1lcygpIFxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-bikes_september &lt;- read_csv(here(\data_raw\,\202309-capitalbikeshare-tripdata.csv\))%&gt;% clean_names() </code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYmlrZXNfbGFuZXMgPSBzdF9yZWFkKGhlcmUoXFxkYXRhX3Jhd1xcLCBcXEJpY3ljbGVfTGFuZXMuZ2VvanNvblxcKSkgJT4lIGNsZWFuX25hbWVzKClcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-bikes_lanes = st_read(here(\data_raw\, \Bicycle_Lanes.geojson\)) %&gt;% clean_names()</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYmlrZXNfY3Jhc2hlcyA9IHN0X3JlYWQoaGVyZShcXGRhdGFfcmF3XFwsIFxcQ3Jhc2hlc19pbl9EQy5nZW9qc29uXFwpKSAlPiUgY2xlYW5fbmFtZXMoKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-bikes_crashes = st_read(here(\data_raw\, \Crashes_in_DC.geojson\)) %&gt;% clean_names()</code></pre>
-<p>```</p>
+library(tidyverse)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh0aWR5dmVyc2XigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjIuM1xuV2FybmluZzogcGFja2FnZSDigJhnZ3Bsb3Qy4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcbldhcm5pbmc6IHBhY2thZ2Ug4oCYdGliYmxl4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcbldhcm5pbmc6IHBhY2thZ2Ug4oCYdGlkeXLigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjIuM1xuV2FybmluZzogcGFja2FnZSDigJhyZWFkcuKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMi4zXG5XYXJuaW5nOiBwYWNrYWdlIOKAmHB1cnJy4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcbldhcm5pbmc6IHBhY2thZ2Ug4oCYZHBseXLigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjIuM1xuV2FybmluZzogcGFja2FnZSDigJhzdHJpbmdy4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcbldhcm5pbmc6IHBhY2thZ2Ug4oCYZm9yY2F0c+KAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMi4zXG5XYXJuaW5nOiBwYWNrYWdlIOKAmGx1YnJpZGF0ZeKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMi4zXG4ifQ== -->
+<pre><code>Warning: package ‘tidyverse’ was built under R version 4.2.3
+Warning: package ‘ggplot2’ was built under R version 4.2.3
+Warning: package ‘tibble’ was built under R version 4.2.3
+Warning: package ‘tidyr’ was built under R version 4.2.3
+Warning: package ‘readr’ was built under R version 4.2.3
+Warning: package ‘purrr’ was built under R version 4.2.3
+Warning: package ‘dplyr’ was built under R version 4.2.3
+Warning: package ‘stringr’ was built under R version 4.2.3
+Warning: package ‘forcats’ was built under R version 4.2.3
+Warning: package ‘lubridate’ was built under R version 4.2.3</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMiAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGdncGxvdDIgICAzLjQuMyAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMyAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxu4pyUIHB1cnJyICAgICAxLjAuMiAgICAgXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG7inJYgZHBseXI6OmZpbHRlcigpIG1hc2tzIHN0YXRzOjpmaWx0ZXIoKVxu4pyWIGRwbHlyOjpsYWcoKSAgICBtYXNrcyBzdGF0czo6bGFnKClcbuKEuSBVc2UgdGhlIGNvbmZsaWN0ZWQgcGFja2FnZSAoPGh0dHA6Ly9jb25mbGljdGVkLnItbGliLm9yZy8+KSB0byBmb3JjZSBhbGwgY29uZmxpY3RzIHRvIGJlY29tZSBlcnJvcnNcbiJ9 -->
+<pre><code>── Attaching core tidyverse packages ──────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShqYW5pdG9yKVxuYGBgIn0= -->
+<pre class="r"><code>library(janitor)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhqYW5pdG9y4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcblxuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmGphbml0b3LigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgY2hpc3EudGVzdCwgZmlzaGVyLnRlc3RcbiJ9 -->
+<pre><code>Warning: package ‘janitor’ was built under R version 4.2.3
+
+Attaching package: ‘janitor’
+
+The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShsdWJyaWRhdGUpICMgYmVjYXVzZSB3ZSB3aWxsIHByb2JhYmx5IHNlZSBzb21lIGRhdGVzXG5saWJyYXJ5KGhlcmUpICMgbW9yZSBlYXNpbHkgYWNjZXNzIGZpbGVzIGluIHlvdXIgcHJvamVjdFxuYGBgIn0= -->
+<pre class="r"><code>library(lubridate) # because we will probably see some dates
+library(here) # more easily access files in your project</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhoZXJl4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcbmhlcmUoKSBzdGFydHMgYXQgQzovVXNlcnMvZWF0b25tei9PbmVEcml2ZSAtIGNsYXJrc29uLmVkdS9Eb2N1bWVudHMvZHMyNDEvRmluYWxfQmlrZXNoYXJlX1Byb2plY3RfRFMyNDFfRjIzX1RlYW0tNFxuIn0= -->
+<pre><code>Warning: package ‘here’ was built under R version 4.2.3
+here() starts at C:/Users/eatonmz/OneDrive - clarkson.edu/Documents/ds241/Final_Bikeshare_Project_DS241_F23_Team-4</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtYXB2aWV3KVxuYGBgIn0= -->
+<pre class="r"><code>library(mapview)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhtYXB2aWV34oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcblJlZ2lzdGVyZWQgUzMgbWV0aG9kIG92ZXJ3cml0dGVuIGJ5ICdodG1sd2lkZ2V0cyc6XG4gIG1ldGhvZCAgICAgICAgICAgZnJvbSAgICAgICAgIFxuICBwcmludC5odG1sd2lkZ2V0IHRvb2xzOnJzdHVkaW9cbiJ9 -->
+<pre><code>Warning: package ‘mapview’ was built under R version 4.2.3
+Registered S3 method overwritten by &#39;htmlwidgets&#39;:
+  method           from         
+  print.htmlwidget tools:rstudio</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnYmZzKVxuYGBgIn0= -->
+<pre class="r"><code>library(gbfs)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhnYmZz4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcbiJ9 -->
+<pre><code>Warning: package ‘gbfs’ was built under R version 4.2.3</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzZikgIyB3b3JraW5nIHdpdGggc2ltcGxlIGZlYXR1cmVzIC0gZ2Vvc3BhdGlhbFxuYGBgIn0= -->
+<pre class="r"><code>library(sf) # working with simple features - geospatial</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhzZuKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMi4zXG5MaW5raW5nIHRvIEdFT1MgMy45LjMsIEdEQUwgMy41LjIsIFBST0ogOC4yLjE7IHNmX3VzZV9zMigpIGlzIFRSVUVcbiJ9 -->
+<pre><code>Warning: package ‘sf’ was built under R version 4.2.3
+Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0bWFwKVxuYGBgIn0= -->
+<pre class="r"><code>library(tmap)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh0bWFw4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcbkJyZWFraW5nIE5ld3M6IHRtYXAgMy54IGlzIHJldGlyaW5nLiBQbGVhc2UgdGVzdCB2NCwgZS5nLiB3aXRoXG5yZW1vdGVzOjppbnN0YWxsX2dpdGh1Yignci10bWFwL3RtYXAnKVxuIn0= -->
+<pre><code>Warning: package ‘tmap’ was built under R version 4.2.3
+Breaking News: tmap 3.x is retiring. Please test v4, e.g. with
+remotes::install_github(&#39;r-tmap/tmap&#39;)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5Y2Vuc3VzKVxuYGBgIn0= -->
+<pre class="r"><code>library(tidycensus)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh0aWR5Y2Vuc3Vz4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4yLjNcbiJ9 -->
+<pre><code>Warning: package ‘tidycensus’ was built under R version 4.2.3</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="accessing-and-loading-the-databases" class="section level2">
+<h2>Accessing and Loading the Databases</h2>
+<p>We are initially looking at the following three data sets:</p>
+<ol style="list-style-type: decimal">
+<li>The DC Bikeshare System Data for September 2023: <a href="https://capitalbikeshare.com/system-data" class="uri">https://capitalbikeshare.com/system-data</a></li>
+<li>The DC Protected vs Unprotected Bikelane Dataset: <a href="https://opendata.dc.gov/datasets/bicycle-lanes/explore" class="uri">https://opendata.dc.gov/datasets/bicycle-lanes/explore</a></li>
+<li>The DC Crimes and Accidents Dataset: <a href="https://opendata.dc.gov/datasets/crashes-in-dc/explore" class="uri">https://opendata.dc.gov/datasets/crashes-in-dc/explore</a></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlrZXMgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFfcmF3XCIsXCJiaWtlcy56aXBcIikpJT4lIGNsZWFuX25hbWVzKCkgIyBiaWtlIHNoYXJlIGRhdGFcbmBgYCJ9 -->
+<pre class="r"><code>bikes &lt;- read_csv(here(&quot;data_raw&quot;,&quot;bikes.zip&quot;))%&gt;% clean_names() # bike share data</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTXVsdGlwbGUgZmlsZXMgaW4gemlwOiByZWFkaW5nICcyMDIzMDktY2FwaXRhbGJpa2VzaGFyZS10cmlwZGF0YS5jc3YnXG5Sb3dzOiA0NTAwOTAgQ29sdW1uczogMTNcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAgKDUpOiByaWRlX2lkLCByaWRlYWJsZV90eXBlLCBzdGFydF9zdGF0aW9uX25hbWUsIGVuZF9zdGF0aW9uX25hbWUsIG1lbWJlcl9jYXN1YWxcbmRibCAgKDYpOiBzdGFydF9zdGF0aW9uX2lkLCBlbmRfc3RhdGlvbl9pZCwgc3RhcnRfbGF0LCBzdGFydF9sbmcsIGVuZF9sYXQsIGVuZF9sbmdcbmR0dG0gKDIpOiBzdGFydGVkX2F0LCBlbmRlZF9hdFxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
+<pre><code>Multiple files in zip: reading &#39;202309-capitalbikeshare-tripdata.csv&#39;
+Rows: 450090 Columns: 13
+── Column specification ────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr  (5): ride_id, rideable_type, start_station_name, end_station_name, member_casual
+dbl  (6): start_station_id, end_station_id, start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFuZXMgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFfcmF3XCIsIFwiQmljeWNsZV9MYW5lcy56aXBcIikpICU+JSBjbGVhbl9uYW1lcygpICMgYmlrZSBsYW5lIGRhdGFcbmBgYCJ9 -->
+<pre class="r"><code>lanes &lt;- read_csv(here(&quot;data_raw&quot;, &quot;Bicycle_Lanes.zip&quot;)) %&gt;% clean_names() # bike lane data</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMjI3NSBDb2x1bW5zOiAyNlxu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICgxOCk6IFJPVVRFTkFNRSwgU1VCQkxPQ0tLRVksIEJJS0VMQU5FX1BBUktJTkdMQU5FX0FESkFDRU5ULCBCSUtFTEFORV9USFJPVUdITEFORV9BREpBQ0VOVCwgQklLRUxBTkVfUE9DLi4uXG5kYmwgICg4KTogUk9VVEVJRCwgUk9BRFRZUEUsIFFVQURSQU5ULCBUT1RBTEJJS0VMQU5FUywgVE9UQUxCSUtFTEFORVdJRFRILCBXQVJEX0lELCBPQkpFQ1RJRCwgU0hBUEVMRU5cblxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cbiJ9 -->
+<pre><code>Rows: 2275 Columns: 26
+── Column specification ────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (18): ROUTENAME, SUBBLOCKKEY, BIKELANE_PARKINGLANE_ADJACENT, BIKELANE_THROUGHLANE_ADJACENT, BIKELANE_POC...
+dbl  (8): ROUTEID, ROADTYPE, QUADRANT, TOTALBIKELANES, TOTALBIKELANEWIDTH, WARD_ID, OBJECTID, SHAPELEN
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3Jhc2hlcyA8LSByZWFkX2NzdihoZXJlKFwiZGF0YV9yYXdcIiwgXCJDcmFzaGVzX2luX0RDLnppcFwiKSkgJT4lIGNsZWFuX25hbWVzKCkgIyBiaWtlIGFjY2lkZW50IGRhdGFcbmBgYCJ9 -->
+<pre class="r"><code>crashes &lt;- read_csv(here(&quot;data_raw&quot;, &quot;Crashes_in_DC.zip&quot;)) %&gt;% clean_names() # bike accident data</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMjk4NjAyIENvbHVtbnM6IDU4XG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgKDEzKTogQ0NOLCBSRVBPUlREQVRFLCBST1VURUlELCBGUk9NREFURSwgQUREUkVTUywgV0FSRCwgRVZFTlRJRCwgTUFSX0FERFJFU1MsIE5FQVJFU1RJTlRST1VURUlELCBORUFSRVMuLi5cbmRibCAoNDQpOiBYLCBZLCBPQkpFQ1RJRCwgQ1JJTUVJRCwgTUVBU1VSRSwgT0ZGU0VULCBTVFJFRVRTRUdJRCwgUk9BRFdBWVNFR0lELCBMQVRJVFVERSwgTE9OR0lUVURFLCBYQ09PUkQsIC4uLlxubGdsICAoMSk6IFRPREFURVxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
+<pre><code>Rows: 298602 Columns: 58
+── Column specification ────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (13): CCN, REPORTDATE, ROUTEID, FROMDATE, ADDRESS, WARD, EVENTID, MAR_ADDRESS, NEARESTINTROUTEID, NEARES...
+dbl (44): X, Y, OBJECTID, CRIMEID, MEASURE, OFFSET, STREETSEGID, ROADWAYSEGID, LATITUDE, LONGITUDE, XCOORD, ...
+lgl  (1): TODATE
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRTMjQxIEZpbmFsIFByb2VqZWN0IC0gREMgQmlrZXNoYXJlICINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiAiQWxleGlzIEFsZXhhbmRlciwgTW9yZ2FuIEVhdG9uLCBHaWFubmEgQ2Fwb2NjaWEsIGFuZCBNYXRlbyBTYXJhYmlhIg0KZGF0ZTogIjA5IERlY2VtYmVyIDIwMjMiDQotLS0NCg0KIyMgQmFja2dyb3VuZCBJbmZvcm1hdGlvbg0KDQpUaGUgcHVycG9zZSBvZiBvdXIgYW5hbHlzaXMgaW52b2x2ZXMgZXhwbG9yaW5nIHBvdGVudGlhbCBtZXRob2RzIG9mIGluY3JlYXNpbmcgcmlkZXJzaGlwIGZvciB0aGUgREMgQ2FwdGlhbCBCaWtlc2hhcmUgcHJvZ3JhbS4gVGhpcyBtb3RpdmF0aW9uIGluIGZvY3VzaW5nIG9uIHJpZGVyc2hpcCBhbGlnbnMgd2l0aCB0aGUgREMgQmlrZXNoYXJlJ3MgbWFpbiBtaXNzaW9uIGluIHRyYW5zZm9ybWluZyB0aGUgV2FzaGluZ3Rpb24gTWV0cm9wb2xpdGFuIEFyZWEgYW5kIHJlc2lkaW5nIGNvbW11bml0aWVzIGJ5IHByb3ZpZGluZyBhbiBhZmZvcmRhYmxlIGJpY3ljbGUgdHJhbnNpdCBzeXN0ZW0uIFRoZSBnb2FscyBvdXRsaW5lZCBpbiB0aGlzIHRhcmdldGVkIHJlZm9ybWF0aW9uIGluY2x1ZGVzIGRlY3JlYXNpbmcgdHJhZmZpYyBjb25nZXN0aW9uLCBwcm9tb3RpbmcgaGVhbHRoIGFuZCB3ZWxsbmVzcywgZGVjcmVhc2luZyBhaXIgcG9sbHV0aW9uLCBhbmQgZXhwYW5kaW5nIHRyYW5zcG9ydGF0aW9uIG9wdGlvbnMuIFRoZSBEQyBCaWVrc2hhcmUgcHJvZ3JhbSBpcyBvd25lZCBieSBzZXZlcmFsIGp1cmlzZGljdGlvbnMgaG93ZXZlciwgaXMgbWFpbmx5IG1hbmFnZWQgYnkgdGhlIERDIGxvY2FsIGdvdmVybm1lbnQuICANCg0KTW9yZSBpbmZvcm1hdGlvbiBwZXJ0YWluaW5nIHRvIHRoZSBiaWtlc2hhcmUgcHJvZ3JhbSBjYW4gYmUgZm91bmQgYnkgZm9sbG93aW5nIHRoaXMgbGluazogaHR0cHM6Ly9jYXBpdGFsYmlrZXNoYXJlLmNvbS8NCg0KIyMgQnVzaW5lc3MgVW5kZXJzdGFuZGluZyANCg0KRm9sbG93aW5nIHRoZSBtZXRob2RzIG91dGxpbmUgaW4gdGhlIENSSVNQLURNIE1ldGhvZG9sb2d5LCB3ZSBpbml0aWFsbHkgZm9jdXNlZCBvbiB1bmRlcnN0YW5kaW5nIHRoZSB2YXJpb3VzIGJ1c2luZXNzIGFzcGVjdHMgdG8gb3VyIHByb2JsZW0gYmVmb3JlIGFuYWx5emluZyBhbnkgZGF0YS4gV2UgZGV0ZXJtaW5lIG91ciBidXNpbmVzcyBvYmplY3RpdmVzIGJ5IHJlc2VhcmNoaW5nIHRoZSBiYWNrZ3JvdW5kIG9mIHRoZSBEQyBCaWtlc2hhcmUgcHJvZ3JhbSwgYXMgc2VlbiBhYm92ZS4gTmV4dCwgd2UgZGV0ZXJtaW5lIG91ciBkYXRhIG1pbmluZyBnb2FscyBhbmQgaWRlbnRpZmllZCBhIG92ZXJhbGwgcXVlc3Rpb24gd2UgYWltIHRvIHNvbHZlIGZvciBvdXIgYW5hbHlzaXMuDQoNClRoaXMgcXVlc3Rpb24gcGVydGFpbnMgdG8gdGhlIGZvbGxvd2luZzogSG93IGRvIHdlIG1ha2UgaXQgc2FmZXIgZm9yIHBlb3BsZSB0byByaWRlIGJpa2VzIGFzIGEgbWVhbnMgb2YgaW5jcmVhc2luZyByaWRlcnNoaXA/DQoNCg0KIyMgSW5zdGFsbGluZyBQYWNrYWdlcyANCg0KQmVsb3cgYXJlIHRoZSBwYWNrYWdlcyBzaG91bGQgYmUgaW5zdGFsbGVkOg0KDQpgYGB7cn0NCmluc3RhbGwucGFja2FnZXMoInRpZHl2ZXJzZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJqYW5pdG9yIikNCmluc3RhbGwucGFja2FnZXMoImx1YnJpZGF0ZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJoZXJlIikNCmluc3RhbGwucGFja2FnZXMoIm1hcHZpZXciKQ0KaW5zdGFsbC5wYWNrYWdlcygiZ2JmcyIpDQppbnN0YWxsLnBhY2thZ2VzKCJzZiIpDQppbnN0YWxsLnBhY2thZ2VzKCJ0bWFwIikNCmluc3RhbGwucGFja2FnZXMoInRpZHljZW5zdXMiKQ0KYGBgDQoNCkJhc2VsaW5lIHBhY2thZ2VzIGZvciBvdXIgYW5hbHlzaXM6IA0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShqYW5pdG9yKQ0KbGlicmFyeShsdWJyaWRhdGUpICMgYmVjYXVzZSB3ZSB3aWxsIHByb2JhYmx5IHNlZSBzb21lIGRhdGVzDQpsaWJyYXJ5KGhlcmUpICMgbW9yZSBlYXNpbHkgYWNjZXNzIGZpbGVzIGluIHlvdXIgcHJvamVjdA0KbGlicmFyeShtYXB2aWV3KQ0KbGlicmFyeShnYmZzKQ0KbGlicmFyeShzZikgIyB3b3JraW5nIHdpdGggc2ltcGxlIGZlYXR1cmVzIC0gZ2Vvc3BhdGlhbA0KbGlicmFyeSh0bWFwKQ0KbGlicmFyeSh0aWR5Y2Vuc3VzKQ0KYGBgDQoNCiMjIEFjY2Vzc2luZyBhbmQgTG9hZGluZyB0aGUgRGF0YWJhc2VzIA0KDQpXZSBhcmUgaW5pdGlhbGx5IGxvb2tpbmcgYXQgdGhlIGZvbGxvd2luZyB0aHJlZSBkYXRhIHNldHM6DQoNCjEuIFRoZSBEQyBCaWtlc2hhcmUgU3lzdGVtIERhdGEgZm9yIFNlcHRlbWJlciAyMDIzOiBodHRwczovL2NhcGl0YWxiaWtlc2hhcmUuY29tL3N5c3RlbS1kYXRhDQoyLiBUaGUgREMgUHJvdGVjdGVkIHZzIFVucHJvdGVjdGVkIEJpa2VsYW5lIERhdGFzZXQ6IGh0dHBzOi8vb3BlbmRhdGEuZGMuZ292L2RhdGFzZXRzL2JpY3ljbGUtbGFuZXMvZXhwbG9yZQ0KMy4gVGhlIERDIENyaW1lcyBhbmQgQWNjaWRlbnRzIERhdGFzZXQ6IGh0dHBzOi8vb3BlbmRhdGEuZGMuZ292L2RhdGFzZXRzL2NyYXNoZXMtaW4tZGMvZXhwbG9yZQ0KDQpgYGB7cn0NCmJpa2VzX3NlcHRlbWJlciA8LSByZWFkX2NzdihoZXJlKCJkYXRhX3JhdyIsIjIwMjMwOS1jYXBpdGFsYmlrZXNoYXJlLXRyaXBkYXRhLmNzdiIpKSU+JSBjbGVhbl9uYW1lcygpIA0KYGBgDQoNCmBgYHtyfQ0KYmlrZXNfbGFuZXMgPSBzdF9yZWFkKGhlcmUoImRhdGFfcmF3IiwgIkJpY3ljbGVfTGFuZXMuZ2VvanNvbiIpKSAlPiUgY2xlYW5fbmFtZXMoKQ0KYGBgDQoNCmBgYHtyfQ0KYmlrZXNfY3Jhc2hlcyA9IHN0X3JlYWQoaGVyZSgiZGF0YV9yYXciLCAiQ3Jhc2hlc19pbl9EQy5nZW9qc29uIikpICU+JSBjbGVhbl9uYW1lcygpDQpgYGANCg0KDQoNCg0KDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRTMjQxIEZpbmFsIFByb2VqZWN0IC0gREMgQmlrZXNoYXJlICINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiAiQWxleGlzIEFsZXhhbmRlcixHaWFubmEgQ2Fwb2NjaWEsIE1vcmdhbiBFYXRvbiwgYW5kIE1hdGVvIFNhcmFiaWEiDQpkYXRlOiAiMDkgRGVjZW1iZXIgMjAyMyINCi0tLQ0KDQojIyBCYWNrZ3JvdW5kIEluZm9ybWF0aW9uDQoNClRoZSBwdXJwb3NlIG9mIG91ciBhbmFseXNpcyBpbnZvbHZlcyBleHBsb3JpbmcgcG90ZW50aWFsIG1ldGhvZHMgb2YgaW5jcmVhc2luZyByaWRlcnNoaXAgZm9yIHRoZSBEQyBDYXB0aWFsIEJpa2VzaGFyZSBwcm9ncmFtLiBUaGlzIG1vdGl2YXRpb24gaW4gZm9jdXNpbmcgb24gcmlkZXJzaGlwIGFsaWducyB3aXRoIHRoZSBEQyBCaWtlc2hhcmUncyBtYWluIG1pc3Npb24gaW4gdHJhbnNmb3JtaW5nIHRoZSBXYXNoaW5ndGlvbiBNZXRyb3BvbGl0YW4gQXJlYSBhbmQgcmVzaWRpbmcgY29tbXVuaXRpZXMgYnkgcHJvdmlkaW5nIGFuIGFmZm9yZGFibGUgYmljeWNsZSB0cmFuc2l0IHN5c3RlbS4gVGhlIGdvYWxzIG91dGxpbmVkIGluIHRoaXMgdGFyZ2V0ZWQgcmVmb3JtYXRpb24gaW5jbHVkZXMgZGVjcmVhc2luZyB0cmFmZmljIGNvbmdlc3Rpb24sIHByb21vdGluZyBoZWFsdGggYW5kIHdlbGxuZXNzLCBkZWNyZWFzaW5nIGFpciBwb2xsdXRpb24sIGFuZCBleHBhbmRpbmcgdHJhbnNwb3J0YXRpb24gb3B0aW9ucy4gVGhlIERDIEJpZWtzaGFyZSBwcm9ncmFtIGlzIG93bmVkIGJ5IHNldmVyYWwganVyaXNkaWN0aW9ucyBob3dldmVyLCBpcyBtYWlubHkgbWFuYWdlZCBieSB0aGUgREMgbG9jYWwgZ292ZXJubWVudC4gIA0KDQpNb3JlIGluZm9ybWF0aW9uIHBlcnRhaW5pbmcgdG8gdGhlIGJpa2VzaGFyZSBwcm9ncmFtIGNhbiBiZSBmb3VuZCBieSBmb2xsb3dpbmcgdGhpcyBsaW5rOiBodHRwczovL2NhcGl0YWxiaWtlc2hhcmUuY29tLw0KDQojIyBCdXNpbmVzcyBVbmRlcnN0YW5kaW5nIA0KDQpGb2xsb3dpbmcgdGhlIG1ldGhvZHMgb3V0bGluZSBpbiB0aGUgQ1JJU1AtRE0gTWV0aG9kb2xvZ3ksIHdlIGluaXRpYWxseSBmb2N1c2VkIG9uIHVuZGVyc3RhbmRpbmcgdGhlIHZhcmlvdXMgYnVzaW5lc3MgYXNwZWN0cyB0byBvdXIgcHJvYmxlbSBiZWZvcmUgYW5hbHl6aW5nIGFueSBkYXRhLiBXZSBkZXRlcm1pbmUgb3VyIGJ1c2luZXNzIG9iamVjdGl2ZXMgYnkgcmVzZWFyY2hpbmcgdGhlIGJhY2tncm91bmQgb2YgdGhlIERDIEJpa2VzaGFyZSBwcm9ncmFtLCBhcyBzZWVuIGFib3ZlLiBOZXh0LCB3ZSBkZXRlcm1pbmUgb3VyIGRhdGEgbWluaW5nIGdvYWxzIGFuZCBpZGVudGlmaWVkIGEgb3ZlcmFsbCBxdWVzdGlvbiB3ZSBhaW0gdG8gc29sdmUgZm9yIG91ciBhbmFseXNpcy4NCg0KVGhpcyBxdWVzdGlvbiBwZXJ0YWlucyB0byB0aGUgZm9sbG93aW5nOiBIb3cgZG8gd2UgbWFrZSBpdCBzYWZlciBmb3IgcGVvcGxlIHRvIHJpZGUgYmlrZXMgYXMgYSBtZWFucyBvZiBpbmNyZWFzaW5nIHJpZGVyc2hpcD8NCg0KDQojIyBJbnN0YWxsaW5nIFBhY2thZ2VzIA0KDQpCZWxvdyBhcmUgdGhlIHBhY2thZ2VzIHNob3VsZCBiZSBpbnN0YWxsZWQ6DQoNCmBgYHtyfQ0KaW5zdGFsbC5wYWNrYWdlcygidGlkeXZlcnNlIikNCmluc3RhbGwucGFja2FnZXMoImphbml0b3IiKQ0KaW5zdGFsbC5wYWNrYWdlcygibHVicmlkYXRlIikNCmluc3RhbGwucGFja2FnZXMoImhlcmUiKQ0KaW5zdGFsbC5wYWNrYWdlcygibWFwdmlldyIpDQppbnN0YWxsLnBhY2thZ2VzKCJnYmZzIikNCmluc3RhbGwucGFja2FnZXMoInNmIikNCmluc3RhbGwucGFja2FnZXMoInRtYXAiKQ0KaW5zdGFsbC5wYWNrYWdlcygidGlkeWNlbnN1cyIpDQpgYGANCg0KQmFzZWxpbmUgcGFja2FnZXMgZm9yIG91ciBhbmFseXNpczogDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KGphbml0b3IpDQpsaWJyYXJ5KGx1YnJpZGF0ZSkgIyBiZWNhdXNlIHdlIHdpbGwgcHJvYmFibHkgc2VlIHNvbWUgZGF0ZXMNCmxpYnJhcnkoaGVyZSkgIyBtb3JlIGVhc2lseSBhY2Nlc3MgZmlsZXMgaW4geW91ciBwcm9qZWN0DQpsaWJyYXJ5KG1hcHZpZXcpDQpsaWJyYXJ5KGdiZnMpDQpsaWJyYXJ5KHNmKSAjIHdvcmtpbmcgd2l0aCBzaW1wbGUgZmVhdHVyZXMgLSBnZW9zcGF0aWFsDQpsaWJyYXJ5KHRtYXApDQpsaWJyYXJ5KHRpZHljZW5zdXMpDQpgYGANCg0KIyMgQWNjZXNzaW5nIGFuZCBMb2FkaW5nIHRoZSBEYXRhYmFzZXMgDQoNCldlIGFyZSBpbml0aWFsbHkgbG9va2luZyBhdCB0aGUgZm9sbG93aW5nIHRocmVlIGRhdGEgc2V0czoNCg0KMS4gVGhlIERDIEJpa2VzaGFyZSBTeXN0ZW0gRGF0YSBmb3IgU2VwdGVtYmVyIDIwMjM6IGh0dHBzOi8vY2FwaXRhbGJpa2VzaGFyZS5jb20vc3lzdGVtLWRhdGENCjIuIFRoZSBEQyBQcm90ZWN0ZWQgdnMgVW5wcm90ZWN0ZWQgQmlrZWxhbmUgRGF0YXNldDogaHR0cHM6Ly9vcGVuZGF0YS5kYy5nb3YvZGF0YXNldHMvYmljeWNsZS1sYW5lcy9leHBsb3JlDQozLiBUaGUgREMgQ3JpbWVzIGFuZCBBY2NpZGVudHMgRGF0YXNldDogaHR0cHM6Ly9vcGVuZGF0YS5kYy5nb3YvZGF0YXNldHMvY3Jhc2hlcy1pbi1kYy9leHBsb3JlDQoNCmBgYHtyfQ0KYmlrZXMgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YV9yYXciLCJiaWtlcy56aXAiKSklPiUgY2xlYW5fbmFtZXMoKSAjIGJpa2Ugc2hhcmUgZGF0YQ0KbGFuZXMgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YV9yYXciLCAiQmljeWNsZV9MYW5lcy56aXAiKSkgJT4lIGNsZWFuX25hbWVzKCkgIyBiaWtlIGxhbmUgZGF0YQ0KY3Jhc2hlcyA8LSByZWFkX2NzdihoZXJlKCJkYXRhX3JhdyIsICJDcmFzaGVzX2luX0RDLnppcCIpKSAlPiUgY2xlYW5fbmFtZXMoKSAjIGJpa2UgYWNjaWRlbnQgZGF0YQ0KYGBgDQoNCg0KDQoNCg0KDQoNCg==</div>
 
 
 

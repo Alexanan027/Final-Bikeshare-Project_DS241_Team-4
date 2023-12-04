@@ -1,7 +1,7 @@
 ---
 title: "DS241 Final Proeject - DC Bikeshare "
 output: html_notebook
-author: "Alexis Alexander, Morgan Eaton, Gianna Capoccia, and Mateo Sarabia"
+author: "Alexis Alexander,Gianna Capoccia, Morgan Eaton, and Mateo Sarabia"
 date: "09 December 2023"
 ---
 
@@ -57,15 +57,9 @@ We are initially looking at the following three data sets:
 3. The DC Crimes and Accidents Dataset: https://opendata.dc.gov/datasets/crashes-in-dc/explore
 
 ```{r}
-bikes_september <- read_csv(here("data_raw","202309-capitalbikeshare-tripdata.csv"))%>% clean_names() 
-```
-
-```{r}
-bikes_lanes = st_read(here("data_raw", "Bicycle_Lanes.geojson")) %>% clean_names()
-```
-
-```{r}
-bikes_crashes = st_read(here("data_raw", "Crashes_in_DC.geojson")) %>% clean_names()
+bikes <- read_csv(here("data_raw","bikes.zip"))%>% clean_names() # bike share data
+lanes <- read_csv(here("data_raw", "Bicycle_Lanes.zip")) %>% clean_names() # bike lane data
+crashes <- read_csv(here("data_raw", "Crashes_in_DC.zip")) %>% clean_names() # bike accident data
 ```
 
 
