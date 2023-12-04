@@ -1,7 +1,7 @@
 ---
 title: "DS241 Final Proeject - DC Bikeshare "
 output: html_notebook
-author: "Alexis Alexander, Gianna Capoccia, Morgan Eaton, and Mateo Sarabia"
+author: "Alexis Alexander, Morgan Eaton, Gianna Capoccia, and Mateo Sarabia"
 date: "09 December 2023"
 ---
 
