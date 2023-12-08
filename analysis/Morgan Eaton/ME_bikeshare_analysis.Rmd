@@ -57,13 +57,182 @@ We are initially looking at the following three data sets:
 3. The DC Crimes and Accidents Dataset: https://opendata.dc.gov/datasets/crashes-in-dc/explore
 
 ```{r}
-bikes <- read_csv(here("data_raw","bikes.zip"))%>% clean_names() # bike share data
-lanes <- read_csv(here("data_raw", "Bicycle_Lanes.zip")) %>% clean_names() # bike lane data
-crashes <- read_csv(here("data_raw", "Crashes_in_DC.zip")) %>% clean_names() # bike accident data
+bikes_september <- read_csv(here("data_raw","bikes.zip"))%>% clean_names() # bike share data
+bikes_lanes <- read_csv(here("data_raw", "Bicycle_Lanes.zip")) %>% clean_names() # bike lane data
+bikes_crashes <- read_csv(here("data_raw", "Crashes_in_DC.zip")) %>% clean_names() # bike accident data
+```
+
+##  Create a visualization that compares the type of injury with the type of bike lane.
+## More protected lane results in a less severe injury? 
+## Can also look at bike lane width***
+
+```{r}
+## filter out any accidents before jan 1st 2019
+bikes_crashes2 = bikes_crashes |> filter(reportdate >= "2019/01/01 05:00:00+00")
+
+## major bicyclist injuries
+df1 = bikes_crashes2 |> filter(majorinjuries_bicyclist>=1)
+
+## seperate the desired column
+df1a <- df1[ -c(1:22,24:58) ]
+  
+## minor bicyclist injuries
+df2 = bikes_crashes2 |> filter(minorinjuries_bicyclist>=1)
+
+## seperate the desired column
+df2a <- df2[ -c(1:23,25:58) ]
+  
+  
+## fatal bicyclist injuries
+df3 = bikes_crashes2 |> filter(fatal_bicyclist>=1)
+
+## seperate the desired column
+df3a <- df3[ -c(1:25,27:58) ]
+```
+
+
+## Breaks down the different type of bike lanes
+
+```{r}
+## contraflow bikelanes"
+df4 = bikes_lanesgeo |> filter(bikelane_contraflow != "NA")
+
+## seperate the desired column
+df4a <- df4[ -c(1:7,9:26) ]
+
+## conventional bikelanes 
+df5 = bikes_lanesgeo |> filter(bikelane_conventional != "NA")
+
+## seperate the desired column
+df5a <- df5[ -c(1:8,10:26) ]
+
+## dual protected bikelanes
+df6 = bikes_lanesgeo |> filter(bikelane_dual_protected != "NA")
+
+## seperate the desired column
+df6a <- df6[ -c(1:9,11:26) ]
+
+## dual buffered bikelanes 
+df7 = bikes_lanesgeo |> filter(bikelane_dual_buffered != "NA")
+
+## seperate the desired column
+df7a <- df7[ -c(1:10,12:26) ]
+
+## protected bikelanes
+df8 = bikes_lanesgeo |> filter(bikelane_protected != "NA")
+
+## seperate the desired column
+df8a <- df8[ -c(1:11,13:26) ]
+
+## buffered bikelanes 
+df9 = bikes_lanesgeo |> filter(bikelane_buffered != "NA")
+
+## seperate the desired column
+df9a <- df9[ -c(1:12,14:26) ]
+
+```
+
+
+```{r}
+dfa = cross_join(df1a,df4a)
+class(dfa)
+ggplot(data = dfa, mapping = aes(x = majorinjuries_bicyclist, y = bikelane_contraflow)) + geom_point()
+```
+
+```{r}
+tmap_mode("view")
+```
+
+```{r}
+bikes_lanesgeo = st_read("~/Documents/data sci/ds241_f23/data_raw/Bicycle_Lanes.geojson") %>% clean_names()
+
+bikes_crashesgeo = st_read("~/Documents/data sci/ds241_f23/data_raw/Crashes_in_DC.geojson") %>% clean_names()
+```
+
+```{r}
+tmap_mode("view")
+```
+
+```{r}
+
+bikes_lanesgeo2 %>%
+  tm_shape()+
+  tm_lines(c("bikelane_contraflow"))
+```
+
+
+## Plots all the bike lanes
+
+```{r}
+## bikelane contraflow
+df4 %>%
+  tm_shape()+
+  tm_lines("red")
+
+```
+
+
+```{r}
+#bikelane conventional
+df5 %>%
+  tm_shape()+
+  tm_lines("red")
+```
+
+```{r}
+#bikelane dual protected
+df6 %>%
+  tm_shape()+
+  tm_lines("red")
+
+```
+
+```{r}
+#bikelane dual buffered
+df7 %>%
+  tm_shape()+
+  tm_lines("red")
+```
+
+```{r}
+#bikelane protected
+df8 %>%
+  tm_shape()+
+  tm_lines("red")
+```
+
+```{r}
+#bikelane buffered
+df9 %>%
+  tm_shape()+
+  tm_lines("red")
 ```
 
 
 
+```{r}
+## filter out any accidents before jan 1st 2019
+bikes_crashesgeo2 = bikes_crashesgeo |> filter(reportdate >= "2019/01/01 05:00:00+00")
+
+## major bicyclist injuries
+majorinjuries = bikes_crashesgeo2 |> filter(majorinjuries_bicyclist>=1)
+
+minorinjuries = bikes_crashesgeo2 |> filter(minorinjuries_bicyclist>=1,objectid != 223065960,objectid != 223063821)
+
+fatalinjuries = bikes_crashesgeo2 |> filter(fatal_bicyclist>=1)
+
+minorinjuries %>%
+  tm_shape()+
+  tm_dots("minorinjuries_bicyclist")
+
+fatalinjuries %>%
+  tm_shape()+
+  tm_dots("fatal_bicyclist")
+
+majorinjuries %>%
+  tm_shape()+
+  tm_dots("majorinjuries_bicyclist")
+```
 
 
 
