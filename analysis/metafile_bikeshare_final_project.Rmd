@@ -32,6 +32,10 @@ install.packages("gbfs")
 install.packages("sf")
 install.packages("tmap")
 install.packages("tidycensus")
+install.packages("stingr")
+install.packages("maps")
+install.packages("spData")
+install.packages("viridis")
 ```
 
 Baseline packages for our analysis: 
@@ -46,6 +50,12 @@ library(gbfs)
 library(sf) # working with simple features - geospatial
 library(tmap)
 library(tidycensus)
+library(stringr)
+library(raster)
+library(readr)
+library(maps)
+library(spData)
+library(viridis)
 ```
 
 ## Accessing and Loading the Databases 
@@ -57,16 +67,193 @@ We are initially looking at the following three data sets:
 3. The DC Crimes and Accidents Dataset: https://opendata.dc.gov/datasets/crashes-in-dc/explore
 
 ```{r}
-bikes_september <- read_csv("data_raw/202309-capitalbikeshare-tripdata.csv", show_col_types = FALSE) %>% clean_names() 
-```
-
-```{r}
+bikes_september <- read_csv(here("data_raw","202309-capitalbikeshare-tripdata.csv")) %>% clean_names()
 bikes_lanes = st_read(here("data_raw", "Bicycle_Lanes.geojson")) %>% clean_names()
+bikes_crashes = st_read(here("data_raw", "Crashes_in_DC.geojson")) %>% clean_names()
+csv_bikes_lanes = read_csv(here("data_raw", "Bicycle_Lanes.csv")) %>% clean_names()
+csv_bikes_crashes = read_csv(here("data_raw", "Crashes_in_DC.csv")) %>% clean_names()
+dc_shape = st_read(here("data_raw","DC_Health_Planning_Neighborhoods.geojson")) %>% clean_names()
+```
+
+## Checking the Class of Each Data Frame 
+
+```{r}
+class(bikes_lanes)
+class(bikes_crashes)
+class(dc_shape)
+class(csv_bikes_crashes)
+class(csv_bikes_lanes)
+```
+
+## Initial Map of the Bike Lane Data
+
+```{r}
+mapview(dc_shape, lwd=3, alpha=0.2) + 
+  mapview(bikes_lanes, zcol = "streetname", lwd = 3, layer.name = "bike_lanes", legend = FALSE) 
+```
+
+## Filtering the Crash Data
+
+Filtering the crash data. First, we looked at variables that we are interested in analyzing from the total data set. We then filtered the data to only look at accidents relating the bicycles. This was determined by setting a requirement that there must be at least 1 bicycle involved in the accident.  Columns not relevant to our analysis was removed from the data set.
+
+```{r}
+df1_bike_crashes = csv_bikes_crashes %>%
+   filter(total_bicycles >= "1") %>%
+  dplyr::select(-c(locationerror,objectid, crimeid, ccn, reportdate,routeid, streetsegid, roadwaysegid, todate,eventid, majorinjuries_driver, majorinjuries_pedestrian, majorinjuriespassenger,minorinjuries_driver, minorinjuries_pedestrian, minorinjuriespassenger,fatal_driver, fatal_pedestrian, fatalpassenger,unknowninjuries_driver,unknowninjuries_bicyclist,unknowninjuries_pedestrian,unknowninjuriespassenger, mar_address,mar_score,mar_id,total_vehicles,total_pedestrians,total_taxis,total_government,pedestriansimpaired,driversimpaired, speeding_involved, lastupdatedate)) 
+
+```
+
+## Converting the Crash Data into a Sf object for Plotting
+
+```{r}
+sf_bike_crashes <- df1_bike_crashes %>%
+  st_as_sf(coords = c("longitude","latitude"), crs = 4326) %>%
+  st_cast("POINT")
+
+class(sf_bike_crashes)
+```
+
+## Plotting the Bike Lanes and Crash Data Together 
+
+```{r}
+mapview(dc_shape, lwd=3) + 
+  mapview(bikes_lanes, zcol = "streetname", lwd = 3, layer.name = "bike_lanes", legend = FALSE) +
+  mapview(sf_bike_crashes, color = "orange", lwd = 0.5, layer.name = "bike_crashes", legend = FALSE)
+```
+
+## Filtering the Data Further
+
+We will pivot longer the crash data to reduce the number of variables and increase the number of observations. The data is originally separated column-wise based on the type of injuries however, we aim to create a single column that lists the injuries as observations instead. Also, since each type of injury was listed for every street name, any values equivalent to 0, was dropped.
+
+```{r}
+df1_pivot_bike_crashes = df1_bike_crashes %>%
+  pivot_longer(cols=c("majorinjuries_bicyclist","minorinjuries_bicyclist","fatal_bicyclist"),
+               names_to = "injuries",
+               values_to = "number_of_injuries") %>%
+  dplyr::select(-c(bicyclistsimpaired)) %>%
+  relocate(c(injuries, number_of_injuries), .after = ward) %>%
+  mutate(injuries = recode(injuries, majorinjuries_bicyclist = "major",
+  minorinjuries_bicyclist = "minor",
+  fatal_bicyclist = "fatal" )) %>%
+  filter(number_of_injuries >= "1")
+  
+```
+
+Next, we filter the bike crash data to only show bicycle related crashes in September 2023. We chose this time period specifically because the ridership data is only applicable to this time range as well. 
+
+```{r}
+Sept_df1_pivot_bike_crashes = df1_pivot_bike_crashes %>%
+ filter(grepl("2023/09", fromdate))
+```
+
+We will move on to filtering the bike lane data. Similarly for the crash data, we will also pivot longer this set to create a single column that lists out the different type of bike lanes into one column. We wanted columns that separated the "adjacent_to_bikelane" and "protection_of_lane" observations thus, we had to pivot the table twice. 
+
+We will not look at the contraflow lane as it does not fit into the data we would like to look at, which includes the location of the bike lane adjacent to motorized vehicles lanes and the design of the lane that provide protection. Contraflow only deals with the direction the lane is flowing in relations to traffic. Also, there is significant NA in the observations, which we removed. 
+
+```{r}
+df1_pivot_bike_lanes = bikes_lanes %>%
+  pivot_longer(col=c("bikelane_parkinglane_adjacent","bikelane_throughlane_adjacent","bikelane_pocketlane_adjacent"),
+  names_to = "adjacent_to_bikelane",
+  values_to = "direction_of_lane_adjacent") %>%
+pivot_longer(col=c("bikelane_conventional","bikelane_dual_buffered","bikelane_protected", "bikelane_buffered"),
+  names_to = "protection_of_bikelane",
+  values_to = "direction_of_lane_protection") %>%
+  dplyr::select(-bikelane_contraflow) %>%
+  relocate(c(adjacent_to_bikelane,direction_of_lane_adjacent, protection_of_bikelane, direction_of_lane_protection), .after = streettype) %>%
+  mutate(adjacent_to_bikelane = recode(adjacent_to_bikelane, bikelane_throughlane_adjacent = "throughlane", bikelane_pocketlane_adjacent = "pocketlane", bikelane_parkinglane_adjacent = "parkinglane")) %>%
+  mutate(protection_of_bikelane = recode(protection_of_bikelane, bikelane_protected = "protected", bikelane_buffered = "buffered", bikelane_conventional = "conventional", bikelane_dual_protected = "dual_protected", bikelane_dual_buffered = "dual_buffered")) %>%
+   drop_na(c(direction_of_lane_adjacent, direction_of_lane_protection))
+
+```
+
+## Plotting the Newly Filter Data Sets 
+
+Since we filter the data sets as df objects, we have to make sure both sets are set to sf objects before plotting again.
+
+```{r}
+class(df1_pivot_bike_lanes)
+class(Sept_df1_pivot_bike_crashes)
+```
+The crash data needs to be set to a sf object. 
+
+```{r}
+sf_Sept_df1_pivot_bike_crashes <- Sept_df1_pivot_bike_crashes %>%
+  st_as_sf(coords = c("longitude","latitude"), crs = 4326) %>%
+  st_cast("POINT")
+
+sf_df1_pivot_bike_crashes <- df1_pivot_bike_crashes%>%
+   st_as_sf(coords = c("longitude","latitude"), crs = 4326) %>%
+  st_cast("POINT")
+
+class(sf_Sept_df1_pivot_bike_crashes)
+```
+Now, that both sets are in the correct classification, we will attempt to plot these sets. 
+
+First, we will look at the different classification of the bike lanes, mainly the protection_of_bikelane variable.
+
+Defining a palette for the maps
+
+```{r}
+pal = mapviewPalette("mapviewSpectralColors")
 ```
 
 ```{r}
-bikes_crashes = st_read(here("data_raw", "Crashes_in_DC.geojson")) %>% clean_names()
+mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
+  mapview(df1_pivot_bike_lanes, zcol = "protection_of_bikelane", burst = TRUE, lwd = 3, alpha = 0.8, layer.name = "bike_lanes", legend = TRUE)
 ```
 
+
+
+```{r}
+mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
+  mapview(df1_pivot_bike_lanes, lwd = 2, zcol ="protection_of_bikelane",burst= TRUE, alpha = 0.8, layer.name = "bike_lanes", legend = TRUE) +
+  mapview(sf_Sept_df1_pivot_bike_crashes, zcol = "injuries", burst= TRUE, col.region = pal, lwd = 2, layer.name = "bike_crashes", legend = TRUE)
+```
+
+## Appyling Code Back to a Larger Set of Crash Data 
+
+After reducing the crash data, we were able to get our code to work, thus we will plot another map including more observations from the crash data. 
+
+```{r}
+mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
+  mapview(df1_pivot_bike_lanes, lwd = 2, zcol ="protection_of_bikelane",burst= TRUE, alpha = 0.8, layer.name = "bike_lanes", legend = TRUE) +
+  mapview(sf_df1_pivot_bike_crashes, zcol = "injuries", burst= TRUE, col.region = pal, lwd = 2, layer.name = "bike_crashes", legend = TRUE)
+```
+
+
+
+## Trying a Different Plotting Method - Starting with a Smaller Data Set 
+
+```{r}
+tmap_mode("view")
+
+sf_Sept_df1_pivot_bike_crashes %>%
+tm_shape()+
+  tm_facets("injuries")+
+  tm_dots("injuries", legend.show = FALSE)
+
+```
+
+Applying the following code to the entire data set:
+See the division of injuries~
+
+```{r}
+
+sf_df1_pivot_bike_crashes %>%
+tm_shape()+
+  tm_facets("injuries")+
+  tm_dots("injuries", legend.show = FALSE)
+
+```
+
+
+Applying the same code to the bike lane data:
+
+```{r}
+df1_pivot_bike_lanes %>%
+tm_shape()+
+  tm_facets("protection_of_bikelane")+
+  tm_dots("protection_of_bikelane", legend.show = FALSE)
+```
 
 
