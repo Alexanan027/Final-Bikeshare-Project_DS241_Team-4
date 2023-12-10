@@ -1804,71 +1804,17 @@ install.packages(&quot;tidycensus&quot;)</code></pre>
 <p>Baseline packages for our analysis:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGphbml0b3IpXG5saWJyYXJ5KGx1YnJpZGF0ZSkgIyBiZWNhdXNlIHdlIHdpbGwgcHJvYmFibHkgc2VlIHNvbWUgZGF0ZXNcbmxpYnJhcnkoaGVyZSkgIyBtb3JlIGVhc2lseSBhY2Nlc3MgZmlsZXMgaW4geW91ciBwcm9qZWN0XG5saWJyYXJ5KG1hcHZpZXcpXG5saWJyYXJ5KGdiZnMpXG5saWJyYXJ5KHNmKSAjIHdvcmtpbmcgd2l0aCBzaW1wbGUgZmVhdHVyZXMgLSBnZW9zcGF0aWFsXG5saWJyYXJ5KHRtYXApXG5saWJyYXJ5KHRpZHljZW5zdXMpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)
+library(janitor)
+library(lubridate) # because we will probably see some dates
+library(here) # more easily access files in your project
+library(mapview)
+library(gbfs)
+library(sf) # working with simple features - geospatial
+library(tmap)
+library(tidycensus)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh0aWR5dmVyc2XigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjMuMldhcm5pbmc6IHBhY2thZ2Ug4oCYbHVicmlkYXRl4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4zLjLilIDilIAgQXR0YWNoaW5nIGNvcmUgdGlkeXZlcnNlIHBhY2thZ2VzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2UgMi4wLjAg4pSA4pSAXG7inJQgZHBseXIgICAgIDEuMS4zICAgICDinJQgcmVhZHIgICAgIDIuMS40XG7inJQgZm9yY2F0cyAgIDEuMC4wICAgICDinJQgc3RyaW5nciAgIDEuNS4wXG7inJQgZ2dwbG90MiAgIDMuNC4zICAgICDinJQgdGliYmxlICAgIDMuMi4xXG7inJQgbHVicmlkYXRlIDEuOS4zICAgICDinJQgdGlkeXIgICAgIDEuMy4wXG7inJQgcHVycnIgICAgIDEuMC4yICAgICDilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG7inJYgZHBseXI6OmZpbHRlcigpIG1hc2tzIHN0YXRzOjpmaWx0ZXIoKVxu4pyWIGRwbHlyOjpsYWcoKSAgICBtYXNrcyBzdGF0czo6bGFnKClcbuKEuSBVc2UgdGhlIFx1MDAxYl04OztodHRwOi8vY29uZmxpY3RlZC5yLWxpYi5vcmcvXHUwMDA3Y29uZmxpY3RlZCBwYWNrYWdlXHUwMDFiXTg7O1x1MDAwNyB0byBmb3JjZSBhbGwgY29uZmxpY3RzIHRvIGJlY29tZSBlcnJvcnNcbiJ9 -->
-<pre><code>Warning: package ‘tidyverse’ was built under R version 4.3.2Warning: package ‘lubridate’ was built under R version 4.3.2── Attaching core tidyverse packages ──────────────────────────────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     ── Conflicts ────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShqYW5pdG9yKVxuYGBgIn0= -->
-<pre class="r"><code>library(janitor)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhqYW5pdG9y4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4zLjJcbkF0dGFjaGluZyBwYWNrYWdlOiDigJhqYW5pdG9y4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g4oCYcGFja2FnZTpzdGF0c+KAmTpcblxuICAgIGNoaXNxLnRlc3QsIGZpc2hlci50ZXN0XG4ifQ== -->
-<pre><code>Warning: package ‘janitor’ was built under R version 4.3.2
-Attaching package: ‘janitor’
-
-The following objects are masked from ‘package:stats’:
-
-    chisq.test, fisher.test</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShsdWJyaWRhdGUpICMgYmVjYXVzZSB3ZSB3aWxsIHByb2JhYmx5IHNlZSBzb21lIGRhdGVzXG5saWJyYXJ5KGhlcmUpICMgbW9yZSBlYXNpbHkgYWNjZXNzIGZpbGVzIGluIHlvdXIgcHJvamVjdFxuYGBgIn0= -->
-<pre class="r"><code>library(lubridate) # because we will probably see some dates
-library(here) # more easily access files in your project</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhoZXJl4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4zLjJoZXJlKCkgc3RhcnRzIGF0IEM6L1VzZXJzL2FsZXhhbmFuL0RvY3VtZW50cy9GaW5hbC1CaWtlc2hhcmUtUHJvamVjdF9EUzI0MV9UZWFtLTRcbiJ9 -->
-<pre><code>Warning: package ‘here’ was built under R version 4.3.2here() starts at C:/Users/alexanan/Documents/Final-Bikeshare-Project_DS241_Team-4</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtYXB2aWV3KVxuYGBgIn0= -->
-<pre class="r"><code>library(mapview)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhtYXB2aWV34oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4zLjJSZWdpc3RlcmVkIFMzIG1ldGhvZCBvdmVyd3JpdHRlbiBieSAnaHRtbHdpZGdldHMnOlxuICBtZXRob2QgICAgICAgICAgIGZyb20gICAgICAgICBcbiAgcHJpbnQuaHRtbHdpZGdldCB0b29sczpyc3R1ZGlvXG4ifQ== -->
-<pre><code>Warning: package ‘mapview’ was built under R version 4.3.2Registered S3 method overwritten by &#39;htmlwidgets&#39;:
-  method           from         
-  print.htmlwidget tools:rstudio</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnYmZzKVxuYGBgIn0= -->
-<pre class="r"><code>library(gbfs)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhnYmZz4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4zLjJcbiJ9 -->
-<pre><code>Warning: package ‘gbfs’ was built under R version 4.3.2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzZikgIyB3b3JraW5nIHdpdGggc2ltcGxlIGZlYXR1cmVzIC0gZ2Vvc3BhdGlhbFxuYGBgIn0= -->
-<pre class="r"><code>library(sf) # working with simple features - geospatial</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhzZuKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMy4yTGlua2luZyB0byBHRU9TIDMuMTEuMiwgR0RBTCAzLjcuMiwgUFJPSiA5LjMuMDsgc2ZfdXNlX3MyKCkgaXMgVFJVRVxuIn0= -->
-<pre><code>Warning: package ‘sf’ was built under R version 4.3.2Linking to GEOS 3.11.2, GDAL 3.7.2, PROJ 9.3.0; sf_use_s2() is TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0bWFwKVxuYGBgIn0= -->
-<pre class="r"><code>library(tmap)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh0bWFw4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4zLjJCcmVha2luZyBOZXdzOiB0bWFwIDMueCBpcyByZXRpcmluZy4gUGxlYXNlIHRlc3QgdjQsIGUuZy4gd2l0aFxucmVtb3Rlczo6aW5zdGFsbF9naXRodWIoJ3ItdG1hcC90bWFwJylcbiJ9 -->
-<pre><code>Warning: package ‘tmap’ was built under R version 4.3.2Breaking News: tmap 3.x is retiring. Please test v4, e.g. with
-remotes::install_github(&#39;r-tmap/tmap&#39;)</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5Y2Vuc3VzKVxuYGBgIn0= -->
-<pre class="r"><code>library(tidycensus)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh0aWR5Y2Vuc3Vz4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4zLjJcbiJ9 -->
-<pre><code>Warning: package ‘tidycensus’ was built under R version 4.3.2</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1882,8 +1828,8 @@ remotes::install_github(&#39;r-tmap/tmap&#39;)</code></pre>
 </ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlrZXNfc2VwdGVtYmVyIDwtIHJlYWRfY3N2KFwiZGF0YV9yYXcvMjAyMzA5LWNhcGl0YWxiaWtlc2hhcmUtdHJpcGRhdGEuY3N2XCIsIHNob3dfY29sX3R5cGVzID0gRkFMU0UpICU+JSBjbGVhbl9uYW1lcygpIFxuYGBgIn0= -->
-<pre class="r"><code>bikes_september &lt;- read_csv(&quot;data_raw/202309-capitalbikeshare-tripdata.csv&quot;, show_col_types = FALSE) %&gt;% clean_names() </code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlrZXNfc2VwdGVtYmVyIDwtIHJlYWRfY3N2KGhlcmUoXCJkYXRhX3Jhd1wiLFwiMjAyMzA5LWNhcGl0YWxiaWtlc2hhcmUtdHJpcGRhdGEuY3N2XCIpKSU+JSBjbGVhbl9uYW1lcygpIFxuYGBgIn0= -->
+<pre class="r"><code>bikes_september &lt;- read_csv(here(&quot;data_raw&quot;,&quot;202309-capitalbikeshare-tripdata.csv&quot;))%&gt;% clean_names() </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1901,10 +1847,277 @@ remotes::install_github(&#39;r-tmap/tmap&#39;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="comparsion-of-bicycle-related-crashes-to-major-bike-station" class="section level2">
+<h2>Comparsion of Bicycle Related Crashes to Major Bike Station</h2>
+<p>Comparing Bike Lanes and Crashes</p>
+<p>Filtering the crash data to work with a smaller time frame, looking
+specifically at the month of September 2023. First, we selected
+variables that we are interested in looking at from the total data set.
+We then filtered the data to only look at accidents relating the
+bicycles. This was determined by setting a requirement that there must
+be at least 1 bicycle involved in the accident.</p>
+<p>For the bike lane data set, we also reduced the number of variables
+to only the ones we were interested in analyzing. We also noticed that
+the “Ward” was common variable that was included in both the crash and
+bike lane data set. This will be useful when we later inter-join the two
+data sets.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMgPSBiaWtlc19jcmFzaGVzICU+JVxuICBzZWxlY3QoZnJvbWRhdGUsIGFkZHJlc3MsIGxhdGl0dWRlLCBsb25naXR1ZGUsIHhjb29yZCwgeWNvb3JkLCB3YXJkLCBtYWpvcmluanVyaWVzX2JpY3ljbGlzdCwgbWlub3Jpbmp1cmllc19iaWN5Y2xpc3QsIGZhdGFsX2JpY3ljbGlzdCwgdG90YWxfYmljeWNsZXMsIHRvdGFsX3ZlaGljbGVzLCBiaWN5Y2xpc3RzaW1wYWlyZWQsIHNwZWVkaW5nX2ludm9sdmVkKSAlPiVcbiAgIGZpbHRlcih0b3RhbF9iaWN5Y2xlcyA+PSBcIjFcIikgXG5cbnNpbXBsaWZpZWRfYmlrZV9sYW5lcyA9IGJpa2VzX2xhbmVzICU+JSBcbiAgc2VsZWN0KHJvdXRlbmFtZSwgYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnQsIGJpa2VsYW5lX3Rocm91Z2hsYW5lX2FkamFjZW50LCBiaWtlbGFuZV9wb2NrZXRsYW5lX2FkamFjZW50LCBiaWtlbGFuZV9jb250cmFmbG93LCBiaWtlbGFuZV9jb252ZW50aW9uYWwsIGJpa2VsYW5lX2R1YWxfcHJvdGVjdGVkLCBiaWtlbGFuZV9kdWFsX2J1ZmZlcmVkLCBiaWtlbGFuZV9wcm90ZWN0ZWQsIGJpa2VsYW5lX2J1ZmZlcmVkLCBzdHJlZXRuYW1lLCBzdHJlZXR0eXBlLCB0b3RhbGJpa2VsYW5lcywgdG90YWxiaWtlbGFuZXdpZHRoLCB3YXJkX2lkLCBnZW9tZXRyeSwgb2JqZWN0aWQpXG5gYGAifQ== -->
+<pre class="r"><code>simplified_bike_crashes = bikes_crashes %&gt;%
+  select(fromdate, address, latitude, longitude, xcoord, ycoord, ward, majorinjuries_bicyclist, minorinjuries_bicyclist, fatal_bicyclist, total_bicycles, total_vehicles, bicyclistsimpaired, speeding_involved) %&gt;%
+   filter(total_bicycles &gt;= &quot;1&quot;) 
+
+simplified_bike_lanes = bikes_lanes %&gt;% 
+  select(routename, bikelane_parkinglane_adjacent, bikelane_throughlane_adjacent, bikelane_pocketlane_adjacent, bikelane_contraflow, bikelane_conventional, bikelane_dual_protected, bikelane_dual_buffered, bikelane_protected, bikelane_buffered, streetname, streettype, totalbikelanes, totalbikelanewidth, ward_id, geometry, objectid)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now that we have a simplified data set, we are interested in the
+crash data that occur in September 2023. First, we will separate the
+date and time from each other, as they are initially recorded in the
+same column together.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkZGF0ZSA8LSBhcy5EYXRlKHNpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJGZyb21kYXRlKVxuc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkdGltZSA8LSBmb3JtYXQoc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkZnJvbWRhdGUsIFwiJUg6ICVNOiAlU1wiKVxuc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkbW9udGggPC0gZm9ybWF0KHNpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJGRhdGUsIFwiJW1cIilcbnNpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJHllYXIgPC0gZm9ybWF0KHNpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJGRhdGUsIFwiJXlcIilcbmBgYCJ9 -->
+<pre class="r"><code>simplified_bike_crashes$date &lt;- as.Date(simplified_bike_crashes$fromdate)
+simplified_bike_crashes$time &lt;- format(simplified_bike_crashes$fromdate, &quot;%H: %M: %S&quot;)
+simplified_bike_crashes$month &lt;- format(simplified_bike_crashes$date, &quot;%m&quot;)
+simplified_bike_crashes$year &lt;- format(simplified_bike_crashes$date, &quot;%y&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Next, we will filter the data to look at the data from September
+2023</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyA9IHNpbXBsaWZpZWRfYmlrZV9jcmFzaGVzICU+JVxuICBmaWx0ZXIobW9udGggPT0gXCIwOVwiICYgeWVhciA9PVwiMjNcIilcbmBgYCJ9 -->
+<pre class="r"><code>Sept_simplified_bike_crashes = simplified_bike_crashes %&gt;%
+  filter(month == &quot;09&quot; &amp; year ==&quot;23&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Reducing our data set is essential to making it easier for us to
+analyze our data. We will later look at a longer time period.</p>
+<p>We will now inter_join the bike lane and crash data based on the Ward
+specified. However, the Ward columns of the two dataset does not match
+for each observation recorded. The crash data uses “Ward #” while, the
+lane data just reports the #. First, we will make sure that each
+observation is recorded similarly. We also removed any NA from the data
+as well.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlc193YXJkID0gU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyAlPiVcbiAgc2VwYXJhdGUod2FyZCwgYyhOQSwgXCJXYXJkXCIpKVxuYGBgIn0= -->
+<pre class="r"><code>Sept_simplified_bike_crashes_ward = Sept_simplified_bike_crashes %&gt;%
+  separate(ward, c(NA, &quot;Ward&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now, that the observations are recorded in the same way. We will
+attempt to inter_join the two data sets. Later, we recognized that our
+data set is a sf class thus, we need to use st_join to join the two data
+sets.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlrZV9jcmFzaGVzX2xhbmVzID0gU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlc193YXJkICU+JVxuICBzdF9qb2luKHNpbXBsaWZpZWRfYmlrZV9sYW5lcylcbmNsYXNzKGJpa2VfY3Jhc2hlc19sYW5lcylcbmBgYCJ9 -->
+<pre class="r"><code>bike_crashes_lanes = Sept_simplified_bike_crashes_ward %&gt;%
+  st_join(simplified_bike_lanes)
+class(bike_crashes_lanes)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We will create an initial map of our data. First, we are setting the
+tmap mode to interactive viewing</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG1hcF9tb2RlKFwidmlld1wiKVxuYGBgIn0= -->
+<pre class="r"><code>tmap_mode(&quot;view&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>%% Mapping of Our Initial Data</p>
+<p>Plotting the crash data spatially</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlc193YXJkICU+JVxuICB0bV9zaGFwZSgpK1xuICB0bV9kb3RzKClcblxuYGBgIn0= -->
+<pre class="r"><code>Sept_simplified_bike_crashes_ward %&gt;%
+  tm_shape()+
+  tm_dots()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2ltcGxpZmllZF9iaWtlX2xhbmVzICU+JVxuICB0bV9zaGFwZSgpK1xuICB0bV9kb3RzKClcbmBgYCJ9 -->
+<pre class="r"><code>simplified_bike_lanes %&gt;%
+  tm_shape()+
+  tm_dots()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlrZV9jcmFzaGVzX2xhbmVzICU+JVxuICB0bV9zaGFwZSgpK1xuICB0bV9kb3RzKClcbmBgYCJ9 -->
+<pre class="r"><code>bike_crashes_lanes %&gt;%
+  tm_shape()+
+  tm_dots()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="issue-with-joining-the-crash-and-bike-lane-together---try-using-the-csv-files-instead" class="section level2">
+<h2>Issue with Joining the Crash and Bike Lane Together - Try Using the
+CSV files instead</h2>
+<p>We will come back to the mapping data at a later date.</p>
+<p>We noticed that after using the st_join, the bike lane data did not
+join correctly with the crash data. To re-evaluate our data, we decided
+to load the data as csv instead of using the geosjeon file.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X2Jpa2VfbGFuZSA8LSByZWFkX2NzdihoZXJlKFwiZGF0YV9yYXdcIixcIkJpY3ljbGVfTGFuZXMuY3N2XCIpKSU+JSBjbGVhbl9uYW1lcygpIFxuY3N2X2Jpa2VfY3Jhc2hlcyA8LSByZWFkX2NzdihoZXJlKFwiZGF0YV9yYXdcIixcIkNyYXNoZXNfaW5fREMuY3N2XCIpKVxuYGBgIn0= -->
+<pre class="r"><code>csv_bike_lane &lt;- read_csv(here(&quot;data_raw&quot;,&quot;Bicycle_Lanes.csv&quot;))%&gt;% clean_names() 
+csv_bike_crashes &lt;- read_csv(here(&quot;data_raw&quot;,&quot;Crashes_in_DC.csv&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzID0gY3N2X2Jpa2VfY3Jhc2hlcyAlPiVcbiAgc2VsZWN0KEZST01EQVRFLCBBRERSRVNTLCBMQVRJVFVERSwgTE9OR0lUVURFLCBYQ09PUkQsIFlDT09SRCwgV0FSRCwgTUFKT1JJTkpVUklFU19CSUNZQ0xJU1QsIE1JTk9SSU5KVVJJRVNfQklDWUNMSVNULCBGQVRBTF9CSUNZQ0xJU1QsIFRPVEFMX0JJQ1lDTEVTLCBUT1RBTF9WRUhJQ0xFUywgQklDWUNMSVNUU0lNUEFJUkVELCBTUEVFRElOR19JTlZPTFZFRCkgJT4lXG4gICBmaWx0ZXIoVE9UQUxfQklDWUNMRVMgPj0gXCIxXCIpIFxuXG5jc3Zfc2ltcGxpZmllZF9iaWtlX2xhbmVzID0gY3N2X2Jpa2VfbGFuZSAlPiUgXG4gIHNlbGVjdChyb3V0ZW5hbWUsIGJpa2VsYW5lX3BhcmtpbmdsYW5lX2FkamFjZW50LCBiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCwgYmlrZWxhbmVfcG9ja2V0bGFuZV9hZGphY2VudCwgYmlrZWxhbmVfY29udHJhZmxvdywgYmlrZWxhbmVfY29udmVudGlvbmFsLCBiaWtlbGFuZV9kdWFsX3Byb3RlY3RlZCwgYmlrZWxhbmVfZHVhbF9idWZmZXJlZCwgYmlrZWxhbmVfcHJvdGVjdGVkLCBiaWtlbGFuZV9idWZmZXJlZCwgc3RyZWV0bmFtZSwgc3RyZWV0dHlwZSwgdG90YWxiaWtlbGFuZXMsIHRvdGFsYmlrZWxhbmV3aWR0aCwgd2FyZF9pZCwgb2JqZWN0aWQpXG5gYGAifQ== -->
+<pre class="r"><code>csv_simplified_bike_crashes = csv_bike_crashes %&gt;%
+  select(FROMDATE, ADDRESS, LATITUDE, LONGITUDE, XCOORD, YCOORD, WARD, MAJORINJURIES_BICYCLIST, MINORINJURIES_BICYCLIST, FATAL_BICYCLIST, TOTAL_BICYCLES, TOTAL_VEHICLES, BICYCLISTSIMPAIRED, SPEEDING_INVOLVED) %&gt;%
+   filter(TOTAL_BICYCLES &gt;= &quot;1&quot;) 
+
+csv_simplified_bike_lanes = csv_bike_lane %&gt;% 
+  select(routename, bikelane_parkinglane_adjacent, bikelane_throughlane_adjacent, bikelane_pocketlane_adjacent, bikelane_contraflow, bikelane_conventional, bikelane_dual_protected, bikelane_dual_buffered, bikelane_protected, bikelane_buffered, streetname, streettype, totalbikelanes, totalbikelanewidth, ward_id, objectid)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJGRhdGUgPC0gYXMuRGF0ZShjc3Zfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkRlJPTURBVEUpXG4jIGNzdl9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyR0aW1lIDwtIGZvcm1hdChjc3Zfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkRlJPTURBVEUsIFwiJUg6ICVNOiAlU1wiKVxuY3N2X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJG1vbnRoIDwtIGZvcm1hdChjc3Zfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkZGF0ZSwgXCIlbVwiKVxuY3N2X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJHllYXIgPC0gZm9ybWF0KGNzdl9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyRkYXRlLCBcIiV5XCIpXG5gYGAifQ== -->
+<pre class="r"><code>csv_simplified_bike_crashes$date &lt;- as.Date(csv_simplified_bike_crashes$FROMDATE)
+# csv_simplified_bike_crashes$time &lt;- format(csv_simplified_bike_crashes$FROMDATE, &quot;%H: %M: %S&quot;)
+csv_simplified_bike_crashes$month &lt;- format(csv_simplified_bike_crashes$date, &quot;%m&quot;)
+csv_simplified_bike_crashes$year &lt;- format(csv_simplified_bike_crashes$date, &quot;%y&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X1NlcHRfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMgPSBzaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyAlPiVcbiAgZmlsdGVyKG1vbnRoID09IFwiMDlcIiAmIHllYXIgPT1cIjIzXCIpXG5gYGAifQ== -->
+<pre class="r"><code>csv_Sept_simplified_bike_crashes = simplified_bike_crashes %&gt;%
+  filter(month == &quot;09&quot; &amp; year ==&quot;23&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X1NlcHRfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXNfd2FyZCA9IFNlcHRfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMgJT4lXG4gIHNlcGFyYXRlKHdhcmQsIGMoTkEsIFwiV2FyZFwiKSlcbmBgYCJ9 -->
+<pre class="r"><code>csv_Sept_simplified_bike_crashes_ward = Sept_simplified_bike_crashes %&gt;%
+  separate(ward, c(NA, &quot;Ward&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Want to join the two data sets based on the route name or the street
+name that is given.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X2NyYXNoX2FkZHJlc3MgPSBjc3ZfU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlc193YXJkICU+JVxuICBzZXBhcmF0ZShhZGRyZXNzLCBjKFwiYWRkcmVzcyBudW1iZXJcIiwgXCJzdHJlZXRuYW1lXCIsXCJzdHJlZXQgdHlwZVwiLFwicXVhZHJhbnRcIikpXG5gYGAifQ== -->
+<pre class="r"><code>csv_crash_address = csv_Sept_simplified_bike_crashes_ward %&gt;%
+  separate(address, c(&quot;address number&quot;, &quot;streetname&quot;,&quot;street type&quot;,&quot;quadrant&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Choosing to delete rows that did not separate correctly as shown in
+the error above</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X3JlbW92ZWRfY3Jhc2hfYWRkcmVzcyA9IGNzdl9jcmFzaF9hZGRyZXNzWy1jKDIsOCwxMCwxNSwzNyksIF1cbmBgYCJ9 -->
+<pre class="r"><code>csv_removed_crash_address = csv_crash_address[-c(2,8,10,15,37), ]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Simplify the bike lane data so that instead of defining the lane as a
+collection of points, we instead want it to count only once in our data.
+The bike lane data can be split to differentiate between how the bike
+lane flows with traffic vs. whether there are any physical barriers or
+distinct separations in place. Right now, we will solely look at the
+physical barriers and the code below filters our data as such.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X2Jpa2VfbGFuZXNfcmVkdWNlZCA9IGNzdl9zaW1wbGlmaWVkX2Jpa2VfbGFuZXMgJT4lXG4gIGNvdW50KHN0cmVldG5hbWUsIGJpa2VsYW5lX2R1YWxfcHJvdGVjdGVkLCBiaWtlbGFuZV9kdWFsX2J1ZmZlcmVkLCBiaWtlbGFuZV9wcm90ZWN0ZWQsIGJpa2VsYW5lX2J1ZmZlcmVkKSAlPiVcbiAgZHJvcF9uYShzdHJlZXRuYW1lKSAlPiVcbiAgZ3JvdXBfYnkoc3RyZWV0bmFtZSkgXG5cbmBgYCJ9 -->
+<pre class="r"><code>csv_bike_lanes_reduced = csv_simplified_bike_lanes %&gt;%
+  count(streetname, bikelane_dual_protected, bikelane_dual_buffered, bikelane_protected, bikelane_buffered) %&gt;%
+  drop_na(streetname) %&gt;%
+  group_by(streetname) 
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>States the number of bike lanes associated with each street</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdDIgPSBjc3Zfc2ltcGxpZmllZF9iaWtlX2xhbmVzICU+JVxuICBjb3VudChzdHJlZXRuYW1lKVxuYGBgIn0= -->
+<pre class="r"><code>test2 = csv_simplified_bike_lanes %&gt;%
+  count(streetname)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdDMgPSBjc3Zfc2ltcGxpZmllZF9iaWtlX2xhbmVzICU+JVxuICBzZWxlY3Qoc3RyZWV0bmFtZSwgYmlrZWxhbmVfZHVhbF9wcm90ZWN0ZWQpXG5cbiAjIHRlc3QzJGJpa2VsYW5lX2R1YWxfcHJvdGVjdGVkIDwtIHJlcGxhY2VfbmEoXCJOb25lXCIpXG5gYGAifQ== -->
+<pre class="r"><code>test3 = csv_simplified_bike_lanes %&gt;%
+  select(streetname, bikelane_dual_protected)
+
+ # test3$bikelane_dual_protected &lt;- replace_na(&quot;None&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Testing code to obtain the number of bike lanes for each type that is
+associated with each street</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdCA9IGNzdl9zaW1wbGlmaWVkX2Jpa2VfbGFuZXMgJT4lXG4gIGNvdW50KHN0cmVldG5hbWUsIGJpa2VsYW5lX2NvbnZlbnRpb25hbCkgJT4lXG4gIGRyb3BfbmEoYmlrZWxhbmVfY29udmVudGlvbmFsKSAlPiVcbiAgZ3JvdXBfYnkoc3RyZWV0bmFtZSkgJT4lXG4gIHN1bW1hcmlzZShiaWtlbGFuZV9jb252ZW50aW9uYWxfdG90YWwgPSBzdW0obikpXG5gYGAifQ== -->
+<pre class="r"><code>test = csv_simplified_bike_lanes %&gt;%
+  count(streetname, bikelane_conventional) %&gt;%
+  drop_na(bikelane_conventional) %&gt;%
+  group_by(streetname) %&gt;%
+  summarise(bikelane_conventional_total = sum(n))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Left_join the crash and bike lane data set based on the street
+name</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3N2X2NyYXNoX2xhbmVzID0gY3N2X3JlbW92ZWRfY3Jhc2hfYWRkcmVzcyAlPiVcbiAgbGVmdF9qb2luKGNzdl9zaW1wbGlmaWVkX2Jpa2VfbGFuZXMsIFwic3RyZWV0bmFtZVwiKVxuZ2xpbXBzZShjc3ZfY3Jhc2hfbGFuZXMpXG5gYGAifQ== -->
+<pre class="r"><code>csv_crash_lanes = csv_removed_crash_address %&gt;%
+  left_join(csv_simplified_bike_lanes, &quot;streetname&quot;)
+glimpse(csv_crash_lanes)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="finding-the-number-of-accidents-associated-with-each-bike-lane" class="section level2">
+<h2>Finding the Number of Accidents Associated with Each Bike Lane</h2>
+</div>
+<div id="creating-a-variable-for-classifying-the-type-of-accident" class="section level2">
+<h2>Creating a Variable for Classifying the Type of Accident</h2>
+<p>Calculating the number of accidents that occurred for each bike
+lane</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Calculate the a sum crashes that occurs along the bike lane line. The
+bike lane is a geometric line, while each crash is recorded as a
+geometric point.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRTMjQxIEZpbmFsIFByb2VqZWN0IC0gREMgQmlrZXNoYXJlICINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiAiQWxleGlzIEFsZXhhbmRlciwgR2lhbm5hIENhcG9jY2lhLCBNb3JnYW4gRWF0b24sIGFuZCBNYXRlbyBTYXJhYmlhIg0KZGF0ZTogIjA5IERlY2VtYmVyIDIwMjMiDQotLS0NCg0KIyMgQmFja2dyb3VuZCBJbmZvcm1hdGlvbg0KDQpUaGUgcHVycG9zZSBvZiBvdXIgYW5hbHlzaXMgaW52b2x2ZXMgZXhwbG9yaW5nIHBvdGVudGlhbCBtZXRob2RzIG9mIGluY3JlYXNpbmcgcmlkZXJzaGlwIGZvciB0aGUgREMgQ2FwdGlhbCBCaWtlc2hhcmUgcHJvZ3JhbS4gVGhpcyBtb3RpdmF0aW9uIGluIGZvY3VzaW5nIG9uIHJpZGVyc2hpcCBhbGlnbnMgd2l0aCB0aGUgREMgQmlrZXNoYXJlJ3MgbWFpbiBtaXNzaW9uIGluIHRyYW5zZm9ybWluZyB0aGUgV2FzaGluZ3Rpb24gTWV0cm9wb2xpdGFuIEFyZWEgYW5kIHJlc2lkaW5nIGNvbW11bml0aWVzIGJ5IHByb3ZpZGluZyBhbiBhZmZvcmRhYmxlIGJpY3ljbGUgdHJhbnNpdCBzeXN0ZW0uIFRoZSBnb2FscyBvdXRsaW5lZCBpbiB0aGlzIHRhcmdldGVkIHJlZm9ybWF0aW9uIGluY2x1ZGVzIGRlY3JlYXNpbmcgdHJhZmZpYyBjb25nZXN0aW9uLCBwcm9tb3RpbmcgaGVhbHRoIGFuZCB3ZWxsbmVzcywgZGVjcmVhc2luZyBhaXIgcG9sbHV0aW9uLCBhbmQgZXhwYW5kaW5nIHRyYW5zcG9ydGF0aW9uIG9wdGlvbnMuIFRoZSBEQyBCaWVrc2hhcmUgcHJvZ3JhbSBpcyBvd25lZCBieSBzZXZlcmFsIGp1cmlzZGljdGlvbnMgaG93ZXZlciwgaXMgbWFpbmx5IG1hbmFnZWQgYnkgdGhlIERDIGxvY2FsIGdvdmVybm1lbnQuICANCg0KTW9yZSBpbmZvcm1hdGlvbiBwZXJ0YWluaW5nIHRvIHRoZSBiaWtlc2hhcmUgcHJvZ3JhbSBjYW4gYmUgZm91bmQgYnkgZm9sbG93aW5nIHRoaXMgbGluazogaHR0cHM6Ly9jYXBpdGFsYmlrZXNoYXJlLmNvbS8NCg0KIyMgQnVzaW5lc3MgVW5kZXJzdGFuZGluZyANCg0KRm9sbG93aW5nIHRoZSBtZXRob2RzIG91dGxpbmUgaW4gdGhlIENSSVNQLURNIE1ldGhvZG9sb2d5LCB3ZSBpbml0aWFsbHkgZm9jdXNlZCBvbiB1bmRlcnN0YW5kaW5nIHRoZSB2YXJpb3VzIGJ1c2luZXNzIGFzcGVjdHMgdG8gb3VyIHByb2JsZW0gYmVmb3JlIGFuYWx5emluZyBhbnkgZGF0YS4gV2UgZGV0ZXJtaW5lIG91ciBidXNpbmVzcyBvYmplY3RpdmVzIGJ5IHJlc2VhcmNoaW5nIHRoZSBiYWNrZ3JvdW5kIG9mIHRoZSBEQyBCaWtlc2hhcmUgcHJvZ3JhbSwgYXMgc2VlbiBhYm92ZS4gTmV4dCwgd2UgZGV0ZXJtaW5lIG91ciBkYXRhIG1pbmluZyBnb2FscyBhbmQgaWRlbnRpZmllZCBhIG92ZXJhbGwgcXVlc3Rpb24gd2UgYWltIHRvIHNvbHZlIGZvciBvdXIgYW5hbHlzaXMuDQoNClRoaXMgcXVlc3Rpb24gcGVydGFpbnMgdG8gdGhlIGZvbGxvd2luZzogSG93IGRvIHdlIG1ha2UgaXQgc2FmZXIgZm9yIHBlb3BsZSB0byByaWRlIGJpa2VzIGFzIGEgbWVhbnMgb2YgaW5jcmVhc2luZyByaWRlcnNoaXA/DQoNCg0KIyMgSW5zdGFsbGluZyBQYWNrYWdlcyANCg0KQmVsb3cgYXJlIHRoZSBwYWNrYWdlcyBzaG91bGQgYmUgaW5zdGFsbGVkOg0KDQpgYGB7cn0NCmluc3RhbGwucGFja2FnZXMoInRpZHl2ZXJzZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJqYW5pdG9yIikNCmluc3RhbGwucGFja2FnZXMoImx1YnJpZGF0ZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJoZXJlIikNCmluc3RhbGwucGFja2FnZXMoIm1hcHZpZXciKQ0KaW5zdGFsbC5wYWNrYWdlcygiZ2JmcyIpDQppbnN0YWxsLnBhY2thZ2VzKCJzZiIpDQppbnN0YWxsLnBhY2thZ2VzKCJ0bWFwIikNCmluc3RhbGwucGFja2FnZXMoInRpZHljZW5zdXMiKQ0KYGBgDQoNCkJhc2VsaW5lIHBhY2thZ2VzIGZvciBvdXIgYW5hbHlzaXM6IA0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShqYW5pdG9yKQ0KbGlicmFyeShsdWJyaWRhdGUpICMgYmVjYXVzZSB3ZSB3aWxsIHByb2JhYmx5IHNlZSBzb21lIGRhdGVzDQpsaWJyYXJ5KGhlcmUpICMgbW9yZSBlYXNpbHkgYWNjZXNzIGZpbGVzIGluIHlvdXIgcHJvamVjdA0KbGlicmFyeShtYXB2aWV3KQ0KbGlicmFyeShnYmZzKQ0KbGlicmFyeShzZikgIyB3b3JraW5nIHdpdGggc2ltcGxlIGZlYXR1cmVzIC0gZ2Vvc3BhdGlhbA0KbGlicmFyeSh0bWFwKQ0KbGlicmFyeSh0aWR5Y2Vuc3VzKQ0KYGBgDQoNCiMjIEFjY2Vzc2luZyBhbmQgTG9hZGluZyB0aGUgRGF0YWJhc2VzIA0KDQpXZSBhcmUgaW5pdGlhbGx5IGxvb2tpbmcgYXQgdGhlIGZvbGxvd2luZyB0aHJlZSBkYXRhIHNldHM6DQoNCjEuIFRoZSBEQyBCaWtlc2hhcmUgU3lzdGVtIERhdGEgZm9yIFNlcHRlbWJlciAyMDIzOiBodHRwczovL2NhcGl0YWxiaWtlc2hhcmUuY29tL3N5c3RlbS1kYXRhDQoyLiBUaGUgREMgUHJvdGVjdGVkIHZzIFVucHJvdGVjdGVkIEJpa2VsYW5lIERhdGFzZXQ6IGh0dHBzOi8vb3BlbmRhdGEuZGMuZ292L2RhdGFzZXRzL2JpY3ljbGUtbGFuZXMvZXhwbG9yZQ0KMy4gVGhlIERDIENyaW1lcyBhbmQgQWNjaWRlbnRzIERhdGFzZXQ6IGh0dHBzOi8vb3BlbmRhdGEuZGMuZ292L2RhdGFzZXRzL2NyYXNoZXMtaW4tZGMvZXhwbG9yZQ0KDQpgYGB7cn0NCmJpa2VzX3NlcHRlbWJlciA8LSByZWFkX2NzdigiZGF0YV9yYXcvMjAyMzA5LWNhcGl0YWxiaWtlc2hhcmUtdHJpcGRhdGEuY3N2Iiwgc2hvd19jb2xfdHlwZXMgPSBGQUxTRSkgJT4lIGNsZWFuX25hbWVzKCkgDQpgYGANCg0KYGBge3J9DQpiaWtlc19sYW5lcyA9IHN0X3JlYWQoaGVyZSgiZGF0YV9yYXciLCAiQmljeWNsZV9MYW5lcy5nZW9qc29uIikpICU+JSBjbGVhbl9uYW1lcygpDQpgYGANCg0KYGBge3J9DQpiaWtlc19jcmFzaGVzID0gc3RfcmVhZChoZXJlKCJkYXRhX3JhdyIsICJDcmFzaGVzX2luX0RDLmdlb2pzb24iKSkgJT4lIGNsZWFuX25hbWVzKCkNCmBgYA0KDQoNCg0KDQoNCg0KDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRTMjQxIEZpbmFsIFByb2VqZWN0IC0gREMgQmlrZXNoYXJlICINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiAiQWxleGlzIEFsZXhhbmRlciwgR2lhbm5hIENhcG9jY2lhLCBNb3JnYW4gRWF0b24sIGFuZCBNYXRlbyBTYXJhYmlhIg0KZGF0ZTogIjA5IERlY2VtYmVyIDIwMjMiDQotLS0NCg0KIyMgQmFja2dyb3VuZCBJbmZvcm1hdGlvbg0KDQpUaGUgcHVycG9zZSBvZiBvdXIgYW5hbHlzaXMgaW52b2x2ZXMgZXhwbG9yaW5nIHBvdGVudGlhbCBtZXRob2RzIG9mIGluY3JlYXNpbmcgcmlkZXJzaGlwIGZvciB0aGUgREMgQ2FwdGlhbCBCaWtlc2hhcmUgcHJvZ3JhbS4gVGhpcyBtb3RpdmF0aW9uIGluIGZvY3VzaW5nIG9uIHJpZGVyc2hpcCBhbGlnbnMgd2l0aCB0aGUgREMgQmlrZXNoYXJlJ3MgbWFpbiBtaXNzaW9uIGluIHRyYW5zZm9ybWluZyB0aGUgV2FzaGluZ3Rpb24gTWV0cm9wb2xpdGFuIEFyZWEgYW5kIHJlc2lkaW5nIGNvbW11bml0aWVzIGJ5IHByb3ZpZGluZyBhbiBhZmZvcmRhYmxlIGJpY3ljbGUgdHJhbnNpdCBzeXN0ZW0uIFRoZSBnb2FscyBvdXRsaW5lZCBpbiB0aGlzIHRhcmdldGVkIHJlZm9ybWF0aW9uIGluY2x1ZGVzIGRlY3JlYXNpbmcgdHJhZmZpYyBjb25nZXN0aW9uLCBwcm9tb3RpbmcgaGVhbHRoIGFuZCB3ZWxsbmVzcywgZGVjcmVhc2luZyBhaXIgcG9sbHV0aW9uLCBhbmQgZXhwYW5kaW5nIHRyYW5zcG9ydGF0aW9uIG9wdGlvbnMuIFRoZSBEQyBCaWVrc2hhcmUgcHJvZ3JhbSBpcyBvd25lZCBieSBzZXZlcmFsIGp1cmlzZGljdGlvbnMgaG93ZXZlciwgaXMgbWFpbmx5IG1hbmFnZWQgYnkgdGhlIERDIGxvY2FsIGdvdmVybm1lbnQuICANCg0KTW9yZSBpbmZvcm1hdGlvbiBwZXJ0YWluaW5nIHRvIHRoZSBiaWtlc2hhcmUgcHJvZ3JhbSBjYW4gYmUgZm91bmQgYnkgZm9sbG93aW5nIHRoaXMgbGluazogaHR0cHM6Ly9jYXBpdGFsYmlrZXNoYXJlLmNvbS8NCg0KIyMgQnVzaW5lc3MgVW5kZXJzdGFuZGluZyANCg0KRm9sbG93aW5nIHRoZSBtZXRob2RzIG91dGxpbmUgaW4gdGhlIENSSVNQLURNIE1ldGhvZG9sb2d5LCB3ZSBpbml0aWFsbHkgZm9jdXNlZCBvbiB1bmRlcnN0YW5kaW5nIHRoZSB2YXJpb3VzIGJ1c2luZXNzIGFzcGVjdHMgdG8gb3VyIHByb2JsZW0gYmVmb3JlIGFuYWx5emluZyBhbnkgZGF0YS4gV2UgZGV0ZXJtaW5lIG91ciBidXNpbmVzcyBvYmplY3RpdmVzIGJ5IHJlc2VhcmNoaW5nIHRoZSBiYWNrZ3JvdW5kIG9mIHRoZSBEQyBCaWtlc2hhcmUgcHJvZ3JhbSwgYXMgc2VlbiBhYm92ZS4gTmV4dCwgd2UgZGV0ZXJtaW5lIG91ciBkYXRhIG1pbmluZyBnb2FscyBhbmQgaWRlbnRpZmllZCBhIG92ZXJhbGwgcXVlc3Rpb24gd2UgYWltIHRvIHNvbHZlIGZvciBvdXIgYW5hbHlzaXMuDQoNClRoaXMgcXVlc3Rpb24gcGVydGFpbnMgdG8gdGhlIGZvbGxvd2luZzogSG93IGRvIHdlIG1ha2UgaXQgc2FmZXIgZm9yIHBlb3BsZSB0byByaWRlIGJpa2VzIGFzIGEgbWVhbnMgb2YgaW5jcmVhc2luZyByaWRlcnNoaXA/DQoNCg0KIyMgSW5zdGFsbGluZyBQYWNrYWdlcyANCg0KQmVsb3cgYXJlIHRoZSBwYWNrYWdlcyBzaG91bGQgYmUgaW5zdGFsbGVkOg0KDQpgYGB7cn0NCmluc3RhbGwucGFja2FnZXMoInRpZHl2ZXJzZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJqYW5pdG9yIikNCmluc3RhbGwucGFja2FnZXMoImx1YnJpZGF0ZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJoZXJlIikNCmluc3RhbGwucGFja2FnZXMoIm1hcHZpZXciKQ0KaW5zdGFsbC5wYWNrYWdlcygiZ2JmcyIpDQppbnN0YWxsLnBhY2thZ2VzKCJzZiIpDQppbnN0YWxsLnBhY2thZ2VzKCJ0bWFwIikNCmluc3RhbGwucGFja2FnZXMoInRpZHljZW5zdXMiKQ0KYGBgDQoNCkJhc2VsaW5lIHBhY2thZ2VzIGZvciBvdXIgYW5hbHlzaXM6IA0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShqYW5pdG9yKQ0KbGlicmFyeShsdWJyaWRhdGUpICMgYmVjYXVzZSB3ZSB3aWxsIHByb2JhYmx5IHNlZSBzb21lIGRhdGVzDQpsaWJyYXJ5KGhlcmUpICMgbW9yZSBlYXNpbHkgYWNjZXNzIGZpbGVzIGluIHlvdXIgcHJvamVjdA0KbGlicmFyeShtYXB2aWV3KQ0KbGlicmFyeShnYmZzKQ0KbGlicmFyeShzZikgIyB3b3JraW5nIHdpdGggc2ltcGxlIGZlYXR1cmVzIC0gZ2Vvc3BhdGlhbA0KbGlicmFyeSh0bWFwKQ0KbGlicmFyeSh0aWR5Y2Vuc3VzKQ0KYGBgDQoNCiMjIEFjY2Vzc2luZyBhbmQgTG9hZGluZyB0aGUgRGF0YWJhc2VzIA0KDQpXZSBhcmUgaW5pdGlhbGx5IGxvb2tpbmcgYXQgdGhlIGZvbGxvd2luZyB0aHJlZSBkYXRhIHNldHM6DQoNCjEuIFRoZSBEQyBCaWtlc2hhcmUgU3lzdGVtIERhdGEgZm9yIFNlcHRlbWJlciAyMDIzOiBodHRwczovL2NhcGl0YWxiaWtlc2hhcmUuY29tL3N5c3RlbS1kYXRhDQoyLiBUaGUgREMgUHJvdGVjdGVkIHZzIFVucHJvdGVjdGVkIEJpa2VsYW5lIERhdGFzZXQ6IGh0dHBzOi8vb3BlbmRhdGEuZGMuZ292L2RhdGFzZXRzL2JpY3ljbGUtbGFuZXMvZXhwbG9yZQ0KMy4gVGhlIERDIENyaW1lcyBhbmQgQWNjaWRlbnRzIERhdGFzZXQ6IGh0dHBzOi8vb3BlbmRhdGEuZGMuZ292L2RhdGFzZXRzL2NyYXNoZXMtaW4tZGMvZXhwbG9yZQ0KDQpgYGB7cn0NCmJpa2VzX3NlcHRlbWJlciA8LSByZWFkX2NzdihoZXJlKCJkYXRhX3JhdyIsIjIwMjMwOS1jYXBpdGFsYmlrZXNoYXJlLXRyaXBkYXRhLmNzdiIpKSU+JSBjbGVhbl9uYW1lcygpIA0KYGBgDQoNCmBgYHtyfQ0KYmlrZXNfbGFuZXMgPSBzdF9yZWFkKGhlcmUoImRhdGFfcmF3IiwgIkJpY3ljbGVfTGFuZXMuZ2VvanNvbiIpKSAlPiUgY2xlYW5fbmFtZXMoKQ0KYGBgDQoNCmBgYHtyfQ0KYmlrZXNfY3Jhc2hlcyA9IHN0X3JlYWQoaGVyZSgiZGF0YV9yYXciLCAiQ3Jhc2hlc19pbl9EQy5nZW9qc29uIikpICU+JSBjbGVhbl9uYW1lcygpDQpgYGANCiMjIENvbXBhcnNpb24gb2YgQmljeWNsZSBSZWxhdGVkIENyYXNoZXMgdG8gTWFqb3IgQmlrZSBTdGF0aW9uIA0KDQpDb21wYXJpbmcgQmlrZSBMYW5lcyBhbmQgQ3Jhc2hlcyANCg0KRmlsdGVyaW5nIHRoZSBjcmFzaCBkYXRhIHRvIHdvcmsgd2l0aCBhIHNtYWxsZXIgdGltZSBmcmFtZSwgbG9va2luZyBzcGVjaWZpY2FsbHkgYXQgdGhlIG1vbnRoIG9mIFNlcHRlbWJlciAyMDIzLiBGaXJzdCwgd2Ugc2VsZWN0ZWQgdmFyaWFibGVzIHRoYXQgd2UgYXJlIGludGVyZXN0ZWQgaW4gbG9va2luZyBhdCBmcm9tIHRoZSB0b3RhbCBkYXRhIHNldC4gV2UgdGhlbiBmaWx0ZXJlZCB0aGUgZGF0YSB0byBvbmx5IGxvb2sgYXQgYWNjaWRlbnRzIHJlbGF0aW5nIHRoZSBiaWN5Y2xlcy4gVGhpcyB3YXMgZGV0ZXJtaW5lZCBieSBzZXR0aW5nIGEgcmVxdWlyZW1lbnQgdGhhdCB0aGVyZSBtdXN0IGJlIGF0IGxlYXN0IDEgYmljeWNsZSBpbnZvbHZlZCBpbiB0aGUgYWNjaWRlbnQuIA0KDQpGb3IgdGhlIGJpa2UgbGFuZSBkYXRhIHNldCwgd2UgYWxzbyByZWR1Y2VkIHRoZSBudW1iZXIgb2YgdmFyaWFibGVzIHRvIG9ubHkgdGhlIG9uZXMgd2Ugd2VyZSBpbnRlcmVzdGVkIGluIGFuYWx5emluZy4gV2UgYWxzbyBub3RpY2VkIHRoYXQgdGhlICJXYXJkIiB3YXMgY29tbW9uIHZhcmlhYmxlIHRoYXQgd2FzIGluY2x1ZGVkIGluIGJvdGggdGhlIGNyYXNoIGFuZCBiaWtlIGxhbmUgZGF0YSBzZXQuIFRoaXMgd2lsbCBiZSB1c2VmdWwgd2hlbiB3ZSBsYXRlciBpbnRlci1qb2luIHRoZSB0d28gZGF0YSBzZXRzLiANCg0KYGBge3J9DQpzaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyA9IGJpa2VzX2NyYXNoZXMgJT4lDQogIHNlbGVjdChmcm9tZGF0ZSwgYWRkcmVzcywgbGF0aXR1ZGUsIGxvbmdpdHVkZSwgeGNvb3JkLCB5Y29vcmQsIHdhcmQsIG1ham9yaW5qdXJpZXNfYmljeWNsaXN0LCBtaW5vcmluanVyaWVzX2JpY3ljbGlzdCwgZmF0YWxfYmljeWNsaXN0LCB0b3RhbF9iaWN5Y2xlcywgdG90YWxfdmVoaWNsZXMsIGJpY3ljbGlzdHNpbXBhaXJlZCwgc3BlZWRpbmdfaW52b2x2ZWQpICU+JQ0KICAgZmlsdGVyKHRvdGFsX2JpY3ljbGVzID49ICIxIikgDQoNCnNpbXBsaWZpZWRfYmlrZV9sYW5lcyA9IGJpa2VzX2xhbmVzICU+JSANCiAgc2VsZWN0KHJvdXRlbmFtZSwgYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnQsIGJpa2VsYW5lX3Rocm91Z2hsYW5lX2FkamFjZW50LCBiaWtlbGFuZV9wb2NrZXRsYW5lX2FkamFjZW50LCBiaWtlbGFuZV9jb250cmFmbG93LCBiaWtlbGFuZV9jb252ZW50aW9uYWwsIGJpa2VsYW5lX2R1YWxfcHJvdGVjdGVkLCBiaWtlbGFuZV9kdWFsX2J1ZmZlcmVkLCBiaWtlbGFuZV9wcm90ZWN0ZWQsIGJpa2VsYW5lX2J1ZmZlcmVkLCBzdHJlZXRuYW1lLCBzdHJlZXR0eXBlLCB0b3RhbGJpa2VsYW5lcywgdG90YWxiaWtlbGFuZXdpZHRoLCB3YXJkX2lkLCBnZW9tZXRyeSwgb2JqZWN0aWQpDQpgYGANCg0KDQpOb3cgdGhhdCB3ZSBoYXZlIGEgc2ltcGxpZmllZCBkYXRhIHNldCwgd2UgYXJlIGludGVyZXN0ZWQgaW4gdGhlIGNyYXNoIGRhdGEgdGhhdCBvY2N1ciBpbiBTZXB0ZW1iZXIgMjAyMy4gRmlyc3QsIHdlIHdpbGwgc2VwYXJhdGUgdGhlIGRhdGUgYW5kIHRpbWUgZnJvbSBlYWNoIG90aGVyLCBhcyB0aGV5IGFyZSBpbml0aWFsbHkgcmVjb3JkZWQgaW4gdGhlIHNhbWUgY29sdW1uIHRvZ2V0aGVyLiANCg0KYGBge3J9DQpzaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyRkYXRlIDwtIGFzLkRhdGUoc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkZnJvbWRhdGUpDQpzaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyR0aW1lIDwtIGZvcm1hdChzaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyRmcm9tZGF0ZSwgIiVIOiAlTTogJVMiKQ0Kc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkbW9udGggPC0gZm9ybWF0KHNpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJGRhdGUsICIlbSIpDQpzaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyR5ZWFyIDwtIGZvcm1hdChzaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyRkYXRlLCAiJXkiKQ0KYGBgDQoNCk5leHQsIHdlIHdpbGwgZmlsdGVyIHRoZSBkYXRhIHRvIGxvb2sgYXQgdGhlIGRhdGEgZnJvbSBTZXB0ZW1iZXIgMjAyMyANCg0KYGBge3J9DQpTZXB0X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzID0gc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMgJT4lDQogIGZpbHRlcihtb250aCA9PSAiMDkiICYgeWVhciA9PSIyMyIpDQpgYGANCg0KUmVkdWNpbmcgb3VyIGRhdGEgc2V0IGlzIGVzc2VudGlhbCB0byBtYWtpbmcgaXQgZWFzaWVyIGZvciB1cyB0byBhbmFseXplIG91ciBkYXRhLiBXZSB3aWxsIGxhdGVyIGxvb2sgYXQgYSBsb25nZXIgdGltZSBwZXJpb2QuIA0KDQpXZSB3aWxsIG5vdyBpbnRlcl9qb2luIHRoZSBiaWtlIGxhbmUgYW5kIGNyYXNoIGRhdGEgYmFzZWQgb24gdGhlIFdhcmQgc3BlY2lmaWVkLiBIb3dldmVyLCB0aGUgV2FyZCBjb2x1bW5zIG9mIHRoZSB0d28gZGF0YXNldCBkb2VzIG5vdCBtYXRjaCBmb3IgZWFjaCBvYnNlcnZhdGlvbiByZWNvcmRlZC4gVGhlIGNyYXNoIGRhdGEgdXNlcyAiV2FyZCAjIiB3aGlsZSwgdGhlIGxhbmUgZGF0YSBqdXN0IHJlcG9ydHMgdGhlICMuIEZpcnN0LCB3ZSB3aWxsIG1ha2Ugc3VyZSB0aGF0IGVhY2ggb2JzZXJ2YXRpb24gaXMgcmVjb3JkZWQgc2ltaWxhcmx5LiBXZSBhbHNvIHJlbW92ZWQgYW55IE5BIGZyb20gdGhlIGRhdGEgYXMgd2VsbC4gDQoNCmBgYHtyfQ0KU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlc193YXJkID0gU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyAlPiUNCiAgc2VwYXJhdGUod2FyZCwgYyhOQSwgIldhcmQiKSkNCmBgYA0KDQpOb3csIHRoYXQgdGhlIG9ic2VydmF0aW9ucyBhcmUgcmVjb3JkZWQgaW4gdGhlIHNhbWUgd2F5LiBXZSB3aWxsIGF0dGVtcHQgdG8gaW50ZXJfam9pbiB0aGUgdHdvIGRhdGEgc2V0cy4gTGF0ZXIsIHdlIHJlY29nbml6ZWQgdGhhdCBvdXIgZGF0YSBzZXQgaXMgYSBzZiBjbGFzcyB0aHVzLCB3ZSBuZWVkIHRvIHVzZSBzdF9qb2luIHRvIGpvaW4gdGhlIHR3byBkYXRhIHNldHMuIA0KDQoNCmBgYHtyfQ0KYmlrZV9jcmFzaGVzX2xhbmVzID0gU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlc193YXJkICU+JQ0KICBzdF9qb2luKHNpbXBsaWZpZWRfYmlrZV9sYW5lcykNCmNsYXNzKGJpa2VfY3Jhc2hlc19sYW5lcykNCmBgYA0KDQpXZSB3aWxsIGNyZWF0ZSBhbiBpbml0aWFsIG1hcCBvZiBvdXIgZGF0YS4gRmlyc3QsIHdlIGFyZSBzZXR0aW5nIHRoZSB0bWFwIG1vZGUgdG8gaW50ZXJhY3RpdmUgdmlld2luZyANCg0KYGBge3J9DQp0bWFwX21vZGUoInZpZXciKQ0KYGBgDQoNCiUlIE1hcHBpbmcgb2YgT3VyIEluaXRpYWwgRGF0YSANCg0KUGxvdHRpbmcgdGhlIGNyYXNoIGRhdGEgc3BhdGlhbGx5IA0KDQpgYGB7cn0NClNlcHRfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXNfd2FyZCAlPiUNCiAgdG1fc2hhcGUoKSsNCiAgdG1fZG90cygpDQoNCmBgYA0KDQpgYGB7cn0NCnNpbXBsaWZpZWRfYmlrZV9sYW5lcyAlPiUNCiAgdG1fc2hhcGUoKSsNCiAgdG1fZG90cygpDQpgYGANCg0KDQoNCmBgYHtyfQ0KYmlrZV9jcmFzaGVzX2xhbmVzICU+JQ0KICB0bV9zaGFwZSgpKw0KICB0bV9kb3RzKCkNCmBgYA0KDQoNCiMjIElzc3VlIHdpdGggSm9pbmluZyB0aGUgQ3Jhc2ggYW5kIEJpa2UgTGFuZSBUb2dldGhlciAtIFRyeSBVc2luZyB0aGUgQ1NWIGZpbGVzIGluc3RlYWQNCg0KV2Ugd2lsbCBjb21lIGJhY2sgdG8gdGhlIG1hcHBpbmcgZGF0YSBhdCBhIGxhdGVyIGRhdGUuIA0KDQpXZSBub3RpY2VkIHRoYXQgYWZ0ZXIgdXNpbmcgdGhlIHN0X2pvaW4sIHRoZSBiaWtlIGxhbmUgZGF0YSBkaWQgbm90IGpvaW4gY29ycmVjdGx5IHdpdGggdGhlIGNyYXNoIGRhdGEuIFRvIHJlLWV2YWx1YXRlIG91ciBkYXRhLCB3ZSBkZWNpZGVkIHRvIGxvYWQgdGhlIGRhdGEgYXMgY3N2IGluc3RlYWQgb2YgdXNpbmcgdGhlIGdlb3NqZW9uIGZpbGUuIA0KDQpgYGB7cn0NCmNzdl9iaWtlX2xhbmUgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YV9yYXciLCJCaWN5Y2xlX0xhbmVzLmNzdiIpKSU+JSBjbGVhbl9uYW1lcygpIA0KY3N2X2Jpa2VfY3Jhc2hlcyA8LSByZWFkX2NzdihoZXJlKCJkYXRhX3JhdyIsIkNyYXNoZXNfaW5fREMuY3N2IikpDQpgYGANCg0KDQpgYGB7cn0NCmNzdl9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyA9IGNzdl9iaWtlX2NyYXNoZXMgJT4lDQogIHNlbGVjdChGUk9NREFURSwgQUREUkVTUywgTEFUSVRVREUsIExPTkdJVFVERSwgWENPT1JELCBZQ09PUkQsIFdBUkQsIE1BSk9SSU5KVVJJRVNfQklDWUNMSVNULCBNSU5PUklOSlVSSUVTX0JJQ1lDTElTVCwgRkFUQUxfQklDWUNMSVNULCBUT1RBTF9CSUNZQ0xFUywgVE9UQUxfVkVISUNMRVMsIEJJQ1lDTElTVFNJTVBBSVJFRCwgU1BFRURJTkdfSU5WT0xWRUQpICU+JQ0KICAgZmlsdGVyKFRPVEFMX0JJQ1lDTEVTID49ICIxIikgDQoNCmNzdl9zaW1wbGlmaWVkX2Jpa2VfbGFuZXMgPSBjc3ZfYmlrZV9sYW5lICU+JSANCiAgc2VsZWN0KHJvdXRlbmFtZSwgYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnQsIGJpa2VsYW5lX3Rocm91Z2hsYW5lX2FkamFjZW50LCBiaWtlbGFuZV9wb2NrZXRsYW5lX2FkamFjZW50LCBiaWtlbGFuZV9jb250cmFmbG93LCBiaWtlbGFuZV9jb252ZW50aW9uYWwsIGJpa2VsYW5lX2R1YWxfcHJvdGVjdGVkLCBiaWtlbGFuZV9kdWFsX2J1ZmZlcmVkLCBiaWtlbGFuZV9wcm90ZWN0ZWQsIGJpa2VsYW5lX2J1ZmZlcmVkLCBzdHJlZXRuYW1lLCBzdHJlZXR0eXBlLCB0b3RhbGJpa2VsYW5lcywgdG90YWxiaWtlbGFuZXdpZHRoLCB3YXJkX2lkLCBvYmplY3RpZCkNCmBgYA0KDQoNCmBgYHtyfQ0KY3N2X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJGRhdGUgPC0gYXMuRGF0ZShjc3Zfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkRlJPTURBVEUpDQojIGNzdl9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyR0aW1lIDwtIGZvcm1hdChjc3Zfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkRlJPTURBVEUsICIlSDogJU06ICVTIikNCmNzdl9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlcyRtb250aCA8LSBmb3JtYXQoY3N2X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJGRhdGUsICIlbSIpDQpjc3Zfc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMkeWVhciA8LSBmb3JtYXQoY3N2X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzJGRhdGUsICIleSIpDQpgYGANCg0KDQpgYGB7cn0NCmNzdl9TZXB0X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzID0gc2ltcGxpZmllZF9iaWtlX2NyYXNoZXMgJT4lDQogIGZpbHRlcihtb250aCA9PSAiMDkiICYgeWVhciA9PSIyMyIpDQpgYGANCg0KDQpgYGB7cn0NCmNzdl9TZXB0X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzX3dhcmQgPSBTZXB0X3NpbXBsaWZpZWRfYmlrZV9jcmFzaGVzICU+JQ0KICBzZXBhcmF0ZSh3YXJkLCBjKE5BLCAiV2FyZCIpKQ0KYGBgDQoNCldhbnQgdG8gam9pbiB0aGUgdHdvIGRhdGEgc2V0cyBiYXNlZCBvbiB0aGUgcm91dGUgbmFtZSBvciB0aGUgc3RyZWV0IG5hbWUgdGhhdCBpcyBnaXZlbi4gDQoNCmBgYHtyfQ0KY3N2X2NyYXNoX2FkZHJlc3MgPSBjc3ZfU2VwdF9zaW1wbGlmaWVkX2Jpa2VfY3Jhc2hlc193YXJkICU+JQ0KICBzZXBhcmF0ZShhZGRyZXNzLCBjKCJhZGRyZXNzIG51bWJlciIsICJzdHJlZXRuYW1lIiwic3RyZWV0IHR5cGUiLCJxdWFkcmFudCIpKQ0KYGBgDQpDaG9vc2luZyB0byBkZWxldGUgcm93cyB0aGF0IGRpZCBub3Qgc2VwYXJhdGUgY29ycmVjdGx5IGFzIHNob3duIGluIHRoZSBlcnJvciBhYm92ZSANCg0KYGBge3J9DQpjc3ZfcmVtb3ZlZF9jcmFzaF9hZGRyZXNzID0gY3N2X2NyYXNoX2FkZHJlc3NbLWMoMiw4LDEwLDE1LDM3KSwgXQ0KYGBgDQoNClNpbXBsaWZ5IHRoZSBiaWtlIGxhbmUgZGF0YSBzbyB0aGF0IGluc3RlYWQgb2YgZGVmaW5pbmcgdGhlIGxhbmUgYXMgYSBjb2xsZWN0aW9uIG9mIHBvaW50cywgd2UgaW5zdGVhZCB3YW50IGl0IHRvIGNvdW50IG9ubHkgb25jZSBpbiBvdXIgZGF0YS4gVGhlIGJpa2UgIGxhbmUgZGF0YSBjYW4gYmUgc3BsaXQgdG8gZGlmZmVyZW50aWF0ZSBiZXR3ZWVuIGhvdyB0aGUgYmlrZSBsYW5lIGZsb3dzIHdpdGggdHJhZmZpYyB2cy4gd2hldGhlciB0aGVyZSBhcmUgYW55IHBoeXNpY2FsIGJhcnJpZXJzIG9yIGRpc3RpbmN0IHNlcGFyYXRpb25zIGluIHBsYWNlLiBSaWdodCBub3csIHdlIHdpbGwgc29sZWx5IGxvb2sgYXQgdGhlIHBoeXNpY2FsIGJhcnJpZXJzIGFuZCB0aGUgY29kZSBiZWxvdyBmaWx0ZXJzIG91ciBkYXRhIGFzIHN1Y2guIA0KDQpgYGB7cn0NCmNzdl9iaWtlX2xhbmVzX3JlZHVjZWQgPSBjc3Zfc2ltcGxpZmllZF9iaWtlX2xhbmVzICU+JQ0KICBjb3VudChzdHJlZXRuYW1lLCBiaWtlbGFuZV9kdWFsX3Byb3RlY3RlZCwgYmlrZWxhbmVfZHVhbF9idWZmZXJlZCwgYmlrZWxhbmVfcHJvdGVjdGVkLCBiaWtlbGFuZV9idWZmZXJlZCkgJT4lDQogIGRyb3BfbmEoc3RyZWV0bmFtZSkgJT4lDQogIGdyb3VwX2J5KHN0cmVldG5hbWUpIA0KDQpgYGANCg0KDQpTdGF0ZXMgdGhlIG51bWJlciBvZiBiaWtlIGxhbmVzIGFzc29jaWF0ZWQgd2l0aCBlYWNoIHN0cmVldCANCmBgYHtyfQ0KdGVzdDIgPSBjc3Zfc2ltcGxpZmllZF9iaWtlX2xhbmVzICU+JQ0KICBjb3VudChzdHJlZXRuYW1lKQ0KYGBgDQoNCg0KYGBge3J9DQp0ZXN0MyA9IGNzdl9zaW1wbGlmaWVkX2Jpa2VfbGFuZXMgJT4lDQogIHNlbGVjdChzdHJlZXRuYW1lLCBiaWtlbGFuZV9kdWFsX3Byb3RlY3RlZCkNCg0KICMgdGVzdDMkYmlrZWxhbmVfZHVhbF9wcm90ZWN0ZWQgPC0gcmVwbGFjZV9uYSgiTm9uZSIpDQpgYGANCg0KDQpUZXN0aW5nIGNvZGUgdG8gb2J0YWluIHRoZSBudW1iZXIgb2YgYmlrZSBsYW5lcyBmb3IgZWFjaCB0eXBlIHRoYXQgaXMgYXNzb2NpYXRlZCB3aXRoIGVhY2ggc3RyZWV0DQoNCmBgYHtyfQ0KdGVzdCA9IGNzdl9zaW1wbGlmaWVkX2Jpa2VfbGFuZXMgJT4lDQogIGNvdW50KHN0cmVldG5hbWUsIGJpa2VsYW5lX2NvbnZlbnRpb25hbCkgJT4lDQogIGRyb3BfbmEoYmlrZWxhbmVfY29udmVudGlvbmFsKSAlPiUNCiAgZ3JvdXBfYnkoc3RyZWV0bmFtZSkgJT4lDQogIHN1bW1hcmlzZShiaWtlbGFuZV9jb252ZW50aW9uYWxfdG90YWwgPSBzdW0obikpDQpgYGANCg0KDQoNCg0KDQpMZWZ0X2pvaW4gdGhlIGNyYXNoIGFuZCBiaWtlIGxhbmUgZGF0YSBzZXQgYmFzZWQgb24gdGhlIHN0cmVldCBuYW1lIA0KYGBge3J9DQpjc3ZfY3Jhc2hfbGFuZXMgPSBjc3ZfcmVtb3ZlZF9jcmFzaF9hZGRyZXNzICU+JQ0KICBsZWZ0X2pvaW4oY3N2X3NpbXBsaWZpZWRfYmlrZV9sYW5lcywgInN0cmVldG5hbWUiKQ0KZ2xpbXBzZShjc3ZfY3Jhc2hfbGFuZXMpDQpgYGANCg0KDQoNCg0KIyMgRmluZGluZyB0aGUgTnVtYmVyIG9mIEFjY2lkZW50cyBBc3NvY2lhdGVkIHdpdGggRWFjaCBCaWtlIExhbmUgIA0KDQoNCiMjIENyZWF0aW5nIGEgVmFyaWFibGUgZm9yIENsYXNzaWZ5aW5nIHRoZSBUeXBlIG9mIEFjY2lkZW50DQoNCg0KDQoNCkNhbGN1bGF0aW5nIHRoZSBudW1iZXIgb2YgYWNjaWRlbnRzIHRoYXQgb2NjdXJyZWQgZm9yIGVhY2ggYmlrZSBsYW5lIA0KDQpgYGB7cn0NCg0KYGBgDQoNCkNhbGN1bGF0ZSB0aGUgYSBzdW0gY3Jhc2hlcyB0aGF0IG9jY3VycyBhbG9uZyB0aGUgYmlrZSBsYW5lIGxpbmUuIA0KVGhlIGJpa2UgbGFuZSBpcyBhIGdlb21ldHJpYyBsaW5lLCB3aGlsZSBlYWNoIGNyYXNoIGlzIHJlY29yZGVkIGFzIGEgZ2VvbWV0cmljIHBvaW50LiANCg0KDQoNCg0K</div>
 
 
 
