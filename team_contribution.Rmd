@@ -18,6 +18,7 @@ In terms of coding,
 - Created map of bike lane classifications onto one map
 - Created map of the division of injury severity as it relates to the crash data
 - Created map  that combine the bike lane types vs. crash/injuries data
+- Created the graph that shows the relationship between the number of protected lanes and accident occurence based on the bike route 
 - Added description to code to make the code reproducible - shown in meta file 
 
 In terms of the report,
