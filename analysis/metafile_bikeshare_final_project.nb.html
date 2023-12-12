@@ -1788,28 +1788,44 @@ people to ride bikes as a means of increasing ridership?</p>
 <p>Below are the packages should be installed:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcInRpZHl2ZXJzZVwiKVxuaW5zdGFsbC5wYWNrYWdlcyhcImphbml0b3JcIilcbmluc3RhbGwucGFja2FnZXMoXCJsdWJyaWRhdGVcIilcbmluc3RhbGwucGFja2FnZXMoXCJoZXJlXCIpXG5pbnN0YWxsLnBhY2thZ2VzKFwibWFwdmlld1wiKVxuaW5zdGFsbC5wYWNrYWdlcyhcImdiZnNcIilcbmluc3RhbGwucGFja2FnZXMoXCJzZlwiKVxuaW5zdGFsbC5wYWNrYWdlcyhcInRtYXBcIilcbmluc3RhbGwucGFja2FnZXMoXCJ0aWR5Y2Vuc3VzXCIpXG5pbnN0YWxsLnBhY2thZ2VzKFwic3RpbmdyXCIpXG5pbnN0YWxsLnBhY2thZ2VzKFwibWFwc1wiKVxuaW5zdGFsbC5wYWNrYWdlcyhcInNwRGF0YVwiKVxuaW5zdGFsbC5wYWNrYWdlcyhcInZpcmlkaXNcIilcbmBgYCJ9 -->
-<pre class="r"><code>install.packages(&quot;tidyverse&quot;)
-install.packages(&quot;janitor&quot;)
-install.packages(&quot;lubridate&quot;)
-install.packages(&quot;here&quot;)
-install.packages(&quot;mapview&quot;)
-install.packages(&quot;gbfs&quot;)
-install.packages(&quot;sf&quot;)
-install.packages(&quot;tmap&quot;)
-install.packages(&quot;tidycensus&quot;)
-install.packages(&quot;stingr&quot;)
-install.packages(&quot;maps&quot;)
-install.packages(&quot;spData&quot;)
-install.packages(&quot;viridis&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Baseline packages for our analysis:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGphbml0b3IpXG5saWJyYXJ5KGx1YnJpZGF0ZSkgIyBiZWNhdXNlIHdlIHdpbGwgcHJvYmFibHkgc2VlIHNvbWUgZGF0ZXNcbmxpYnJhcnkoaGVyZSkgIyBtb3JlIGVhc2lseSBhY2Nlc3MgZmlsZXMgaW4geW91ciBwcm9qZWN0XG5saWJyYXJ5KG1hcHZpZXcpXG5saWJyYXJ5KGdiZnMpXG5saWJyYXJ5KHNmKSAjIHdvcmtpbmcgd2l0aCBzaW1wbGUgZmVhdHVyZXMgLSBnZW9zcGF0aWFsXG5saWJyYXJ5KHRtYXApXG5saWJyYXJ5KHRpZHljZW5zdXMpXG5saWJyYXJ5KHN0cmluZ3IpXG5saWJyYXJ5KHJhc3RlcilcbmxpYnJhcnkocmVhZHIpXG5saWJyYXJ5KG1hcHMpXG5saWJyYXJ5KHNwRGF0YSlcbmxpYnJhcnkodmlyaWRpcylcbmBgYCJ9 -->
-<pre class="r"><code>library(tidyverse)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcXHRpZHl2ZXJzZVxcKVxuaW5zdGFsbC5wYWNrYWdlcyhcXGphbml0b3JcXClcbmluc3RhbGwucGFja2FnZXMoXFxsdWJyaWRhdGVcXClcbmluc3RhbGwucGFja2FnZXMoXFxoZXJlXFwpXG5pbnN0YWxsLnBhY2thZ2VzKFxcbWFwdmlld1xcKVxuaW5zdGFsbC5wYWNrYWdlcyhcXGdiZnNcXClcbmluc3RhbGwucGFja2FnZXMoXFxzZlxcKVxuaW5zdGFsbC5wYWNrYWdlcyhcXHRtYXBcXClcbmluc3RhbGwucGFja2FnZXMoXFx0aWR5Y2Vuc3VzXFwpXG5pbnN0YWxsLnBhY2thZ2VzKFxcc3RpbmdyXFwpXG5pbnN0YWxsLnBhY2thZ2VzKFxcbWFwc1xcKVxuaW5zdGFsbC5wYWNrYWdlcyhcXHNwRGF0YVxcKVxuaW5zdGFsbC5wYWNrYWdlcyhcXHZpcmlkaXNcXClcbmBgYFxuYGBgIn0= -->
+<pre class="r"><code>```r
+install.packages(\tidyverse\)
+install.packages(\janitor\)
+install.packages(\lubridate\)
+install.packages(\here\)
+install.packages(\mapview\)
+install.packages(\gbfs\)
+install.packages(\sf\)
+install.packages(\tmap\)
+install.packages(\tidycensus\)
+install.packages(\stingr\)
+install.packages(\maps\)
+install.packages(\spData\)
+install.packages(\viridis\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+Baseline packages for our analysis: 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGphbml0b3IpXG5saWJyYXJ5KGx1YnJpZGF0ZSkgIyBiZWNhdXNlIHdlIHdpbGwgcHJvYmFibHkgc2VlIHNvbWUgZGF0ZXNcbmxpYnJhcnkoaGVyZSkgIyBtb3JlIGVhc2lseSBhY2Nlc3MgZmlsZXMgaW4geW91ciBwcm9qZWN0XG5saWJyYXJ5KG1hcHZpZXcpXG5saWJyYXJ5KGdiZnMpXG5saWJyYXJ5KHNmKSAjIHdvcmtpbmcgd2l0aCBzaW1wbGUgZmVhdHVyZXMgLSBnZW9zcGF0aWFsXG5saWJyYXJ5KHRtYXApXG5saWJyYXJ5KHRpZHljZW5zdXMpXG5saWJyYXJ5KHN0cmluZ3IpXG5saWJyYXJ5KHJhc3RlcilcbmxpYnJhcnkocmVhZHIpXG5saWJyYXJ5KG1hcHMpXG5saWJyYXJ5KHNwRGF0YSlcbmxpYnJhcnkodmlyaWRpcylcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+library(tidyverse)
 library(janitor)
 library(lubridate) # because we will probably see some dates
 library(here) # more easily access files in your project
@@ -1824,154 +1840,567 @@ library(readr)
 library(maps)
 library(spData)
 library(viridis)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="accessing-and-loading-the-databases" class="section level2">
-<h2>Accessing and Loading the Databases</h2>
-<p>We are initially looking at the following three data sets:</p>
-<ol style="list-style-type: decimal">
-<li>The DC Bikeshare System Data for September 2023: <a href="https://capitalbikeshare.com/system-data" class="uri">https://capitalbikeshare.com/system-data</a></li>
-<li>The DC Protected vs Unprotected Bikelane Dataset: <a href="https://opendata.dc.gov/datasets/bicycle-lanes/explore" class="uri">https://opendata.dc.gov/datasets/bicycle-lanes/explore</a></li>
-<li>The DC Crimes and Accidents Dataset: <a href="https://opendata.dc.gov/datasets/crashes-in-dc/explore" class="uri">https://opendata.dc.gov/datasets/crashes-in-dc/explore</a></li>
-</ol>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlrZXNfc2VwdGVtYmVyIDwtIHJlYWRfY3N2KGhlcmUoXCJkYXRhX3Jhd1wiLFwiMjAyMzA5LWNhcGl0YWxiaWtlc2hhcmUtdHJpcGRhdGEuY3N2XCIpKSAlPiUgY2xlYW5fbmFtZXMoKVxuYmlrZXNfbGFuZXMgPSBzdF9yZWFkKGhlcmUoXCJkYXRhX3Jhd1wiLCBcIkJpY3ljbGVfTGFuZXMuZ2VvanNvblwiKSkgJT4lIGNsZWFuX25hbWVzKClcbmJpa2VzX2NyYXNoZXMgPSBzdF9yZWFkKGhlcmUoXCJkYXRhX3Jhd1wiLCBcIkNyYXNoZXNfaW5fREMuZ2VvanNvblwiKSkgJT4lIGNsZWFuX25hbWVzKClcbmNzdl9iaWtlc19sYW5lcyA9IHJlYWRfY3N2KGhlcmUoXCJkYXRhX3Jhd1wiLCBcIkJpY3ljbGVfTGFuZXMuY3N2XCIpKSAlPiUgY2xlYW5fbmFtZXMoKVxuY3N2X2Jpa2VzX2NyYXNoZXMgPSByZWFkX2NzdihoZXJlKFwiZGF0YV9yYXdcIiwgXCJDcmFzaGVzX2luX0RDLmNzdlwiKSkgJT4lIGNsZWFuX25hbWVzKClcbmRjX3NoYXBlID0gc3RfcmVhZChoZXJlKFwiZGF0YV9yYXdcIixcIkRDX0hlYWx0aF9QbGFubmluZ19OZWlnaGJvcmhvb2RzLmdlb2pzb25cIikpICU+JSBjbGVhbl9uYW1lcygpXG5gYGAifQ== -->
-<pre class="r"><code>bikes_september &lt;- read_csv(here(&quot;data_raw&quot;,&quot;202309-capitalbikeshare-tripdata.csv&quot;)) %&gt;% clean_names()
-bikes_lanes = st_read(here(&quot;data_raw&quot;, &quot;Bicycle_Lanes.geojson&quot;)) %&gt;% clean_names()
-bikes_crashes = st_read(here(&quot;data_raw&quot;, &quot;Crashes_in_DC.geojson&quot;)) %&gt;% clean_names()
-csv_bikes_lanes = read_csv(here(&quot;data_raw&quot;, &quot;Bicycle_Lanes.csv&quot;)) %&gt;% clean_names()
-csv_bikes_crashes = read_csv(here(&quot;data_raw&quot;, &quot;Crashes_in_DC.csv&quot;)) %&gt;% clean_names()
-dc_shape = st_read(here(&quot;data_raw&quot;,&quot;DC_Health_Planning_Neighborhoods.geojson&quot;)) %&gt;% clean_names()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="checking-the-class-of-each-data-frame" class="section level2">
-<h2>Checking the Class of Each Data Frame</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoYmlrZXNfbGFuZXMpXG5jbGFzcyhiaWtlc19jcmFzaGVzKVxuY2xhc3MoZGNfc2hhcGUpXG5jbGFzcyhjc3ZfYmlrZXNfY3Jhc2hlcylcbmNsYXNzKGNzdl9iaWtlc19sYW5lcylcbmBgYCJ9 -->
-<pre class="r"><code>class(bikes_lanes)
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Accessing and Loading the Databases 
+
+We are initially looking at the following three data sets:
+
+1. The DC Bikeshare System Data for September 2023: https://capitalbikeshare.com/system-data
+2. The DC Protected vs Unprotected Bikelane Dataset: https://opendata.dc.gov/datasets/bicycle-lanes/explore
+3. The DC Crimes and Accidents Dataset: https://opendata.dc.gov/datasets/crashes-in-dc/explore
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYmlrZXNfc2VwdGVtYmVyIDwtIHJlYWRfY3N2KGhlcmUoXFxkYXRhX3Jhd1xcLFxcMjAyMzA5LWNhcGl0YWxiaWtlc2hhcmUtdHJpcGRhdGEuY3N2XFwpKSAlPiUgY2xlYW5fbmFtZXMoKVxuYmlrZXNfbGFuZXMgPSBzdF9yZWFkKGhlcmUoXFxkYXRhX3Jhd1xcLCBcXEJpY3ljbGVfTGFuZXMuZ2VvanNvblxcKSkgJT4lIGNsZWFuX25hbWVzKClcbmJpa2VzX2NyYXNoZXMgPSBzdF9yZWFkKGhlcmUoXFxkYXRhX3Jhd1xcLCBcXENyYXNoZXNfaW5fREMuZ2VvanNvblxcKSkgJT4lIGNsZWFuX25hbWVzKClcbmNzdl9iaWtlc19sYW5lcyA9IHJlYWRfY3N2KGhlcmUoXFxkYXRhX3Jhd1xcLCBcXEJpY3ljbGVfTGFuZXMuY3N2XFwpKSAlPiUgY2xlYW5fbmFtZXMoKVxuY3N2X2Jpa2VzX2NyYXNoZXMgPSByZWFkX2NzdihoZXJlKFxcZGF0YV9yYXdcXCwgXFxDcmFzaGVzX2luX0RDLmNzdlxcKSkgJT4lIGNsZWFuX25hbWVzKClcbmRjX3NoYXBlID0gc3RfcmVhZChoZXJlKFxcZGF0YV9yYXdcXCxcXERDX0hlYWx0aF9QbGFubmluZ19OZWlnaGJvcmhvb2RzLmdlb2pzb25cXCkpICU+JSBjbGVhbl9uYW1lcygpXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+bikes_september &lt;- read_csv(here(\data_raw\,\202309-capitalbikeshare-tripdata.csv\)) %&gt;% clean_names()
+bikes_lanes = st_read(here(\data_raw\, \Bicycle_Lanes.geojson\)) %&gt;% clean_names()
+bikes_crashes = st_read(here(\data_raw\, \Crashes_in_DC.geojson\)) %&gt;% clean_names()
+csv_bikes_lanes = read_csv(here(\data_raw\, \Bicycle_Lanes.csv\)) %&gt;% clean_names()
+csv_bikes_crashes = read_csv(here(\data_raw\, \Crashes_in_DC.csv\)) %&gt;% clean_names()
+dc_shape = st_read(here(\data_raw\,\DC_Health_Planning_Neighborhoods.geojson\)) %&gt;% clean_names()</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Checking the Class of Each Data Frame 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY2xhc3MoYmlrZXNfbGFuZXMpXG5jbGFzcyhiaWtlc19jcmFzaGVzKVxuY2xhc3MoZGNfc2hhcGUpXG5jbGFzcyhjc3ZfYmlrZXNfY3Jhc2hlcylcbmNsYXNzKGNzdl9iaWtlc19sYW5lcylcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+class(bikes_lanes)
 class(bikes_crashes)
 class(dc_shape)
 class(csv_bikes_crashes)
 class(csv_bikes_lanes)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="initial-map-of-the-bike-lane-data" class="section level2">
-<h2>Initial Map of the Bike Lane Data</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTMsIGFscGhhPTAuMikgKyBcbiAgbWFwdmlldyhiaWtlc19sYW5lcywgemNvbCA9IFwic3RyZWV0bmFtZVwiLCBsd2QgPSAzLCBsYXllci5uYW1lID0gXCJiaWtlX2xhbmVzXCIsIGxlZ2VuZCA9IEZBTFNFKSBcbmBgYCJ9 -->
-<pre class="r"><code>mapview(dc_shape, lwd=3, alpha=0.2) + 
-  mapview(bikes_lanes, zcol = &quot;streetname&quot;, lwd = 3, layer.name = &quot;bike_lanes&quot;, legend = FALSE) </code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="filtering-the-crash-data" class="section level2">
-<h2>Filtering the Crash Data</h2>
-<p>Filtering the crash data. First, we looked at variables that we are
-interested in analyzing from the total data set. We then filtered the
-data to only look at accidents relating the bicycles. This was
-determined by setting a requirement that there must be at least 1
-bicycle involved in the accident. Columns not relevant to our analysis
-was removed from the data set.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYxX2Jpa2VfY3Jhc2hlcyA9IGNzdl9iaWtlc19jcmFzaGVzICU+JVxuICAgZmlsdGVyKHRvdGFsX2JpY3ljbGVzID49IFwiMVwiKSAlPiVcbiAgZHBseXI6OnNlbGVjdCgtYyhsb2NhdGlvbmVycm9yLG9iamVjdGlkLCBjcmltZWlkLCBjY24sIHJlcG9ydGRhdGUscm91dGVpZCwgc3RyZWV0c2VnaWQsIHJvYWR3YXlzZWdpZCwgdG9kYXRlLGV2ZW50aWQsIG1ham9yaW5qdXJpZXNfZHJpdmVyLCBtYWpvcmluanVyaWVzX3BlZGVzdHJpYW4sIG1ham9yaW5qdXJpZXNwYXNzZW5nZXIsbWlub3Jpbmp1cmllc19kcml2ZXIsIG1pbm9yaW5qdXJpZXNfcGVkZXN0cmlhbiwgbWlub3Jpbmp1cmllc3Bhc3NlbmdlcixmYXRhbF9kcml2ZXIsIGZhdGFsX3BlZGVzdHJpYW4sIGZhdGFscGFzc2VuZ2VyLHVua25vd25pbmp1cmllc19kcml2ZXIsdW5rbm93bmluanVyaWVzX2JpY3ljbGlzdCx1bmtub3duaW5qdXJpZXNfcGVkZXN0cmlhbix1bmtub3duaW5qdXJpZXNwYXNzZW5nZXIsIG1hcl9hZGRyZXNzLG1hcl9zY29yZSxtYXJfaWQsdG90YWxfdmVoaWNsZXMsdG90YWxfcGVkZXN0cmlhbnMsdG90YWxfdGF4aXMsdG90YWxfZ292ZXJubWVudCxwZWRlc3RyaWFuc2ltcGFpcmVkLGRyaXZlcnNpbXBhaXJlZCwgc3BlZWRpbmdfaW52b2x2ZWQsIGxhc3R1cGRhdGVkYXRlKSkgXG5cbmBgYCJ9 -->
-<pre class="r"><code>df1_bike_crashes = csv_bikes_crashes %&gt;%
-   filter(total_bicycles &gt;= &quot;1&quot;) %&gt;%
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Initial Map of the Bike Lane Data
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTMsIGFscGhhPTAuMikgKyBcbiAgbWFwdmlldyhiaWtlc19sYW5lcywgemNvbCA9IFxcc3RyZWV0bmFtZVxcLCBsd2QgPSAzLCBsYXllci5uYW1lID0gXFxiaWtlX2xhbmVzXFwsIGxlZ2VuZCA9IEZBTFNFKSBcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+mapview(dc_shape, lwd=3, alpha=0.2) + 
+  mapview(bikes_lanes, zcol = \streetname\, lwd = 3, layer.name = \bike_lanes\, legend = FALSE) </code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Filtering the Crash Data
+
+Filtering the crash data. First, we looked at variables that we are interested in analyzing from the total data set. We then filtered the data to only look at accidents relating the bicycles. This was determined by setting a requirement that there must be at least 1 bicycle involved in the accident.  Columns not relevant to our analysis was removed from the data set.
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGYxX2Jpa2VfY3Jhc2hlcyA9IGNzdl9iaWtlc19jcmFzaGVzICU+JVxuICAgZmlsdGVyKHRvdGFsX2JpY3ljbGVzID49IFxcMVxcKSAlPiVcbiAgZHBseXI6OnNlbGVjdCgtYyhsb2NhdGlvbmVycm9yLG9iamVjdGlkLCBjcmltZWlkLCBjY24sIHJlcG9ydGRhdGUscm91dGVpZCwgc3RyZWV0c2VnaWQsIHJvYWR3YXlzZWdpZCwgdG9kYXRlLGV2ZW50aWQsIG1ham9yaW5qdXJpZXNfZHJpdmVyLCBtYWpvcmluanVyaWVzX3BlZGVzdHJpYW4sIG1ham9yaW5qdXJpZXNwYXNzZW5nZXIsbWlub3Jpbmp1cmllc19kcml2ZXIsIG1pbm9yaW5qdXJpZXNfcGVkZXN0cmlhbiwgbWlub3Jpbmp1cmllc3Bhc3NlbmdlcixmYXRhbF9kcml2ZXIsIGZhdGFsX3BlZGVzdHJpYW4sIGZhdGFscGFzc2VuZ2VyLHVua25vd25pbmp1cmllc19kcml2ZXIsdW5rbm93bmluanVyaWVzX2JpY3ljbGlzdCx1bmtub3duaW5qdXJpZXNfcGVkZXN0cmlhbix1bmtub3duaW5qdXJpZXNwYXNzZW5nZXIsIG1hcl9hZGRyZXNzLG1hcl9zY29yZSxtYXJfaWQsdG90YWxfdmVoaWNsZXMsdG90YWxfcGVkZXN0cmlhbnMsdG90YWxfdGF4aXMsdG90YWxfZ292ZXJubWVudCxwZWRlc3RyaWFuc2ltcGFpcmVkLGRyaXZlcnNpbXBhaXJlZCwgc3BlZWRpbmdfaW52b2x2ZWQsIGxhc3R1cGRhdGVkYXRlKSkgXG5cbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+df1_bike_crashes = csv_bikes_crashes %&gt;%
+   filter(total_bicycles &gt;= \1\) %&gt;%
   dplyr::select(-c(locationerror,objectid, crimeid, ccn, reportdate,routeid, streetsegid, roadwaysegid, todate,eventid, majorinjuries_driver, majorinjuries_pedestrian, majorinjuriespassenger,minorinjuries_driver, minorinjuries_pedestrian, minorinjuriespassenger,fatal_driver, fatal_pedestrian, fatalpassenger,unknowninjuries_driver,unknowninjuries_bicyclist,unknowninjuries_pedestrian,unknowninjuriespassenger, mar_address,mar_score,mar_id,total_vehicles,total_pedestrians,total_taxis,total_government,pedestriansimpaired,driversimpaired, speeding_involved, lastupdatedate)) 
+</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Converting the Crash Data into a Sf object for Plotting
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2ZfYmlrZV9jcmFzaGVzIDwtIGRmMV9iaWtlX2NyYXNoZXMgJT4lXG4gIHN0X2FzX3NmKGNvb3JkcyA9IGMoXFxsb25naXR1ZGVcXCxcXGxhdGl0dWRlXFwpLCBjcnMgPSA0MzI2KSAlPiVcbiAgc3RfY2FzdChcXFBPSU5UXFwpXG5cbmNsYXNzKHNmX2Jpa2VfY3Jhc2hlcylcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+sf_bike_crashes &lt;- df1_bike_crashes %&gt;%
+  st_as_sf(coords = c(\longitude\,\latitude\), crs = 4326) %&gt;%
+  st_cast(\POINT\)
+
+class(sf_bike_crashes)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Plotting the Bike Lanes and Crash Data Together 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTMpICsgXG4gIG1hcHZpZXcoYmlrZXNfbGFuZXMsIHpjb2wgPSBcXHN0cmVldG5hbWVcXCwgbHdkID0gMywgbGF5ZXIubmFtZSA9IFxcYmlrZV9sYW5lc1xcLCBsZWdlbmQgPSBGQUxTRSkgK1xuICBtYXB2aWV3KHNmX2Jpa2VfY3Jhc2hlcywgY29sb3IgPSBcXG9yYW5nZVxcLCBsd2QgPSAwLjUsIGxheWVyLm5hbWUgPSBcXGJpa2VfY3Jhc2hlc1xcLCBsZWdlbmQgPSBGQUxTRSlcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+mapview(dc_shape, lwd=3) + 
+  mapview(bikes_lanes, zcol = \streetname\, lwd = 3, layer.name = \bike_lanes\, legend = FALSE) +
+  mapview(sf_bike_crashes, color = \orange\, lwd = 0.5, layer.name = \bike_crashes\, legend = FALSE)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Filtering the Data Further
+
+We will pivot longer the crash data to reduce the number of variables and increase the number of observations. The data is originally separated column-wise based on the type of injuries however, we aim to create a single column that lists the injuries as observations instead. Also, since each type of injury was listed for every street name, any values equivalent to 0, was dropped.
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyA9IGRmMV9iaWtlX2NyYXNoZXMgJT4lXG4gIHBpdm90X2xvbmdlcihjb2xzPWMoXFxtYWpvcmluanVyaWVzX2JpY3ljbGlzdFxcLFxcbWlub3Jpbmp1cmllc19iaWN5Y2xpc3RcXCxcXGZhdGFsX2JpY3ljbGlzdFxcKSxcbiAgICAgICAgICAgICAgIG5hbWVzX3RvID0gXFxpbmp1cmllc1xcLFxuICAgICAgICAgICAgICAgdmFsdWVzX3RvID0gXFxudW1iZXJfb2ZfaW5qdXJpZXNcXCkgJT4lXG4gIGRwbHlyOjpzZWxlY3QoLWMoYmljeWNsaXN0c2ltcGFpcmVkKSkgJT4lXG4gIHJlbG9jYXRlKGMoaW5qdXJpZXMsIG51bWJlcl9vZl9pbmp1cmllcyksIC5hZnRlciA9IHdhcmQpICU+JVxuICBtdXRhdGUoaW5qdXJpZXMgPSByZWNvZGUoaW5qdXJpZXMsIG1ham9yaW5qdXJpZXNfYmljeWNsaXN0ID0gXFxtYWpvclxcLFxuICBtaW5vcmluanVyaWVzX2JpY3ljbGlzdCA9IFxcbWlub3JcXCxcbiAgZmF0YWxfYmljeWNsaXN0ID0gXFxmYXRhbFxcICkpICU+JVxuICBmaWx0ZXIobnVtYmVyX29mX2luanVyaWVzID49IFxcMVxcKVxuICBcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+df1_pivot_bike_crashes = df1_bike_crashes %&gt;%
+  pivot_longer(cols=c(\majorinjuries_bicyclist\,\minorinjuries_bicyclist\,\fatal_bicyclist\),
+               names_to = \injuries\,
+               values_to = \number_of_injuries\) %&gt;%
+  dplyr::select(-c(bicyclistsimpaired)) %&gt;%
+  relocate(c(injuries, number_of_injuries), .after = ward) %&gt;%
+  mutate(injuries = recode(injuries, majorinjuries_bicyclist = \major\,
+  minorinjuries_bicyclist = \minor\,
+  fatal_bicyclist = \fatal\ )) %&gt;%
+  filter(number_of_injuries &gt;= \1\)
+  </code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+Next, we filter the bike crash data to only show bicycle related crashes in September 2023. We chose this time period specifically because the ridership data is only applicable to this time range as well. 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzID0gZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiVcbiBmaWx0ZXIoZ3JlcGwoXFwyMDIzLzA5XFwsIGZyb21kYXRlKSlcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+Sept_df1_pivot_bike_crashes = df1_pivot_bike_crashes %&gt;%
+ filter(grepl(\2023/09\, fromdate))</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+We will move on to filtering the bike lane data. Similarly for the crash data, we will also pivot longer this set to create a single column that lists out the different type of bike lanes into one column. We wanted columns that separated the &quot;adjacent_to_bikelane&quot; and &quot;protection_of_lane&quot; observations thus, we had to pivot the table twice. 
+
+We will not look at the contraflow lane as it does not fit into the data we would like to look at, which includes the location of the bike lane adjacent to motorized vehicles lanes and the design of the lane that provide protection. Contraflow only deals with the direction the lane is flowing in relations to traffic. Also, there is significant NA in the observations, which we removed. 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGYxX3Bpdm90X2Jpa2VfbGFuZXMgPSBiaWtlc19sYW5lcyAlPiVcbiAgcGl2b3RfbG9uZ2VyKGNvbD1jKFxcYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnRcXCxcXGJpa2VsYW5lX3Rocm91Z2hsYW5lX2FkamFjZW50XFwsXFxiaWtlbGFuZV9wb2NrZXRsYW5lX2FkamFjZW50XFwpLFxuICBuYW1lc190byA9IFxcYWRqYWNlbnRfdG9fYmlrZWxhbmVcXCxcbiAgdmFsdWVzX3RvID0gXFxkaXJlY3Rpb25fb2ZfbGFuZV9hZGphY2VudFxcKSAlPiVcbnBpdm90X2xvbmdlcihjb2w9YyhcXGJpa2VsYW5lX2NvbnZlbnRpb25hbFxcLFxcYmlrZWxhbmVfZHVhbF9idWZmZXJlZFxcLFxcYmlrZWxhbmVfcHJvdGVjdGVkXFwsIFxcYmlrZWxhbmVfYnVmZmVyZWRcXCksXG4gIG5hbWVzX3RvID0gXFxwcm90ZWN0aW9uX29mX2Jpa2VsYW5lXFwsXG4gIHZhbHVlc190byA9IFxcZGlyZWN0aW9uX29mX2xhbmVfcHJvdGVjdGlvblxcKSAlPiVcbiAgZHBseXI6OnNlbGVjdCgtYmlrZWxhbmVfY29udHJhZmxvdykgJT4lXG4gIHJlbG9jYXRlKGMoYWRqYWNlbnRfdG9fYmlrZWxhbmUsZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQsIHByb3RlY3Rpb25fb2ZfYmlrZWxhbmUsIGRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24pLCAuYWZ0ZXIgPSBzdHJlZXR0eXBlKSAlPiVcbiAgbXV0YXRlKGFkamFjZW50X3RvX2Jpa2VsYW5lID0gcmVjb2RlKGFkamFjZW50X3RvX2Jpa2VsYW5lLCBiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCA9IFxcdGhyb3VnaGxhbmVcXCwgYmlrZWxhbmVfcG9ja2V0bGFuZV9hZGphY2VudCA9IFxccG9ja2V0bGFuZVxcLCBiaWtlbGFuZV9wYXJraW5nbGFuZV9hZGphY2VudCA9IFxccGFya2luZ2xhbmVcXCkpICU+JVxuICBtdXRhdGUocHJvdGVjdGlvbl9vZl9iaWtlbGFuZSA9IHJlY29kZShwcm90ZWN0aW9uX29mX2Jpa2VsYW5lLCBiaWtlbGFuZV9wcm90ZWN0ZWQgPSBcXHByb3RlY3RlZFxcLCBiaWtlbGFuZV9idWZmZXJlZCA9IFxcYnVmZmVyZWRcXCwgYmlrZWxhbmVfY29udmVudGlvbmFsID0gXFxjb252ZW50aW9uYWxcXCwgYmlrZWxhbmVfZHVhbF9wcm90ZWN0ZWQgPSBcXGR1YWxfcHJvdGVjdGVkXFwsIGJpa2VsYW5lX2R1YWxfYnVmZmVyZWQgPSBcXGR1YWxfYnVmZmVyZWRcXCkpICU+JVxuICAgZHJvcF9uYShjKGRpcmVjdGlvbl9vZl9sYW5lX2FkamFjZW50LCBkaXJlY3Rpb25fb2ZfbGFuZV9wcm90ZWN0aW9uKSlcblxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+df1_pivot_bike_lanes = bikes_lanes %&gt;%
+  pivot_longer(col=c(\bikelane_parkinglane_adjacent\,\bikelane_throughlane_adjacent\,\bikelane_pocketlane_adjacent\),
+  names_to = \adjacent_to_bikelane\,
+  values_to = \direction_of_lane_adjacent\) %&gt;%
+pivot_longer(col=c(\bikelane_conventional\,\bikelane_dual_buffered\,\bikelane_protected\, \bikelane_buffered\),
+  names_to = \protection_of_bikelane\,
+  values_to = \direction_of_lane_protection\) %&gt;%
+  dplyr::select(-bikelane_contraflow) %&gt;%
+  relocate(c(adjacent_to_bikelane,direction_of_lane_adjacent, protection_of_bikelane, direction_of_lane_protection), .after = streettype) %&gt;%
+  mutate(adjacent_to_bikelane = recode(adjacent_to_bikelane, bikelane_throughlane_adjacent = \throughlane\, bikelane_pocketlane_adjacent = \pocketlane\, bikelane_parkinglane_adjacent = \parkinglane\)) %&gt;%
+  mutate(protection_of_bikelane = recode(protection_of_bikelane, bikelane_protected = \protected\, bikelane_buffered = \buffered\, bikelane_conventional = \conventional\, bikelane_dual_protected = \dual_protected\, bikelane_dual_buffered = \dual_buffered\)) %&gt;%
+   drop_na(c(direction_of_lane_adjacent, direction_of_lane_protection))
+</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Plotting the Newly Filter Data Sets 
+
+Since we filter the data sets as df objects, we have to make sure both sets are set to sf objects before plotting again.
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY2xhc3MoZGYxX3Bpdm90X2Jpa2VfbGFuZXMpXG5jbGFzcyhTZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMpXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+class(df1_pivot_bike_lanes)
+class(Sept_df1_pivot_bike_crashes)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+The crash data needs to be set to a sf object. 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2ZfU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzIDwtIFNlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiVcbiAgc3RfYXNfc2YoY29vcmRzID0gYyhcXGxvbmdpdHVkZVxcLFxcbGF0aXR1ZGVcXCksIGNycyA9IDQzMjYpICU+JVxuICBzdF9jYXN0KFxcUE9JTlRcXClcblxuc2ZfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyA8LSBkZjFfcGl2b3RfYmlrZV9jcmFzaGVzJT4lXG4gICBzdF9hc19zZihjb29yZHMgPSBjKFxcbG9uZ2l0dWRlXFwsXFxsYXRpdHVkZVxcKSwgY3JzID0gNDMyNikgJT4lXG4gIHN0X2Nhc3QoXFxQT0lOVFxcKVxuXG5jbGFzcyhzZl9TZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMpXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+sf_Sept_df1_pivot_bike_crashes &lt;- Sept_df1_pivot_bike_crashes %&gt;%
+  st_as_sf(coords = c(\longitude\,\latitude\), crs = 4326) %&gt;%
+  st_cast(\POINT\)
+
+sf_df1_pivot_bike_crashes &lt;- df1_pivot_bike_crashes%&gt;%
+   st_as_sf(coords = c(\longitude\,\latitude\), crs = 4326) %&gt;%
+  st_cast(\POINT\)
+
+class(sf_Sept_df1_pivot_bike_crashes)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+Now, that both sets are in the correct classification, we will attempt to plot these sets. 
+
+First, we will look at the different classification of the bike lanes, mainly the protection_of_bikelane variable.
+
+Defining a palette for the maps
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGFsID0gbWFwdmlld1BhbGV0dGUoXFxtYXB2aWV3U3BlY3RyYWxDb2xvcnNcXClcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+pal = mapviewPalette(\mapviewSpectralColors\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTIsIGFscGhhID0gMC41LCBhbHBoYS5yZWdpb25zID0gMC4yKSArIFxuICBtYXB2aWV3KGRmMV9waXZvdF9iaWtlX2xhbmVzLCB6Y29sID0gXFxwcm90ZWN0aW9uX29mX2Jpa2VsYW5lXFwsIGJ1cnN0ID0gVFJVRSwgbHdkID0gMywgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSBcXGJpa2VfbGFuZXNcXCwgbGVnZW5kID0gVFJVRSlcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
+  mapview(df1_pivot_bike_lanes, zcol = \protection_of_bikelane\, burst = TRUE, lwd = 3, alpha = 0.8, layer.name = \bike_lanes\, legend = TRUE)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTIsIGFscGhhID0gMC41LCBhbHBoYS5yZWdpb25zID0gMC4yKSArIFxuICBtYXB2aWV3KGRmMV9waXZvdF9iaWtlX2xhbmVzLCBsd2QgPSAyLCB6Y29sID1cXHByb3RlY3Rpb25fb2ZfYmlrZWxhbmVcXCxidXJzdD0gVFJVRSwgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSBcXGJpa2VfbGFuZXNcXCwgbGVnZW5kID0gVFJVRSkgK1xuICBtYXB2aWV3KHNmX1NlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcywgemNvbCA9IFxcaW5qdXJpZXNcXCwgYnVyc3Q9IFRSVUUsIGNvbC5yZWdpb24gPSBwYWwsIGx3ZCA9IDIsIGxheWVyLm5hbWUgPSBcXGJpa2VfY3Jhc2hlc1xcLCBsZWdlbmQgPSBUUlVFKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
+  mapview(df1_pivot_bike_lanes, lwd = 2, zcol =\protection_of_bikelane\,burst= TRUE, alpha = 0.8, layer.name = \bike_lanes\, legend = TRUE) +
+  mapview(sf_Sept_df1_pivot_bike_crashes, zcol = \injuries\, burst= TRUE, col.region = pal, lwd = 2, layer.name = \bike_crashes\, legend = TRUE)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Appyling Code Back to a Larger Set of Crash Data 
+
+After reducing the crash data, we were able to get our code to work, thus we will plot another map including more observations from the crash data. 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTIsIGFscGhhID0gMC41LCBhbHBoYS5yZWdpb25zID0gMC4yKSArIFxuICBtYXB2aWV3KGRmMV9waXZvdF9iaWtlX2xhbmVzLCBsd2QgPSAyLCB6Y29sID1cXHByb3RlY3Rpb25fb2ZfYmlrZWxhbmVcXCxidXJzdD0gVFJVRSwgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSBcXGJpa2VfbGFuZXNcXCwgbGVnZW5kID0gVFJVRSkgK1xuICBtYXB2aWV3KHNmX2RmMV9waXZvdF9iaWtlX2NyYXNoZXMsIHpjb2wgPSBcXGluanVyaWVzXFwsIGJ1cnN0PSBUUlVFLCBjb2wucmVnaW9uID0gcGFsLCBsd2QgPSAyLCBsYXllci5uYW1lID0gXFxiaWtlX2NyYXNoZXNcXCwgbGVnZW5kID0gVFJVRSlcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
+  mapview(df1_pivot_bike_lanes, lwd = 2, zcol =\protection_of_bikelane\,burst= TRUE, alpha = 0.8, layer.name = \bike_lanes\, legend = TRUE) +
+  mapview(sf_df1_pivot_bike_crashes, zcol = \injuries\, burst= TRUE, col.region = pal, lwd = 2, layer.name = \bike_crashes\, legend = TRUE)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+
+## Trying a Different Plotting Method - Starting with a Smaller Data Set 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudG1hcF9tb2RlKFxcdmlld1xcKVxuXG5zZl9TZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgJT4lXG50bV9zaGFwZSgpK1xuICB0bV9mYWNldHMoXFxpbmp1cmllc1xcKStcbiAgdG1fZG90cyhcXGluanVyaWVzXFwsIGxlZ2VuZC5zaG93ID0gRkFMU0UpXG5cbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+tmap_mode(\view\)
+
+sf_Sept_df1_pivot_bike_crashes %&gt;%
+tm_shape()+
+  tm_facets(\injuries\)+
+  tm_dots(\injuries\, legend.show = FALSE)
+</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+Applying the following code to the entire data set:
+See the division of injuries~
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuXG5zZl9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzICU+JVxudG1fc2hhcGUoKStcbiAgdG1fZmFjZXRzKFxcaW5qdXJpZXNcXCkrXG4gIHRtX2RvdHMoXFxpbmp1cmllc1xcLCBsZWdlbmQuc2hvdyA9IEZBTFNFKVxuXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+
+sf_df1_pivot_bike_crashes %&gt;%
+tm_shape()+
+  tm_facets(\injuries\)+
+  tm_dots(\injuries\, legend.show = FALSE)
+</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+Applying the same code to the bike lane data:
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGYxX3Bpdm90X2Jpa2VfbGFuZXMgJT4lXG50bV9zaGFwZSgpK1xuICB0bV9mYWNldHMoXFxwcm90ZWN0aW9uX29mX2Jpa2VsYW5lXFwpK1xuICB0bV9kb3RzKFxccHJvdGVjdGlvbl9vZl9iaWtlbGFuZVxcLCBsZWdlbmQuc2hvdyA9IEZBTFNFKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+df1_pivot_bike_lanes %&gt;%
+tm_shape()+
+  tm_facets(\protection_of_bikelane\)+
+  tm_dots(\protection_of_bikelane\, legend.show = FALSE)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Creating a Plot to Show a Clearer Comparison of Bike Lanes vs. Injury Type
+
+First, we will attempt to join the bike lane and crash data to create some sort scatter or bar graph to numerical represent this relationship. 
+
+Starting off with the smaller September bike crash data set and grouping the data based on the street name. Then, we will create a new variable that counts the number of accidents per street. 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdF9TZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgPSBTZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgJT4lIFxuICBjb3VudChuZWFyZXN0aW50c3RyZWV0bmFtZSkgJT4lXG4gIHJlbmFtZShudW1iZXJfb2ZfYWNjaWRlbnRzID0gbilcblxuYGBgIn0= --&gt;
+
+```r
+test_Sept_df1_pivot_bike_crashes = Sept_df1_pivot_bike_crashes %&gt;% 
+  count(nearestintstreetname) %&gt;%
+  rename(number_of_accidents = n)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-<div id="converting-the-crash-data-into-a-sf-object-for-plotting" class="section level2">
-<h2>Converting the Crash Data into a Sf object for Plotting</h2>
+<p>Since this code worked for the smaller data set, we will apply it to
+the larger crash data. Also, NA, unknown values, alleys, and driveways
+will be removed as we are only concerned with the streets. We are focus
+primarily on the interaction of bikes on the roads.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2ZfYmlrZV9jcmFzaGVzIDwtIGRmMV9iaWtlX2NyYXNoZXMgJT4lXG4gIHN0X2FzX3NmKGNvb3JkcyA9IGMoXCJsb25naXR1ZGVcIixcImxhdGl0dWRlXCIpLCBjcnMgPSA0MzI2KSAlPiVcbiAgc3RfY2FzdChcIlBPSU5UXCIpXG5cbmNsYXNzKHNmX2Jpa2VfY3Jhc2hlcylcbmBgYCJ9 -->
-<pre class="r"><code>sf_bike_crashes &lt;- df1_bike_crashes %&gt;%
-  st_as_sf(coords = c(&quot;longitude&quot;,&quot;latitude&quot;), crs = 4326) %&gt;%
-  st_cast(&quot;POINT&quot;)
-
-class(sf_bike_crashes)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNjaWRlbnRzX2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgPSBkZjFfYmlrZV9jcmFzaGVzICU+JVxuICAgY291bnQobmVhcmVzdGludHN0cmVldG5hbWUpICU+JVxuICByZW5hbWUobnVtYmVyX29mX2FjY2lkZW50cyA9IG4pICU+JVxuICByZW5hbWUocm91dGVuYW1lID0gbmVhcmVzdGludHN0cmVldG5hbWUpICU+JVxuICBkcm9wX25hKCkgJT4lXG4gIGZpbHRlcighZ3JlcGwoXCJOb3QgRm91bmR8QWxsZXl8RHJpdmV3YXlcIixyb3V0ZW5hbWUpKVxuYGBgIn0= -->
+<pre class="r"><code>accidents_df1_pivot_bike_crashes = df1_bike_crashes %&gt;%
+   count(nearestintstreetname) %&gt;%
+  rename(number_of_accidents = n) %&gt;%
+  rename(routename = nearestintstreetname) %&gt;%
+  drop_na() %&gt;%
+  filter(!grepl(&quot;Not Found|Alley|Driveway&quot;,routename))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-<div id="plotting-the-bike-lanes-and-crash-data-together" class="section level2">
-<h2>Plotting the Bike Lanes and Crash Data Together</h2>
+<p>Moving on to the bike lane data. Grouping the route name together and
+counting the number of lane protection for each route. Removing
+conventional bike lanes from the data set, we want to see if there are
+less accidents if there are protected lanes. Need to make sure that the
+data set is a data frame and not a sf object.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTMpICsgXG4gIG1hcHZpZXcoYmlrZXNfbGFuZXMsIHpjb2wgPSBcInN0cmVldG5hbWVcIiwgbHdkID0gMywgbGF5ZXIubmFtZSA9IFwiYmlrZV9sYW5lc1wiLCBsZWdlbmQgPSBGQUxTRSkgK1xuICBtYXB2aWV3KHNmX2Jpa2VfY3Jhc2hlcywgY29sb3IgPSBcIm9yYW5nZVwiLCBsd2QgPSAwLjUsIGxheWVyLm5hbWUgPSBcImJpa2VfY3Jhc2hlc1wiLCBsZWdlbmQgPSBGQUxTRSlcbmBgYCJ9 -->
-<pre class="r"><code>mapview(dc_shape, lwd=3) + 
-  mapview(bikes_lanes, zcol = &quot;streetname&quot;, lwd = 3, layer.name = &quot;bike_lanes&quot;, legend = FALSE) +
-  mapview(sf_bike_crashes, color = &quot;orange&quot;, lwd = 0.5, layer.name = &quot;bike_crashes&quot;, legend = FALSE)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="filtering-the-data-further" class="section level2">
-<h2>Filtering the Data Further</h2>
-<p>We will pivot longer the crash data to reduce the number of variables
-and increase the number of observations. The data is originally
-separated column-wise based on the type of injuries however, we aim to
-create a single column that lists the injuries as observations instead.
-Also, since each type of injury was listed for every street name, any
-values equivalent to 0, was dropped.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyA9IGRmMV9iaWtlX2NyYXNoZXMgJT4lXG4gIHBpdm90X2xvbmdlcihjb2xzPWMoXCJtYWpvcmluanVyaWVzX2JpY3ljbGlzdFwiLFwibWlub3Jpbmp1cmllc19iaWN5Y2xpc3RcIixcImZhdGFsX2JpY3ljbGlzdFwiKSxcbiAgICAgICAgICAgICAgIG5hbWVzX3RvID0gXCJpbmp1cmllc1wiLFxuICAgICAgICAgICAgICAgdmFsdWVzX3RvID0gXCJudW1iZXJfb2ZfaW5qdXJpZXNcIikgJT4lXG4gIGRwbHlyOjpzZWxlY3QoLWMoYmljeWNsaXN0c2ltcGFpcmVkKSkgJT4lXG4gIHJlbG9jYXRlKGMoaW5qdXJpZXMsIG51bWJlcl9vZl9pbmp1cmllcyksIC5hZnRlciA9IHdhcmQpICU+JVxuICBtdXRhdGUoaW5qdXJpZXMgPSByZWNvZGUoaW5qdXJpZXMsIG1ham9yaW5qdXJpZXNfYmljeWNsaXN0ID0gXCJtYWpvclwiLFxuICBtaW5vcmluanVyaWVzX2JpY3ljbGlzdCA9IFwibWlub3JcIixcbiAgZmF0YWxfYmljeWNsaXN0ID0gXCJmYXRhbFwiICkpICU+JVxuICBmaWx0ZXIobnVtYmVyX29mX2luanVyaWVzID49IFwiMVwiKVxuICBcbmBgYCJ9 -->
-<pre class="r"><code>df1_pivot_bike_crashes = df1_bike_crashes %&gt;%
-  pivot_longer(cols=c(&quot;majorinjuries_bicyclist&quot;,&quot;minorinjuries_bicyclist&quot;,&quot;fatal_bicyclist&quot;),
-               names_to = &quot;injuries&quot;,
-               values_to = &quot;number_of_injuries&quot;) %&gt;%
-  dplyr::select(-c(bicyclistsimpaired)) %&gt;%
-  relocate(c(injuries, number_of_injuries), .after = ward) %&gt;%
-  mutate(injuries = recode(injuries, majorinjuries_bicyclist = &quot;major&quot;,
-  minorinjuries_bicyclist = &quot;minor&quot;,
-  fatal_bicyclist = &quot;fatal&quot; )) %&gt;%
-  filter(number_of_injuries &gt;= &quot;1&quot;)
-  </code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Next, we filter the bike crash data to only show bicycle related
-crashes in September 2023. We chose this time period specifically
-because the ridership data is only applicable to this time range as
-well.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzID0gZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiVcbiBmaWx0ZXIoZ3JlcGwoXCIyMDIzLzA5XCIsIGZyb21kYXRlKSlcbmBgYCJ9 -->
-<pre class="r"><code>Sept_df1_pivot_bike_crashes = df1_pivot_bike_crashes %&gt;%
- filter(grepl(&quot;2023/09&quot;, fromdate))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We will move on to filtering the bike lane data. Similarly for the
-crash data, we will also pivot longer this set to create a single column
-that lists out the different type of bike lanes into one column. We
-wanted columns that separated the “adjacent_to_bikelane” and
-“protection_of_lane” observations thus, we had to pivot the table
-twice.</p>
-<p>We will not look at the contraflow lane as it does not fit into the
-data we would like to look at, which includes the location of the bike
-lane adjacent to motorized vehicles lanes and the design of the lane
-that provide protection. Contraflow only deals with the direction the
-lane is flowing in relations to traffic. Also, there is significant NA
-in the observations, which we removed.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYxX3Bpdm90X2Jpa2VfbGFuZXMgPSBiaWtlc19sYW5lcyAlPiVcbiAgcGl2b3RfbG9uZ2VyKGNvbD1jKFwiYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnRcIixcImJpa2VsYW5lX3Rocm91Z2hsYW5lX2FkamFjZW50XCIsXCJiaWtlbGFuZV9wb2NrZXRsYW5lX2FkamFjZW50XCIpLFxuICBuYW1lc190byA9IFwiYWRqYWNlbnRfdG9fYmlrZWxhbmVcIixcbiAgdmFsdWVzX3RvID0gXCJkaXJlY3Rpb25fb2ZfbGFuZV9hZGphY2VudFwiKSAlPiVcbnBpdm90X2xvbmdlcihjb2w9YyhcImJpa2VsYW5lX2NvbnZlbnRpb25hbFwiLFwiYmlrZWxhbmVfZHVhbF9idWZmZXJlZFwiLFwiYmlrZWxhbmVfcHJvdGVjdGVkXCIsIFwiYmlrZWxhbmVfYnVmZmVyZWRcIiksXG4gIG5hbWVzX3RvID0gXCJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lXCIsXG4gIHZhbHVlc190byA9IFwiZGlyZWN0aW9uX29mX2xhbmVfcHJvdGVjdGlvblwiKSAlPiVcbiAgZHBseXI6OnNlbGVjdCgtYmlrZWxhbmVfY29udHJhZmxvdykgJT4lXG4gIHJlbG9jYXRlKGMoYWRqYWNlbnRfdG9fYmlrZWxhbmUsZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQsIHByb3RlY3Rpb25fb2ZfYmlrZWxhbmUsIGRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24pLCAuYWZ0ZXIgPSBzdHJlZXR0eXBlKSAlPiVcbiAgbXV0YXRlKGFkamFjZW50X3RvX2Jpa2VsYW5lID0gcmVjb2RlKGFkamFjZW50X3RvX2Jpa2VsYW5lLCBiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCA9IFwidGhyb3VnaGxhbmVcIiwgYmlrZWxhbmVfcG9ja2V0bGFuZV9hZGphY2VudCA9IFwicG9ja2V0bGFuZVwiLCBiaWtlbGFuZV9wYXJraW5nbGFuZV9hZGphY2VudCA9IFwicGFya2luZ2xhbmVcIikpICU+JVxuICBtdXRhdGUocHJvdGVjdGlvbl9vZl9iaWtlbGFuZSA9IHJlY29kZShwcm90ZWN0aW9uX29mX2Jpa2VsYW5lLCBiaWtlbGFuZV9wcm90ZWN0ZWQgPSBcInByb3RlY3RlZFwiLCBiaWtlbGFuZV9idWZmZXJlZCA9IFwiYnVmZmVyZWRcIiwgYmlrZWxhbmVfY29udmVudGlvbmFsID0gXCJjb252ZW50aW9uYWxcIiwgYmlrZWxhbmVfZHVhbF9wcm90ZWN0ZWQgPSBcImR1YWxfcHJvdGVjdGVkXCIsIGJpa2VsYW5lX2R1YWxfYnVmZmVyZWQgPSBcImR1YWxfYnVmZmVyZWRcIikpICU+JVxuICAgZHJvcF9uYShjKGRpcmVjdGlvbl9vZl9sYW5lX2FkamFjZW50LCBkaXJlY3Rpb25fb2ZfbGFuZV9wcm90ZWN0aW9uKSlcblxuYGBgIn0= -->
-<pre class="r"><code>df1_pivot_bike_lanes = bikes_lanes %&gt;%
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYyX3Bpdm90X2Jpa2VfbGFuZXMgPSBjc3ZfYmlrZXNfbGFuZXMgJT4lXG4gIHBpdm90X2xvbmdlcihjb2w9YyhcImJpa2VsYW5lX3BhcmtpbmdsYW5lX2FkamFjZW50XCIsXCJiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudFwiLFwiYmlrZWxhbmVfcG9ja2V0bGFuZV9hZGphY2VudFwiKSxcbiAgbmFtZXNfdG8gPSBcImFkamFjZW50X3RvX2Jpa2VsYW5lXCIsXG4gIHZhbHVlc190byA9IFwiZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnRcIikgJT4lXG5waXZvdF9sb25nZXIoY29sPWMoXCJiaWtlbGFuZV9jb252ZW50aW9uYWxcIixcImJpa2VsYW5lX2R1YWxfYnVmZmVyZWRcIixcImJpa2VsYW5lX3Byb3RlY3RlZFwiLCBcImJpa2VsYW5lX2J1ZmZlcmVkXCIpLFxuICBuYW1lc190byA9IFwicHJvdGVjdGlvbl9vZl9iaWtlbGFuZVwiLFxuICB2YWx1ZXNfdG8gPSBcImRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb25cIikgJT4lXG4gIGRwbHlyOjpzZWxlY3QoLWJpa2VsYW5lX2NvbnRyYWZsb3cpICU+JVxuICByZWxvY2F0ZShjKGFkamFjZW50X3RvX2Jpa2VsYW5lLGRpcmVjdGlvbl9vZl9sYW5lX2FkamFjZW50LCBwcm90ZWN0aW9uX29mX2Jpa2VsYW5lLCBkaXJlY3Rpb25fb2ZfbGFuZV9wcm90ZWN0aW9uKSwgLmFmdGVyID0gc3RyZWV0dHlwZSkgJT4lXG4gIG11dGF0ZShhZGphY2VudF90b19iaWtlbGFuZSA9IHJlY29kZShhZGphY2VudF90b19iaWtlbGFuZSwgYmlrZWxhbmVfdGhyb3VnaGxhbmVfYWRqYWNlbnQgPSBcInRocm91Z2hsYW5lXCIsIGJpa2VsYW5lX3BvY2tldGxhbmVfYWRqYWNlbnQgPSBcInBvY2tldGxhbmVcIiwgYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnQgPSBcInBhcmtpbmdsYW5lXCIpKSAlPiVcbiAgbXV0YXRlKHByb3RlY3Rpb25fb2ZfYmlrZWxhbmUgPSByZWNvZGUocHJvdGVjdGlvbl9vZl9iaWtlbGFuZSwgYmlrZWxhbmVfcHJvdGVjdGVkID0gXCJwcm90ZWN0ZWRcIiwgYmlrZWxhbmVfYnVmZmVyZWQgPSBcImJ1ZmZlcmVkXCIsIGJpa2VsYW5lX2NvbnZlbnRpb25hbCA9IFwiY29udmVudGlvbmFsXCIsIGJpa2VsYW5lX2R1YWxfcHJvdGVjdGVkID0gXCJkdWFsX3Byb3RlY3RlZFwiLCBiaWtlbGFuZV9kdWFsX2J1ZmZlcmVkID0gXCJkdWFsX2J1ZmZlcmVkXCIpKSAlPiVcbiAgIGRyb3BfbmEoYyhkaXJlY3Rpb25fb2ZfbGFuZV9hZGphY2VudCwgZGlyZWN0aW9uX29mX2xhbmVfcHJvdGVjdGlvbikpXG5gYGAifQ== -->
+<pre class="r"><code>df2_pivot_bike_lanes = csv_bikes_lanes %&gt;%
   pivot_longer(col=c(&quot;bikelane_parkinglane_adjacent&quot;,&quot;bikelane_throughlane_adjacent&quot;,&quot;bikelane_pocketlane_adjacent&quot;),
   names_to = &quot;adjacent_to_bikelane&quot;,
   values_to = &quot;direction_of_lane_adjacent&quot;) %&gt;%
@@ -1982,130 +2411,97 @@ pivot_longer(col=c(&quot;bikelane_conventional&quot;,&quot;bikelane_dual_buffere
   relocate(c(adjacent_to_bikelane,direction_of_lane_adjacent, protection_of_bikelane, direction_of_lane_protection), .after = streettype) %&gt;%
   mutate(adjacent_to_bikelane = recode(adjacent_to_bikelane, bikelane_throughlane_adjacent = &quot;throughlane&quot;, bikelane_pocketlane_adjacent = &quot;pocketlane&quot;, bikelane_parkinglane_adjacent = &quot;parkinglane&quot;)) %&gt;%
   mutate(protection_of_bikelane = recode(protection_of_bikelane, bikelane_protected = &quot;protected&quot;, bikelane_buffered = &quot;buffered&quot;, bikelane_conventional = &quot;conventional&quot;, bikelane_dual_protected = &quot;dual_protected&quot;, bikelane_dual_buffered = &quot;dual_buffered&quot;)) %&gt;%
-   drop_na(c(direction_of_lane_adjacent, direction_of_lane_protection))
+   drop_na(c(direction_of_lane_adjacent, direction_of_lane_protection))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdF9kZjJfcGl2b3RfYmlrZV9sYW5lcyA9IGRmMl9waXZvdF9iaWtlX2xhbmVzICU+JSBcbiAgZmlsdGVyKCFncmVwbChcImNvbnZlbnRpb25hbFwiLCBwcm90ZWN0aW9uX29mX2Jpa2VsYW5lKSkgJT4lXG4gIGNvdW50KHJvdXRlbmFtZSkgJT4lXG4gIHJlbmFtZShudW1iZXJfb2ZfcHJvdGVjdGVkX2xhbmVzID0gbilcblxuYGBgIn0= -->
+<pre class="r"><code>test_df2_pivot_bike_lanes = df2_pivot_bike_lanes %&gt;% 
+  filter(!grepl(&quot;conventional&quot;, protection_of_bikelane)) %&gt;%
+  count(routename) %&gt;%
+  rename(number_of_protected_lanes = n)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-<div id="plotting-the-newly-filter-data-sets" class="section level2">
-<h2>Plotting the Newly Filter Data Sets</h2>
-<p>Since we filter the data sets as df objects, we have to make sure
-both sets are set to sf objects before plotting again.</p>
+<p>Joining the two data frames together</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoZGYxX3Bpdm90X2Jpa2VfbGFuZXMpXG5jbGFzcyhTZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMpXG5gYGAifQ== -->
-<pre class="r"><code>class(df1_pivot_bike_lanes)
-class(Sept_df1_pivot_bike_crashes)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdDFfZGYyX3Bpdm90X2Jpa2VfbGFuZXMgPSB0ZXN0X2RmMl9waXZvdF9iaWtlX2xhbmVzICU+JVxuICBsZWZ0X2pvaW4oYWNjaWRlbnRzX2RmMV9waXZvdF9iaWtlX2NyYXNoZXMsIGJ5ID0gXCJyb3V0ZW5hbWVcIilcbnRlc3QxX2RmMl9waXZvdF9iaWtlX2xhbmVzW2lzLm5hKHRlc3QxX2RmMl9waXZvdF9iaWtlX2xhbmVzKV0gPC0gMFxuYGBgIn0= -->
+<pre class="r"><code>test1_df2_pivot_bike_lanes = test_df2_pivot_bike_lanes %&gt;%
+  left_join(accidents_df1_pivot_bike_crashes, by = &quot;routename&quot;)
+test1_df2_pivot_bike_lanes[is.na(test1_df2_pivot_bike_lanes)] &lt;- 0</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>The crash data needs to be set to a sf object.</p>
+<p>Creating a basic plot to see the relationship between number of
+accidents and protected lanes.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2ZfU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzIDwtIFNlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiVcbiAgc3RfYXNfc2YoY29vcmRzID0gYyhcImxvbmdpdHVkZVwiLFwibGF0aXR1ZGVcIiksIGNycyA9IDQzMjYpICU+JVxuICBzdF9jYXN0KFwiUE9JTlRcIilcblxuc2ZfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyA8LSBkZjFfcGl2b3RfYmlrZV9jcmFzaGVzJT4lXG4gICBzdF9hc19zZihjb29yZHMgPSBjKFwibG9uZ2l0dWRlXCIsXCJsYXRpdHVkZVwiKSwgY3JzID0gNDMyNikgJT4lXG4gIHN0X2Nhc3QoXCJQT0lOVFwiKVxuXG5jbGFzcyhzZl9TZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMpXG5gYGAifQ== -->
-<pre class="r"><code>sf_Sept_df1_pivot_bike_crashes &lt;- Sept_df1_pivot_bike_crashes %&gt;%
-  st_as_sf(coords = c(&quot;longitude&quot;,&quot;latitude&quot;), crs = 4326) %&gt;%
-  st_cast(&quot;POINT&quot;)
-
-sf_df1_pivot_bike_crashes &lt;- df1_pivot_bike_crashes%&gt;%
-   st_as_sf(coords = c(&quot;longitude&quot;,&quot;latitude&quot;), crs = 4326) %&gt;%
-  st_cast(&quot;POINT&quot;)
-
-class(sf_Sept_df1_pivot_bike_crashes)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Now, that both sets are in the correct classification, we will
-attempt to plot these sets.</p>
-<p>First, we will look at the different classification of the bike
-lanes, mainly the protection_of_bikelane variable.</p>
-<p>Defining a palette for the maps</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFsID0gbWFwdmlld1BhbGV0dGUoXCJtYXB2aWV3U3BlY3RyYWxDb2xvcnNcIilcbmBgYCJ9 -->
-<pre class="r"><code>pal = mapviewPalette(&quot;mapviewSpectralColors&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTIsIGFscGhhID0gMC41LCBhbHBoYS5yZWdpb25zID0gMC4yKSArIFxuICBtYXB2aWV3KGRmMV9waXZvdF9iaWtlX2xhbmVzLCB6Y29sID0gXCJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lXCIsIGJ1cnN0ID0gVFJVRSwgbHdkID0gMywgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSBcImJpa2VfbGFuZXNcIiwgbGVnZW5kID0gVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code>mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
-  mapview(df1_pivot_bike_lanes, zcol = &quot;protection_of_bikelane&quot;, burst = TRUE, lwd = 3, alpha = 0.8, layer.name = &quot;bike_lanes&quot;, legend = TRUE)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTIsIGFscGhhID0gMC41LCBhbHBoYS5yZWdpb25zID0gMC4yKSArIFxuICBtYXB2aWV3KGRmMV9waXZvdF9iaWtlX2xhbmVzLCBsd2QgPSAyLCB6Y29sID1cInByb3RlY3Rpb25fb2ZfYmlrZWxhbmVcIixidXJzdD0gVFJVRSwgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSBcImJpa2VfbGFuZXNcIiwgbGVnZW5kID0gVFJVRSkgK1xuICBtYXB2aWV3KHNmX1NlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcywgemNvbCA9IFwiaW5qdXJpZXNcIiwgYnVyc3Q9IFRSVUUsIGNvbC5yZWdpb24gPSBwYWwsIGx3ZCA9IDIsIGxheWVyLm5hbWUgPSBcImJpa2VfY3Jhc2hlc1wiLCBsZWdlbmQgPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
-  mapview(df1_pivot_bike_lanes, lwd = 2, zcol =&quot;protection_of_bikelane&quot;,burst= TRUE, alpha = 0.8, layer.name = &quot;bike_lanes&quot;, legend = TRUE) +
-  mapview(sf_Sept_df1_pivot_bike_crashes, zcol = &quot;injuries&quot;, burst= TRUE, col.region = pal, lwd = 2, layer.name = &quot;bike_crashes&quot;, legend = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdDFfZGYyX3Bpdm90X2Jpa2VfbGFuZXMgJT4lXG5nZ3Bsb3QoYWVzKG51bWJlcl9vZl9wcm90ZWN0ZWRfbGFuZXMsIHJvdXRlbmFtZSkpICtcbiAgZ2VvbV9iYXIoc3RhdD1cImlkZW50aXR5XCIpXG5gYGAifQ== -->
+<pre class="r"><code>test1_df2_pivot_bike_lanes %&gt;%
+ggplot(aes(number_of_protected_lanes, routename)) +
+  geom_bar(stat=&quot;identity&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="appyling-code-back-to-a-larger-set-of-crash-data" class="section level2">
-<h2>Appyling Code Back to a Larger Set of Crash Data</h2>
-<p>After reducing the crash data, we were able to get our code to work,
-thus we will plot another map including more observations from the crash
-data.</p>
+<div id="another-test" class="section level2">
+<h2>Another Test</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhkY19zaGFwZSwgbHdkPTIsIGFscGhhID0gMC41LCBhbHBoYS5yZWdpb25zID0gMC4yKSArIFxuICBtYXB2aWV3KGRmMV9waXZvdF9iaWtlX2xhbmVzLCBsd2QgPSAyLCB6Y29sID1cInByb3RlY3Rpb25fb2ZfYmlrZWxhbmVcIixidXJzdD0gVFJVRSwgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSBcImJpa2VfbGFuZXNcIiwgbGVnZW5kID0gVFJVRSkgK1xuICBtYXB2aWV3KHNmX2RmMV9waXZvdF9iaWtlX2NyYXNoZXMsIHpjb2wgPSBcImluanVyaWVzXCIsIGJ1cnN0PSBUUlVFLCBjb2wucmVnaW9uID0gcGFsLCBsd2QgPSAyLCBsYXllci5uYW1lID0gXCJiaWtlX2NyYXNoZXNcIiwgbGVnZW5kID0gVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code>mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
-  mapview(df1_pivot_bike_lanes, lwd = 2, zcol =&quot;protection_of_bikelane&quot;,burst= TRUE, alpha = 0.8, layer.name = &quot;bike_lanes&quot;, legend = TRUE) +
-  mapview(sf_df1_pivot_bike_crashes, zcol = &quot;injuries&quot;, burst= TRUE, col.region = pal, lwd = 2, layer.name = &quot;bike_crashes&quot;, legend = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdF9kZjFfYmlrZV9jcmFzaGVzID0gZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiVcbiAgcmVuYW1lKHJvdXRlbmFtZSA9IG5lYXJlc3RpbnRzdHJlZXRuYW1lKSAlPiVcbiAgZHJvcF9uYSgpICU+JVxuICBmaWx0ZXIoIWdyZXBsKFwiTm90IEZvdW5kfEFsbGV5fERyaXZld2F5XCIscm91dGVuYW1lKSkgJT4lXG4gIGxlZnRfam9pbih0ZXN0X2RmMl9waXZvdF9iaWtlX2xhbmVzLCBieSA9IFwicm91dGVuYW1lXCIpXG5cbnRlc3RfZGYxX2Jpa2VfY3Jhc2hlc1tpcy5uYSh0ZXN0X2RmMV9iaWtlX2NyYXNoZXMpXSA8LSAwXG5gYGAifQ== -->
+<pre class="r"><code>test_df1_bike_crashes = df1_pivot_bike_crashes %&gt;%
+  rename(routename = nearestintstreetname) %&gt;%
+  drop_na() %&gt;%
+  filter(!grepl(&quot;Not Found|Alley|Driveway&quot;,routename)) %&gt;%
+  left_join(test_df2_pivot_bike_lanes, by = &quot;routename&quot;)
+
+test_df1_bike_crashes[is.na(test_df1_bike_crashes)] &lt;- 0</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-<div id="trying-a-different-plotting-method---starting-with-a-smaller-data-set" class="section level2">
-<h2>Trying a Different Plotting Method - Starting with a Smaller Data
-Set</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG1hcF9tb2RlKFwidmlld1wiKVxuXG5zZl9TZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgJT4lXG50bV9zaGFwZSgpK1xuICB0bV9mYWNldHMoXCJpbmp1cmllc1wiKStcbiAgdG1fZG90cyhcImluanVyaWVzXCIsIGxlZ2VuZC5zaG93ID0gRkFMU0UpXG5cbmBgYCJ9 -->
-<pre class="r"><code>tmap_mode(&quot;view&quot;)
-
-sf_Sept_df1_pivot_bike_crashes %&gt;%
-tm_shape()+
-  tm_facets(&quot;injuries&quot;)+
-  tm_dots(&quot;injuries&quot;, legend.show = FALSE)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdF9kZjFfYmlrZV9jcmFzaGVzJGZyb21kYXRlIDwtIGFzLkRhdGUodGVzdF9kZjFfYmlrZV9jcmFzaGVzJGZyb21kYXRlKVxudGVzdF9kZjFfYmlrZV9jcmFzaGVzJGZyb21kYXRlIDwtIGFzLlBPU0lYY3QodGVzdF9kZjFfYmlrZV9jcmFzaGVzJGZyb21kYXRlLCBmb3JtYXQgPSBcIiVZLSVtLSVkXCIpXG5gYGAifQ== -->
+<pre class="r"><code>test_df1_bike_crashes$fromdate &lt;- as.Date(test_df1_bike_crashes$fromdate)
+test_df1_bike_crashes$fromdate &lt;- as.POSIXct(test_df1_bike_crashes$fromdate, format = &quot;%Y-%m-%d&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdF9kZjFfYmlrZV9jcmFzaGVzICU+JVxuICBcbmdncGxvdChhZXMoZnJvbWRhdGUsIGluanVyaWVzLCBmaWxsPWluanVyaWVzKSkgK1xuICBnZW9tX3F1YXNpcmFuZG9tKGJhbmR3aWR0aCA9IC4wNSxhbHBoYT0uMikrXG4gICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSBcIm5vbmVcIikrXG4gIHNjYWxlX3hfZGF0ZXRpbWUoZGF0ZV9icmVha3M9XCIxIG1vbnRoXCIsIGRhdGVfbGFiZWxzPVwiJWJcIilcbmBgYCJ9 -->
+<pre class="r"><code>test_df1_bike_crashes %&gt;%
+  
+ggplot(aes(fromdate, injuries, fill=injuries)) +
+  geom_quasirandom(bandwidth = .05,alpha=.2)+
+   theme(legend.position = &quot;none&quot;)+
+  scale_x_datetime(date_breaks=&quot;1 month&quot;, date_labels=&quot;%b&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Generally, as the total number of protected lane decreases by route,
+the number of accidents increases as shown in the graph below.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdDFfZGYyX3Bpdm90X2Jpa2VfbGFuZXMgJT4lXG5nZ3Bsb3QoYWVzKG51bWJlcl9vZl9wcm90ZWN0ZWRfbGFuZXMsIHJvdXRlbmFtZSwgZmlsbCA9IG51bWJlcl9vZl9hY2NpZGVudHMpKStcbiAgZ2VvbV9iYXIoc3RhdD1cImlkZW50aXR5XCIpK1xuICBzY2FsZV9maWxsX2dyYWRpZW50KGxvdyA9IFwiYW50aXF1ZXdoaXRlMlwiLCBoaWdoPVwiY29yYWw0XCIpK1xuICBsYWJzKHg9XCJUb3RhbCBOdW1iZXIgb2YgUHJvdGVjdGVkIExhbmVzXCIsIHkgPSBcIlJvdXRlIE5hbWVcIiwgXG4gICAgICAgdGl0bGUgPSBcIlJlbGF0aW9uc2hpcCBCZXR3ZWVuIHRoZSBOdW1iZXIgb2YgUHJvdGVjdGVkIExhbmVzIGFuZCBBY2NpZGVudCBPY2N1cmVuY2UgYmFzZWQgb24gdGhlIEJpa2UgUm91dGVcIiwgZmlsbCA9IFwiTnVtYmVyIG9mIEFjY2lkZW50c1wiKVxuXG5gYGAifQ== -->
+<pre class="r"><code>test1_df2_pivot_bike_lanes %&gt;%
+ggplot(aes(number_of_protected_lanes, routename, fill = number_of_accidents))+
+  geom_bar(stat=&quot;identity&quot;)+
+  scale_fill_gradient(low = &quot;antiquewhite2&quot;, high=&quot;coral4&quot;)+
+  labs(x=&quot;Total Number of Protected Lanes&quot;, y = &quot;Route Name&quot;, 
+       title = &quot;Relationship Between the Number of Protected Lanes and Accident Occurence based on the Bike Route&quot;, fill = &quot;Number of Accidents&quot;)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Applying the following code to the entire data set: See the division
-of injuries~</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zZl9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzICU+JVxudG1fc2hhcGUoKStcbiAgdG1fZmFjZXRzKFwiaW5qdXJpZXNcIikrXG4gIHRtX2RvdHMoXCJpbmp1cmllc1wiLCBsZWdlbmQuc2hvdyA9IEZBTFNFKVxuXG5gYGAifQ== -->
-<pre class="r"><code>
-sf_df1_pivot_bike_crashes %&gt;%
-tm_shape()+
-  tm_facets(&quot;injuries&quot;)+
-  tm_dots(&quot;injuries&quot;, legend.show = FALSE)
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Applying the same code to the bike lane data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYxX3Bpdm90X2Jpa2VfbGFuZXMgJT4lXG50bV9zaGFwZSgpK1xuICB0bV9mYWNldHMoXCJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lXCIpK1xuICB0bV9kb3RzKFwicHJvdGVjdGlvbl9vZl9iaWtlbGFuZVwiLCBsZWdlbmQuc2hvdyA9IEZBTFNFKVxuYGBgIn0= -->
-<pre class="r"><code>df1_pivot_bike_lanes %&gt;%
-tm_shape()+
-  tm_facets(&quot;protection_of_bikelane&quot;)+
-  tm_dots(&quot;protection_of_bikelane&quot;, legend.show = FALSE)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRTMjQxIEZpbmFsIFByb2VqZWN0IC0gREMgQmlrZXNoYXJlICINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiAiQWxleGlzIEFsZXhhbmRlciwgR2lhbm5hIENhcG9jY2lhLCBNb3JnYW4gRWF0b24sIGFuZCBNYXRlbyBTYXJhYmlhIg0KZGF0ZTogIjA5IERlY2VtYmVyIDIwMjMiDQotLS0NCg0KIyMgQmFja2dyb3VuZCBJbmZvcm1hdGlvbg0KDQpUaGUgcHVycG9zZSBvZiBvdXIgYW5hbHlzaXMgaW52b2x2ZXMgZXhwbG9yaW5nIHBvdGVudGlhbCBtZXRob2RzIG9mIGluY3JlYXNpbmcgcmlkZXJzaGlwIGZvciB0aGUgREMgQ2FwdGlhbCBCaWtlc2hhcmUgcHJvZ3JhbS4gVGhpcyBtb3RpdmF0aW9uIGluIGZvY3VzaW5nIG9uIHJpZGVyc2hpcCBhbGlnbnMgd2l0aCB0aGUgREMgQmlrZXNoYXJlJ3MgbWFpbiBtaXNzaW9uIGluIHRyYW5zZm9ybWluZyB0aGUgV2FzaGluZ3Rpb24gTWV0cm9wb2xpdGFuIEFyZWEgYW5kIHJlc2lkaW5nIGNvbW11bml0aWVzIGJ5IHByb3ZpZGluZyBhbiBhZmZvcmRhYmxlIGJpY3ljbGUgdHJhbnNpdCBzeXN0ZW0uIFRoZSBnb2FscyBvdXRsaW5lZCBpbiB0aGlzIHRhcmdldGVkIHJlZm9ybWF0aW9uIGluY2x1ZGVzIGRlY3JlYXNpbmcgdHJhZmZpYyBjb25nZXN0aW9uLCBwcm9tb3RpbmcgaGVhbHRoIGFuZCB3ZWxsbmVzcywgZGVjcmVhc2luZyBhaXIgcG9sbHV0aW9uLCBhbmQgZXhwYW5kaW5nIHRyYW5zcG9ydGF0aW9uIG9wdGlvbnMuIFRoZSBEQyBCaWVrc2hhcmUgcHJvZ3JhbSBpcyBvd25lZCBieSBzZXZlcmFsIGp1cmlzZGljdGlvbnMgaG93ZXZlciwgaXMgbWFpbmx5IG1hbmFnZWQgYnkgdGhlIERDIGxvY2FsIGdvdmVybm1lbnQuICANCg0KTW9yZSBpbmZvcm1hdGlvbiBwZXJ0YWluaW5nIHRvIHRoZSBiaWtlc2hhcmUgcHJvZ3JhbSBjYW4gYmUgZm91bmQgYnkgZm9sbG93aW5nIHRoaXMgbGluazogaHR0cHM6Ly9jYXBpdGFsYmlrZXNoYXJlLmNvbS8NCg0KIyMgQnVzaW5lc3MgVW5kZXJzdGFuZGluZyANCg0KRm9sbG93aW5nIHRoZSBtZXRob2RzIG91dGxpbmUgaW4gdGhlIENSSVNQLURNIE1ldGhvZG9sb2d5LCB3ZSBpbml0aWFsbHkgZm9jdXNlZCBvbiB1bmRlcnN0YW5kaW5nIHRoZSB2YXJpb3VzIGJ1c2luZXNzIGFzcGVjdHMgdG8gb3VyIHByb2JsZW0gYmVmb3JlIGFuYWx5emluZyBhbnkgZGF0YS4gV2UgZGV0ZXJtaW5lIG91ciBidXNpbmVzcyBvYmplY3RpdmVzIGJ5IHJlc2VhcmNoaW5nIHRoZSBiYWNrZ3JvdW5kIG9mIHRoZSBEQyBCaWtlc2hhcmUgcHJvZ3JhbSwgYXMgc2VlbiBhYm92ZS4gTmV4dCwgd2UgZGV0ZXJtaW5lIG91ciBkYXRhIG1pbmluZyBnb2FscyBhbmQgaWRlbnRpZmllZCBhIG92ZXJhbGwgcXVlc3Rpb24gd2UgYWltIHRvIHNvbHZlIGZvciBvdXIgYW5hbHlzaXMuDQoNClRoaXMgcXVlc3Rpb24gcGVydGFpbnMgdG8gdGhlIGZvbGxvd2luZzogSG93IGRvIHdlIG1ha2UgaXQgc2FmZXIgZm9yIHBlb3BsZSB0byByaWRlIGJpa2VzIGFzIGEgbWVhbnMgb2YgaW5jcmVhc2luZyByaWRlcnNoaXA/DQoNCg0KIyMgSW5zdGFsbGluZyBQYWNrYWdlcyANCg0KQmVsb3cgYXJlIHRoZSBwYWNrYWdlcyBzaG91bGQgYmUgaW5zdGFsbGVkOg0KDQpgYGB7cn0NCmluc3RhbGwucGFja2FnZXMoInRpZHl2ZXJzZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJqYW5pdG9yIikNCmluc3RhbGwucGFja2FnZXMoImx1YnJpZGF0ZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJoZXJlIikNCmluc3RhbGwucGFja2FnZXMoIm1hcHZpZXciKQ0KaW5zdGFsbC5wYWNrYWdlcygiZ2JmcyIpDQppbnN0YWxsLnBhY2thZ2VzKCJzZiIpDQppbnN0YWxsLnBhY2thZ2VzKCJ0bWFwIikNCmluc3RhbGwucGFja2FnZXMoInRpZHljZW5zdXMiKQ0KaW5zdGFsbC5wYWNrYWdlcygic3RpbmdyIikNCmluc3RhbGwucGFja2FnZXMoIm1hcHMiKQ0KaW5zdGFsbC5wYWNrYWdlcygic3BEYXRhIikNCmluc3RhbGwucGFja2FnZXMoInZpcmlkaXMiKQ0KYGBgDQoNCkJhc2VsaW5lIHBhY2thZ2VzIGZvciBvdXIgYW5hbHlzaXM6IA0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShqYW5pdG9yKQ0KbGlicmFyeShsdWJyaWRhdGUpICMgYmVjYXVzZSB3ZSB3aWxsIHByb2JhYmx5IHNlZSBzb21lIGRhdGVzDQpsaWJyYXJ5KGhlcmUpICMgbW9yZSBlYXNpbHkgYWNjZXNzIGZpbGVzIGluIHlvdXIgcHJvamVjdA0KbGlicmFyeShtYXB2aWV3KQ0KbGlicmFyeShnYmZzKQ0KbGlicmFyeShzZikgIyB3b3JraW5nIHdpdGggc2ltcGxlIGZlYXR1cmVzIC0gZ2Vvc3BhdGlhbA0KbGlicmFyeSh0bWFwKQ0KbGlicmFyeSh0aWR5Y2Vuc3VzKQ0KbGlicmFyeShzdHJpbmdyKQ0KbGlicmFyeShyYXN0ZXIpDQpsaWJyYXJ5KHJlYWRyKQ0KbGlicmFyeShtYXBzKQ0KbGlicmFyeShzcERhdGEpDQpsaWJyYXJ5KHZpcmlkaXMpDQpgYGANCg0KIyMgQWNjZXNzaW5nIGFuZCBMb2FkaW5nIHRoZSBEYXRhYmFzZXMgDQoNCldlIGFyZSBpbml0aWFsbHkgbG9va2luZyBhdCB0aGUgZm9sbG93aW5nIHRocmVlIGRhdGEgc2V0czoNCg0KMS4gVGhlIERDIEJpa2VzaGFyZSBTeXN0ZW0gRGF0YSBmb3IgU2VwdGVtYmVyIDIwMjM6IGh0dHBzOi8vY2FwaXRhbGJpa2VzaGFyZS5jb20vc3lzdGVtLWRhdGENCjIuIFRoZSBEQyBQcm90ZWN0ZWQgdnMgVW5wcm90ZWN0ZWQgQmlrZWxhbmUgRGF0YXNldDogaHR0cHM6Ly9vcGVuZGF0YS5kYy5nb3YvZGF0YXNldHMvYmljeWNsZS1sYW5lcy9leHBsb3JlDQozLiBUaGUgREMgQ3JpbWVzIGFuZCBBY2NpZGVudHMgRGF0YXNldDogaHR0cHM6Ly9vcGVuZGF0YS5kYy5nb3YvZGF0YXNldHMvY3Jhc2hlcy1pbi1kYy9leHBsb3JlDQoNCmBgYHtyfQ0KYmlrZXNfc2VwdGVtYmVyIDwtIHJlYWRfY3N2KGhlcmUoImRhdGFfcmF3IiwiMjAyMzA5LWNhcGl0YWxiaWtlc2hhcmUtdHJpcGRhdGEuY3N2IikpICU+JSBjbGVhbl9uYW1lcygpDQpiaWtlc19sYW5lcyA9IHN0X3JlYWQoaGVyZSgiZGF0YV9yYXciLCAiQmljeWNsZV9MYW5lcy5nZW9qc29uIikpICU+JSBjbGVhbl9uYW1lcygpDQpiaWtlc19jcmFzaGVzID0gc3RfcmVhZChoZXJlKCJkYXRhX3JhdyIsICJDcmFzaGVzX2luX0RDLmdlb2pzb24iKSkgJT4lIGNsZWFuX25hbWVzKCkNCmNzdl9iaWtlc19sYW5lcyA9IHJlYWRfY3N2KGhlcmUoImRhdGFfcmF3IiwgIkJpY3ljbGVfTGFuZXMuY3N2IikpICU+JSBjbGVhbl9uYW1lcygpDQpjc3ZfYmlrZXNfY3Jhc2hlcyA9IHJlYWRfY3N2KGhlcmUoImRhdGFfcmF3IiwgIkNyYXNoZXNfaW5fREMuY3N2IikpICU+JSBjbGVhbl9uYW1lcygpDQpkY19zaGFwZSA9IHN0X3JlYWQoaGVyZSgiZGF0YV9yYXciLCJEQ19IZWFsdGhfUGxhbm5pbmdfTmVpZ2hib3Job29kcy5nZW9qc29uIikpICU+JSBjbGVhbl9uYW1lcygpDQpgYGANCg0KIyMgQ2hlY2tpbmcgdGhlIENsYXNzIG9mIEVhY2ggRGF0YSBGcmFtZSANCg0KYGBge3J9DQpjbGFzcyhiaWtlc19sYW5lcykNCmNsYXNzKGJpa2VzX2NyYXNoZXMpDQpjbGFzcyhkY19zaGFwZSkNCmNsYXNzKGNzdl9iaWtlc19jcmFzaGVzKQ0KY2xhc3MoY3N2X2Jpa2VzX2xhbmVzKQ0KYGBgDQoNCiMjIEluaXRpYWwgTWFwIG9mIHRoZSBCaWtlIExhbmUgRGF0YQ0KDQpgYGB7cn0NCm1hcHZpZXcoZGNfc2hhcGUsIGx3ZD0zLCBhbHBoYT0wLjIpICsgDQogIG1hcHZpZXcoYmlrZXNfbGFuZXMsIHpjb2wgPSAic3RyZWV0bmFtZSIsIGx3ZCA9IDMsIGxheWVyLm5hbWUgPSAiYmlrZV9sYW5lcyIsIGxlZ2VuZCA9IEZBTFNFKSANCmBgYA0KDQojIyBGaWx0ZXJpbmcgdGhlIENyYXNoIERhdGENCg0KRmlsdGVyaW5nIHRoZSBjcmFzaCBkYXRhLiBGaXJzdCwgd2UgbG9va2VkIGF0IHZhcmlhYmxlcyB0aGF0IHdlIGFyZSBpbnRlcmVzdGVkIGluIGFuYWx5emluZyBmcm9tIHRoZSB0b3RhbCBkYXRhIHNldC4gV2UgdGhlbiBmaWx0ZXJlZCB0aGUgZGF0YSB0byBvbmx5IGxvb2sgYXQgYWNjaWRlbnRzIHJlbGF0aW5nIHRoZSBiaWN5Y2xlcy4gVGhpcyB3YXMgZGV0ZXJtaW5lZCBieSBzZXR0aW5nIGEgcmVxdWlyZW1lbnQgdGhhdCB0aGVyZSBtdXN0IGJlIGF0IGxlYXN0IDEgYmljeWNsZSBpbnZvbHZlZCBpbiB0aGUgYWNjaWRlbnQuICBDb2x1bW5zIG5vdCByZWxldmFudCB0byBvdXIgYW5hbHlzaXMgd2FzIHJlbW92ZWQgZnJvbSB0aGUgZGF0YSBzZXQuDQoNCmBgYHtyfQ0KZGYxX2Jpa2VfY3Jhc2hlcyA9IGNzdl9iaWtlc19jcmFzaGVzICU+JQ0KICAgZmlsdGVyKHRvdGFsX2JpY3ljbGVzID49ICIxIikgJT4lDQogIGRwbHlyOjpzZWxlY3QoLWMobG9jYXRpb25lcnJvcixvYmplY3RpZCwgY3JpbWVpZCwgY2NuLCByZXBvcnRkYXRlLHJvdXRlaWQsIHN0cmVldHNlZ2lkLCByb2Fkd2F5c2VnaWQsIHRvZGF0ZSxldmVudGlkLCBtYWpvcmluanVyaWVzX2RyaXZlciwgbWFqb3Jpbmp1cmllc19wZWRlc3RyaWFuLCBtYWpvcmluanVyaWVzcGFzc2VuZ2VyLG1pbm9yaW5qdXJpZXNfZHJpdmVyLCBtaW5vcmluanVyaWVzX3BlZGVzdHJpYW4sIG1pbm9yaW5qdXJpZXNwYXNzZW5nZXIsZmF0YWxfZHJpdmVyLCBmYXRhbF9wZWRlc3RyaWFuLCBmYXRhbHBhc3Nlbmdlcix1bmtub3duaW5qdXJpZXNfZHJpdmVyLHVua25vd25pbmp1cmllc19iaWN5Y2xpc3QsdW5rbm93bmluanVyaWVzX3BlZGVzdHJpYW4sdW5rbm93bmluanVyaWVzcGFzc2VuZ2VyLCBtYXJfYWRkcmVzcyxtYXJfc2NvcmUsbWFyX2lkLHRvdGFsX3ZlaGljbGVzLHRvdGFsX3BlZGVzdHJpYW5zLHRvdGFsX3RheGlzLHRvdGFsX2dvdmVybm1lbnQscGVkZXN0cmlhbnNpbXBhaXJlZCxkcml2ZXJzaW1wYWlyZWQsIHNwZWVkaW5nX2ludm9sdmVkLCBsYXN0dXBkYXRlZGF0ZSkpIA0KDQpgYGANCg0KIyMgQ29udmVydGluZyB0aGUgQ3Jhc2ggRGF0YSBpbnRvIGEgU2Ygb2JqZWN0IGZvciBQbG90dGluZw0KDQpgYGB7cn0NCnNmX2Jpa2VfY3Jhc2hlcyA8LSBkZjFfYmlrZV9jcmFzaGVzICU+JQ0KICBzdF9hc19zZihjb29yZHMgPSBjKCJsb25naXR1ZGUiLCJsYXRpdHVkZSIpLCBjcnMgPSA0MzI2KSAlPiUNCiAgc3RfY2FzdCgiUE9JTlQiKQ0KDQpjbGFzcyhzZl9iaWtlX2NyYXNoZXMpDQpgYGANCg0KIyMgUGxvdHRpbmcgdGhlIEJpa2UgTGFuZXMgYW5kIENyYXNoIERhdGEgVG9nZXRoZXIgDQoNCmBgYHtyfQ0KbWFwdmlldyhkY19zaGFwZSwgbHdkPTMpICsgDQogIG1hcHZpZXcoYmlrZXNfbGFuZXMsIHpjb2wgPSAic3RyZWV0bmFtZSIsIGx3ZCA9IDMsIGxheWVyLm5hbWUgPSAiYmlrZV9sYW5lcyIsIGxlZ2VuZCA9IEZBTFNFKSArDQogIG1hcHZpZXcoc2ZfYmlrZV9jcmFzaGVzLCBjb2xvciA9ICJvcmFuZ2UiLCBsd2QgPSAwLjUsIGxheWVyLm5hbWUgPSAiYmlrZV9jcmFzaGVzIiwgbGVnZW5kID0gRkFMU0UpDQpgYGANCg0KIyMgRmlsdGVyaW5nIHRoZSBEYXRhIEZ1cnRoZXINCg0KV2Ugd2lsbCBwaXZvdCBsb25nZXIgdGhlIGNyYXNoIGRhdGEgdG8gcmVkdWNlIHRoZSBudW1iZXIgb2YgdmFyaWFibGVzIGFuZCBpbmNyZWFzZSB0aGUgbnVtYmVyIG9mIG9ic2VydmF0aW9ucy4gVGhlIGRhdGEgaXMgb3JpZ2luYWxseSBzZXBhcmF0ZWQgY29sdW1uLXdpc2UgYmFzZWQgb24gdGhlIHR5cGUgb2YgaW5qdXJpZXMgaG93ZXZlciwgd2UgYWltIHRvIGNyZWF0ZSBhIHNpbmdsZSBjb2x1bW4gdGhhdCBsaXN0cyB0aGUgaW5qdXJpZXMgYXMgb2JzZXJ2YXRpb25zIGluc3RlYWQuIEFsc28sIHNpbmNlIGVhY2ggdHlwZSBvZiBpbmp1cnkgd2FzIGxpc3RlZCBmb3IgZXZlcnkgc3RyZWV0IG5hbWUsIGFueSB2YWx1ZXMgZXF1aXZhbGVudCB0byAwLCB3YXMgZHJvcHBlZC4NCg0KYGBge3J9DQpkZjFfcGl2b3RfYmlrZV9jcmFzaGVzID0gZGYxX2Jpa2VfY3Jhc2hlcyAlPiUNCiAgcGl2b3RfbG9uZ2VyKGNvbHM9YygibWFqb3Jpbmp1cmllc19iaWN5Y2xpc3QiLCJtaW5vcmluanVyaWVzX2JpY3ljbGlzdCIsImZhdGFsX2JpY3ljbGlzdCIpLA0KICAgICAgICAgICAgICAgbmFtZXNfdG8gPSAiaW5qdXJpZXMiLA0KICAgICAgICAgICAgICAgdmFsdWVzX3RvID0gIm51bWJlcl9vZl9pbmp1cmllcyIpICU+JQ0KICBkcGx5cjo6c2VsZWN0KC1jKGJpY3ljbGlzdHNpbXBhaXJlZCkpICU+JQ0KICByZWxvY2F0ZShjKGluanVyaWVzLCBudW1iZXJfb2ZfaW5qdXJpZXMpLCAuYWZ0ZXIgPSB3YXJkKSAlPiUNCiAgbXV0YXRlKGluanVyaWVzID0gcmVjb2RlKGluanVyaWVzLCBtYWpvcmluanVyaWVzX2JpY3ljbGlzdCA9ICJtYWpvciIsDQogIG1pbm9yaW5qdXJpZXNfYmljeWNsaXN0ID0gIm1pbm9yIiwNCiAgZmF0YWxfYmljeWNsaXN0ID0gImZhdGFsIiApKSAlPiUNCiAgZmlsdGVyKG51bWJlcl9vZl9pbmp1cmllcyA+PSAiMSIpDQogIA0KYGBgDQoNCk5leHQsIHdlIGZpbHRlciB0aGUgYmlrZSBjcmFzaCBkYXRhIHRvIG9ubHkgc2hvdyBiaWN5Y2xlIHJlbGF0ZWQgY3Jhc2hlcyBpbiBTZXB0ZW1iZXIgMjAyMy4gV2UgY2hvc2UgdGhpcyB0aW1lIHBlcmlvZCBzcGVjaWZpY2FsbHkgYmVjYXVzZSB0aGUgcmlkZXJzaGlwIGRhdGEgaXMgb25seSBhcHBsaWNhYmxlIHRvIHRoaXMgdGltZSByYW5nZSBhcyB3ZWxsLiANCg0KYGBge3J9DQpTZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgPSBkZjFfcGl2b3RfYmlrZV9jcmFzaGVzICU+JQ0KIGZpbHRlcihncmVwbCgiMjAyMy8wOSIsIGZyb21kYXRlKSkNCmBgYA0KDQpXZSB3aWxsIG1vdmUgb24gdG8gZmlsdGVyaW5nIHRoZSBiaWtlIGxhbmUgZGF0YS4gU2ltaWxhcmx5IGZvciB0aGUgY3Jhc2ggZGF0YSwgd2Ugd2lsbCBhbHNvIHBpdm90IGxvbmdlciB0aGlzIHNldCB0byBjcmVhdGUgYSBzaW5nbGUgY29sdW1uIHRoYXQgbGlzdHMgb3V0IHRoZSBkaWZmZXJlbnQgdHlwZSBvZiBiaWtlIGxhbmVzIGludG8gb25lIGNvbHVtbi4gV2Ugd2FudGVkIGNvbHVtbnMgdGhhdCBzZXBhcmF0ZWQgdGhlICJhZGphY2VudF90b19iaWtlbGFuZSIgYW5kICJwcm90ZWN0aW9uX29mX2xhbmUiIG9ic2VydmF0aW9ucyB0aHVzLCB3ZSBoYWQgdG8gcGl2b3QgdGhlIHRhYmxlIHR3aWNlLiANCg0KV2Ugd2lsbCBub3QgbG9vayBhdCB0aGUgY29udHJhZmxvdyBsYW5lIGFzIGl0IGRvZXMgbm90IGZpdCBpbnRvIHRoZSBkYXRhIHdlIHdvdWxkIGxpa2UgdG8gbG9vayBhdCwgd2hpY2ggaW5jbHVkZXMgdGhlIGxvY2F0aW9uIG9mIHRoZSBiaWtlIGxhbmUgYWRqYWNlbnQgdG8gbW90b3JpemVkIHZlaGljbGVzIGxhbmVzIGFuZCB0aGUgZGVzaWduIG9mIHRoZSBsYW5lIHRoYXQgcHJvdmlkZSBwcm90ZWN0aW9uLiBDb250cmFmbG93IG9ubHkgZGVhbHMgd2l0aCB0aGUgZGlyZWN0aW9uIHRoZSBsYW5lIGlzIGZsb3dpbmcgaW4gcmVsYXRpb25zIHRvIHRyYWZmaWMuIEFsc28sIHRoZXJlIGlzIHNpZ25pZmljYW50IE5BIGluIHRoZSBvYnNlcnZhdGlvbnMsIHdoaWNoIHdlIHJlbW92ZWQuIA0KDQpgYGB7cn0NCmRmMV9waXZvdF9iaWtlX2xhbmVzID0gYmlrZXNfbGFuZXMgJT4lDQogIHBpdm90X2xvbmdlcihjb2w9YygiYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnQiLCJiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCIsImJpa2VsYW5lX3BvY2tldGxhbmVfYWRqYWNlbnQiKSwNCiAgbmFtZXNfdG8gPSAiYWRqYWNlbnRfdG9fYmlrZWxhbmUiLA0KICB2YWx1ZXNfdG8gPSAiZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQiKSAlPiUNCnBpdm90X2xvbmdlcihjb2w9YygiYmlrZWxhbmVfY29udmVudGlvbmFsIiwiYmlrZWxhbmVfZHVhbF9idWZmZXJlZCIsImJpa2VsYW5lX3Byb3RlY3RlZCIsICJiaWtlbGFuZV9idWZmZXJlZCIpLA0KICBuYW1lc190byA9ICJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIiwNCiAgdmFsdWVzX3RvID0gImRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24iKSAlPiUNCiAgZHBseXI6OnNlbGVjdCgtYmlrZWxhbmVfY29udHJhZmxvdykgJT4lDQogIHJlbG9jYXRlKGMoYWRqYWNlbnRfdG9fYmlrZWxhbmUsZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQsIHByb3RlY3Rpb25fb2ZfYmlrZWxhbmUsIGRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24pLCAuYWZ0ZXIgPSBzdHJlZXR0eXBlKSAlPiUNCiAgbXV0YXRlKGFkamFjZW50X3RvX2Jpa2VsYW5lID0gcmVjb2RlKGFkamFjZW50X3RvX2Jpa2VsYW5lLCBiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCA9ICJ0aHJvdWdobGFuZSIsIGJpa2VsYW5lX3BvY2tldGxhbmVfYWRqYWNlbnQgPSAicG9ja2V0bGFuZSIsIGJpa2VsYW5lX3BhcmtpbmdsYW5lX2FkamFjZW50ID0gInBhcmtpbmdsYW5lIikpICU+JQ0KICBtdXRhdGUocHJvdGVjdGlvbl9vZl9iaWtlbGFuZSA9IHJlY29kZShwcm90ZWN0aW9uX29mX2Jpa2VsYW5lLCBiaWtlbGFuZV9wcm90ZWN0ZWQgPSAicHJvdGVjdGVkIiwgYmlrZWxhbmVfYnVmZmVyZWQgPSAiYnVmZmVyZWQiLCBiaWtlbGFuZV9jb252ZW50aW9uYWwgPSAiY29udmVudGlvbmFsIiwgYmlrZWxhbmVfZHVhbF9wcm90ZWN0ZWQgPSAiZHVhbF9wcm90ZWN0ZWQiLCBiaWtlbGFuZV9kdWFsX2J1ZmZlcmVkID0gImR1YWxfYnVmZmVyZWQiKSkgJT4lDQogICBkcm9wX25hKGMoZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQsIGRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24pKQ0KDQpgYGANCg0KIyMgUGxvdHRpbmcgdGhlIE5ld2x5IEZpbHRlciBEYXRhIFNldHMgDQoNClNpbmNlIHdlIGZpbHRlciB0aGUgZGF0YSBzZXRzIGFzIGRmIG9iamVjdHMsIHdlIGhhdmUgdG8gbWFrZSBzdXJlIGJvdGggc2V0cyBhcmUgc2V0IHRvIHNmIG9iamVjdHMgYmVmb3JlIHBsb3R0aW5nIGFnYWluLg0KDQpgYGB7cn0NCmNsYXNzKGRmMV9waXZvdF9iaWtlX2xhbmVzKQ0KY2xhc3MoU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzKQ0KYGBgDQpUaGUgY3Jhc2ggZGF0YSBuZWVkcyB0byBiZSBzZXQgdG8gYSBzZiBvYmplY3QuIA0KDQpgYGB7cn0NCnNmX1NlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyA8LSBTZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgJT4lDQogIHN0X2FzX3NmKGNvb3JkcyA9IGMoImxvbmdpdHVkZSIsImxhdGl0dWRlIiksIGNycyA9IDQzMjYpICU+JQ0KICBzdF9jYXN0KCJQT0lOVCIpDQoNCnNmX2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgPC0gZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyU+JQ0KICAgc3RfYXNfc2YoY29vcmRzID0gYygibG9uZ2l0dWRlIiwibGF0aXR1ZGUiKSwgY3JzID0gNDMyNikgJT4lDQogIHN0X2Nhc3QoIlBPSU5UIikNCg0KY2xhc3Moc2ZfU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzKQ0KYGBgDQpOb3csIHRoYXQgYm90aCBzZXRzIGFyZSBpbiB0aGUgY29ycmVjdCBjbGFzc2lmaWNhdGlvbiwgd2Ugd2lsbCBhdHRlbXB0IHRvIHBsb3QgdGhlc2Ugc2V0cy4gDQoNCkZpcnN0LCB3ZSB3aWxsIGxvb2sgYXQgdGhlIGRpZmZlcmVudCBjbGFzc2lmaWNhdGlvbiBvZiB0aGUgYmlrZSBsYW5lcywgbWFpbmx5IHRoZSBwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIHZhcmlhYmxlLg0KDQpEZWZpbmluZyBhIHBhbGV0dGUgZm9yIHRoZSBtYXBzDQoNCmBgYHtyfQ0KcGFsID0gbWFwdmlld1BhbGV0dGUoIm1hcHZpZXdTcGVjdHJhbENvbG9ycyIpDQpgYGANCg0KYGBge3J9DQptYXB2aWV3KGRjX3NoYXBlLCBsd2Q9MiwgYWxwaGEgPSAwLjUsIGFscGhhLnJlZ2lvbnMgPSAwLjIpICsgDQogIG1hcHZpZXcoZGYxX3Bpdm90X2Jpa2VfbGFuZXMsIHpjb2wgPSAicHJvdGVjdGlvbl9vZl9iaWtlbGFuZSIsIGJ1cnN0ID0gVFJVRSwgbHdkID0gMywgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSAiYmlrZV9sYW5lcyIsIGxlZ2VuZCA9IFRSVUUpDQpgYGANCg0KDQoNCmBgYHtyfQ0KbWFwdmlldyhkY19zaGFwZSwgbHdkPTIsIGFscGhhID0gMC41LCBhbHBoYS5yZWdpb25zID0gMC4yKSArIA0KICBtYXB2aWV3KGRmMV9waXZvdF9iaWtlX2xhbmVzLCBsd2QgPSAyLCB6Y29sID0icHJvdGVjdGlvbl9vZl9iaWtlbGFuZSIsYnVyc3Q9IFRSVUUsIGFscGhhID0gMC44LCBsYXllci5uYW1lID0gImJpa2VfbGFuZXMiLCBsZWdlbmQgPSBUUlVFKSArDQogIG1hcHZpZXcoc2ZfU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzLCB6Y29sID0gImluanVyaWVzIiwgYnVyc3Q9IFRSVUUsIGNvbC5yZWdpb24gPSBwYWwsIGx3ZCA9IDIsIGxheWVyLm5hbWUgPSAiYmlrZV9jcmFzaGVzIiwgbGVnZW5kID0gVFJVRSkNCmBgYA0KDQojIyBBcHB5bGluZyBDb2RlIEJhY2sgdG8gYSBMYXJnZXIgU2V0IG9mIENyYXNoIERhdGEgDQoNCkFmdGVyIHJlZHVjaW5nIHRoZSBjcmFzaCBkYXRhLCB3ZSB3ZXJlIGFibGUgdG8gZ2V0IG91ciBjb2RlIHRvIHdvcmssIHRodXMgd2Ugd2lsbCBwbG90IGFub3RoZXIgbWFwIGluY2x1ZGluZyBtb3JlIG9ic2VydmF0aW9ucyBmcm9tIHRoZSBjcmFzaCBkYXRhLiANCg0KYGBge3J9DQptYXB2aWV3KGRjX3NoYXBlLCBsd2Q9MiwgYWxwaGEgPSAwLjUsIGFscGhhLnJlZ2lvbnMgPSAwLjIpICsgDQogIG1hcHZpZXcoZGYxX3Bpdm90X2Jpa2VfbGFuZXMsIGx3ZCA9IDIsIHpjb2wgPSJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIixidXJzdD0gVFJVRSwgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSAiYmlrZV9sYW5lcyIsIGxlZ2VuZCA9IFRSVUUpICsNCiAgbWFwdmlldyhzZl9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzLCB6Y29sID0gImluanVyaWVzIiwgYnVyc3Q9IFRSVUUsIGNvbC5yZWdpb24gPSBwYWwsIGx3ZCA9IDIsIGxheWVyLm5hbWUgPSAiYmlrZV9jcmFzaGVzIiwgbGVnZW5kID0gVFJVRSkNCmBgYA0KDQoNCg0KIyMgVHJ5aW5nIGEgRGlmZmVyZW50IFBsb3R0aW5nIE1ldGhvZCAtIFN0YXJ0aW5nIHdpdGggYSBTbWFsbGVyIERhdGEgU2V0IA0KDQpgYGB7cn0NCnRtYXBfbW9kZSgidmlldyIpDQoNCnNmX1NlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiUNCnRtX3NoYXBlKCkrDQogIHRtX2ZhY2V0cygiaW5qdXJpZXMiKSsNCiAgdG1fZG90cygiaW5qdXJpZXMiLCBsZWdlbmQuc2hvdyA9IEZBTFNFKQ0KDQpgYGANCg0KQXBwbHlpbmcgdGhlIGZvbGxvd2luZyBjb2RlIHRvIHRoZSBlbnRpcmUgZGF0YSBzZXQ6DQpTZWUgdGhlIGRpdmlzaW9uIG9mIGluanVyaWVzfg0KDQpgYGB7cn0NCg0Kc2ZfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiUNCnRtX3NoYXBlKCkrDQogIHRtX2ZhY2V0cygiaW5qdXJpZXMiKSsNCiAgdG1fZG90cygiaW5qdXJpZXMiLCBsZWdlbmQuc2hvdyA9IEZBTFNFKQ0KDQpgYGANCg0KDQpBcHBseWluZyB0aGUgc2FtZSBjb2RlIHRvIHRoZSBiaWtlIGxhbmUgZGF0YToNCg0KYGBge3J9DQpkZjFfcGl2b3RfYmlrZV9sYW5lcyAlPiUNCnRtX3NoYXBlKCkrDQogIHRtX2ZhY2V0cygicHJvdGVjdGlvbl9vZl9iaWtlbGFuZSIpKw0KICB0bV9kb3RzKCJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIiwgbGVnZW5kLnNob3cgPSBGQUxTRSkNCmBgYA0KDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRTMjQxIEZpbmFsIFByb2VqZWN0IC0gREMgQmlrZXNoYXJlICINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiAiQWxleGlzIEFsZXhhbmRlciwgR2lhbm5hIENhcG9jY2lhLCBNb3JnYW4gRWF0b24sIGFuZCBNYXRlbyBTYXJhYmlhIg0KZGF0ZTogIjA5IERlY2VtYmVyIDIwMjMiDQotLS0NCg0KIyMgQmFja2dyb3VuZCBJbmZvcm1hdGlvbg0KDQpUaGUgcHVycG9zZSBvZiBvdXIgYW5hbHlzaXMgaW52b2x2ZXMgZXhwbG9yaW5nIHBvdGVudGlhbCBtZXRob2RzIG9mIGluY3JlYXNpbmcgcmlkZXJzaGlwIGZvciB0aGUgREMgQ2FwdGlhbCBCaWtlc2hhcmUgcHJvZ3JhbS4gVGhpcyBtb3RpdmF0aW9uIGluIGZvY3VzaW5nIG9uIHJpZGVyc2hpcCBhbGlnbnMgd2l0aCB0aGUgREMgQmlrZXNoYXJlJ3MgbWFpbiBtaXNzaW9uIGluIHRyYW5zZm9ybWluZyB0aGUgV2FzaGluZ3Rpb24gTWV0cm9wb2xpdGFuIEFyZWEgYW5kIHJlc2lkaW5nIGNvbW11bml0aWVzIGJ5IHByb3ZpZGluZyBhbiBhZmZvcmRhYmxlIGJpY3ljbGUgdHJhbnNpdCBzeXN0ZW0uIFRoZSBnb2FscyBvdXRsaW5lZCBpbiB0aGlzIHRhcmdldGVkIHJlZm9ybWF0aW9uIGluY2x1ZGVzIGRlY3JlYXNpbmcgdHJhZmZpYyBjb25nZXN0aW9uLCBwcm9tb3RpbmcgaGVhbHRoIGFuZCB3ZWxsbmVzcywgZGVjcmVhc2luZyBhaXIgcG9sbHV0aW9uLCBhbmQgZXhwYW5kaW5nIHRyYW5zcG9ydGF0aW9uIG9wdGlvbnMuIFRoZSBEQyBCaWVrc2hhcmUgcHJvZ3JhbSBpcyBvd25lZCBieSBzZXZlcmFsIGp1cmlzZGljdGlvbnMgaG93ZXZlciwgaXMgbWFpbmx5IG1hbmFnZWQgYnkgdGhlIERDIGxvY2FsIGdvdmVybm1lbnQuICANCg0KTW9yZSBpbmZvcm1hdGlvbiBwZXJ0YWluaW5nIHRvIHRoZSBiaWtlc2hhcmUgcHJvZ3JhbSBjYW4gYmUgZm91bmQgYnkgZm9sbG93aW5nIHRoaXMgbGluazogaHR0cHM6Ly9jYXBpdGFsYmlrZXNoYXJlLmNvbS8NCg0KIyMgQnVzaW5lc3MgVW5kZXJzdGFuZGluZyANCg0KRm9sbG93aW5nIHRoZSBtZXRob2RzIG91dGxpbmUgaW4gdGhlIENSSVNQLURNIE1ldGhvZG9sb2d5LCB3ZSBpbml0aWFsbHkgZm9jdXNlZCBvbiB1bmRlcnN0YW5kaW5nIHRoZSB2YXJpb3VzIGJ1c2luZXNzIGFzcGVjdHMgdG8gb3VyIHByb2JsZW0gYmVmb3JlIGFuYWx5emluZyBhbnkgZGF0YS4gV2UgZGV0ZXJtaW5lIG91ciBidXNpbmVzcyBvYmplY3RpdmVzIGJ5IHJlc2VhcmNoaW5nIHRoZSBiYWNrZ3JvdW5kIG9mIHRoZSBEQyBCaWtlc2hhcmUgcHJvZ3JhbSwgYXMgc2VlbiBhYm92ZS4gTmV4dCwgd2UgZGV0ZXJtaW5lIG91ciBkYXRhIG1pbmluZyBnb2FscyBhbmQgaWRlbnRpZmllZCBhIG92ZXJhbGwgcXVlc3Rpb24gd2UgYWltIHRvIHNvbHZlIGZvciBvdXIgYW5hbHlzaXMuDQoNClRoaXMgcXVlc3Rpb24gcGVydGFpbnMgdG8gdGhlIGZvbGxvd2luZzogSG93IGRvIHdlIG1ha2UgaXQgc2FmZXIgZm9yIHBlb3BsZSB0byByaWRlIGJpa2VzIGFzIGEgbWVhbnMgb2YgaW5jcmVhc2luZyByaWRlcnNoaXA/DQoNCg0KIyMgSW5zdGFsbGluZyBQYWNrYWdlcyANCg0KQmVsb3cgYXJlIHRoZSBwYWNrYWdlcyBzaG91bGQgYmUgaW5zdGFsbGVkOg0KDQpgYGB7cn0NCmluc3RhbGwucGFja2FnZXMoInRpZHl2ZXJzZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJqYW5pdG9yIikNCmluc3RhbGwucGFja2FnZXMoImx1YnJpZGF0ZSIpDQppbnN0YWxsLnBhY2thZ2VzKCJoZXJlIikNCmluc3RhbGwucGFja2FnZXMoIm1hcHZpZXciKQ0KaW5zdGFsbC5wYWNrYWdlcygiZ2JmcyIpDQppbnN0YWxsLnBhY2thZ2VzKCJzZiIpDQppbnN0YWxsLnBhY2thZ2VzKCJ0bWFwIikNCmluc3RhbGwucGFja2FnZXMoInRpZHljZW5zdXMiKQ0KaW5zdGFsbC5wYWNrYWdlcygic3RpbmdyIikNCmluc3RhbGwucGFja2FnZXMoIm1hcHMiKQ0KaW5zdGFsbC5wYWNrYWdlcygic3BEYXRhIikNCmluc3RhbGwucGFja2FnZXMoInZpcmlkaXMiKQ0KYGBgDQoNCkJhc2VsaW5lIHBhY2thZ2VzIGZvciBvdXIgYW5hbHlzaXM6IA0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShqYW5pdG9yKQ0KbGlicmFyeShsdWJyaWRhdGUpICMgYmVjYXVzZSB3ZSB3aWxsIHByb2JhYmx5IHNlZSBzb21lIGRhdGVzDQpsaWJyYXJ5KGhlcmUpICMgbW9yZSBlYXNpbHkgYWNjZXNzIGZpbGVzIGluIHlvdXIgcHJvamVjdA0KbGlicmFyeShtYXB2aWV3KQ0KbGlicmFyeShnYmZzKQ0KbGlicmFyeShzZikgIyB3b3JraW5nIHdpdGggc2ltcGxlIGZlYXR1cmVzIC0gZ2Vvc3BhdGlhbA0KbGlicmFyeSh0bWFwKQ0KbGlicmFyeSh0aWR5Y2Vuc3VzKQ0KbGlicmFyeShzdHJpbmdyKQ0KbGlicmFyeShyYXN0ZXIpDQpsaWJyYXJ5KHJlYWRyKQ0KbGlicmFyeShtYXBzKQ0KbGlicmFyeShzcERhdGEpDQpsaWJyYXJ5KHZpcmlkaXMpDQpgYGANCg0KIyMgQWNjZXNzaW5nIGFuZCBMb2FkaW5nIHRoZSBEYXRhYmFzZXMgDQoNCldlIGFyZSBpbml0aWFsbHkgbG9va2luZyBhdCB0aGUgZm9sbG93aW5nIHRocmVlIGRhdGEgc2V0czoNCg0KMS4gVGhlIERDIEJpa2VzaGFyZSBTeXN0ZW0gRGF0YSBmb3IgU2VwdGVtYmVyIDIwMjM6IGh0dHBzOi8vY2FwaXRhbGJpa2VzaGFyZS5jb20vc3lzdGVtLWRhdGENCjIuIFRoZSBEQyBQcm90ZWN0ZWQgdnMgVW5wcm90ZWN0ZWQgQmlrZWxhbmUgRGF0YXNldDogaHR0cHM6Ly9vcGVuZGF0YS5kYy5nb3YvZGF0YXNldHMvYmljeWNsZS1sYW5lcy9leHBsb3JlDQozLiBUaGUgREMgQ3JpbWVzIGFuZCBBY2NpZGVudHMgRGF0YXNldDogaHR0cHM6Ly9vcGVuZGF0YS5kYy5nb3YvZGF0YXNldHMvY3Jhc2hlcy1pbi1kYy9leHBsb3JlDQoNCmBgYHtyfQ0KYmlrZXNfc2VwdGVtYmVyIDwtIHJlYWRfY3N2KGhlcmUoImRhdGFfcmF3IiwiMjAyMzA5LWNhcGl0YWxiaWtlc2hhcmUtdHJpcGRhdGEuY3N2IikpICU+JSBjbGVhbl9uYW1lcygpDQpiaWtlc19sYW5lcyA9IHN0X3JlYWQoaGVyZSgiZGF0YV9yYXciLCAiQmljeWNsZV9MYW5lcy5nZW9qc29uIikpICU+JSBjbGVhbl9uYW1lcygpDQpiaWtlc19jcmFzaGVzID0gc3RfcmVhZChoZXJlKCJkYXRhX3JhdyIsICJDcmFzaGVzX2luX0RDLmdlb2pzb24iKSkgJT4lIGNsZWFuX25hbWVzKCkNCmNzdl9iaWtlc19sYW5lcyA9IHJlYWRfY3N2KGhlcmUoImRhdGFfcmF3IiwgIkJpY3ljbGVfTGFuZXMuY3N2IikpICU+JSBjbGVhbl9uYW1lcygpDQpjc3ZfYmlrZXNfY3Jhc2hlcyA9IHJlYWRfY3N2KGhlcmUoImRhdGFfcmF3IiwgIkNyYXNoZXNfaW5fREMuY3N2IikpICU+JSBjbGVhbl9uYW1lcygpDQpkY19zaGFwZSA9IHN0X3JlYWQoaGVyZSgiZGF0YV9yYXciLCJEQ19IZWFsdGhfUGxhbm5pbmdfTmVpZ2hib3Job29kcy5nZW9qc29uIikpICU+JSBjbGVhbl9uYW1lcygpDQpgYGANCg0KIyMgQ2hlY2tpbmcgdGhlIENsYXNzIG9mIEVhY2ggRGF0YSBGcmFtZSANCg0KYGBge3J9DQpjbGFzcyhiaWtlc19sYW5lcykNCmNsYXNzKGJpa2VzX2NyYXNoZXMpDQpjbGFzcyhkY19zaGFwZSkNCmNsYXNzKGNzdl9iaWtlc19jcmFzaGVzKQ0KY2xhc3MoY3N2X2Jpa2VzX2xhbmVzKQ0KYGBgDQoNCiMjIEluaXRpYWwgTWFwIG9mIHRoZSBCaWtlIExhbmUgRGF0YQ0KDQpgYGB7cn0NCm1hcHZpZXcoZGNfc2hhcGUsIGx3ZD0zLCBhbHBoYT0wLjIpICsgDQogIG1hcHZpZXcoYmlrZXNfbGFuZXMsIHpjb2wgPSAic3RyZWV0bmFtZSIsIGx3ZCA9IDMsIGxheWVyLm5hbWUgPSAiYmlrZV9sYW5lcyIsIGxlZ2VuZCA9IEZBTFNFKSANCmBgYA0KDQojIyBGaWx0ZXJpbmcgdGhlIENyYXNoIERhdGENCg0KRmlsdGVyaW5nIHRoZSBjcmFzaCBkYXRhLiBGaXJzdCwgd2UgbG9va2VkIGF0IHZhcmlhYmxlcyB0aGF0IHdlIGFyZSBpbnRlcmVzdGVkIGluIGFuYWx5emluZyBmcm9tIHRoZSB0b3RhbCBkYXRhIHNldC4gV2UgdGhlbiBmaWx0ZXJlZCB0aGUgZGF0YSB0byBvbmx5IGxvb2sgYXQgYWNjaWRlbnRzIHJlbGF0aW5nIHRoZSBiaWN5Y2xlcy4gVGhpcyB3YXMgZGV0ZXJtaW5lZCBieSBzZXR0aW5nIGEgcmVxdWlyZW1lbnQgdGhhdCB0aGVyZSBtdXN0IGJlIGF0IGxlYXN0IDEgYmljeWNsZSBpbnZvbHZlZCBpbiB0aGUgYWNjaWRlbnQuICBDb2x1bW5zIG5vdCByZWxldmFudCB0byBvdXIgYW5hbHlzaXMgd2FzIHJlbW92ZWQgZnJvbSB0aGUgZGF0YSBzZXQuDQoNCmBgYHtyfQ0KZGYxX2Jpa2VfY3Jhc2hlcyA9IGNzdl9iaWtlc19jcmFzaGVzICU+JQ0KICAgZmlsdGVyKHRvdGFsX2JpY3ljbGVzID49ICIxIikgJT4lDQogIGRwbHlyOjpzZWxlY3QoLWMobG9jYXRpb25lcnJvcixvYmplY3RpZCwgY3JpbWVpZCwgY2NuLCByZXBvcnRkYXRlLHJvdXRlaWQsIHN0cmVldHNlZ2lkLCByb2Fkd2F5c2VnaWQsIHRvZGF0ZSxldmVudGlkLCBtYWpvcmluanVyaWVzX2RyaXZlciwgbWFqb3Jpbmp1cmllc19wZWRlc3RyaWFuLCBtYWpvcmluanVyaWVzcGFzc2VuZ2VyLG1pbm9yaW5qdXJpZXNfZHJpdmVyLCBtaW5vcmluanVyaWVzX3BlZGVzdHJpYW4sIG1pbm9yaW5qdXJpZXNwYXNzZW5nZXIsZmF0YWxfZHJpdmVyLCBmYXRhbF9wZWRlc3RyaWFuLCBmYXRhbHBhc3Nlbmdlcix1bmtub3duaW5qdXJpZXNfZHJpdmVyLHVua25vd25pbmp1cmllc19iaWN5Y2xpc3QsdW5rbm93bmluanVyaWVzX3BlZGVzdHJpYW4sdW5rbm93bmluanVyaWVzcGFzc2VuZ2VyLCBtYXJfYWRkcmVzcyxtYXJfc2NvcmUsbWFyX2lkLHRvdGFsX3ZlaGljbGVzLHRvdGFsX3BlZGVzdHJpYW5zLHRvdGFsX3RheGlzLHRvdGFsX2dvdmVybm1lbnQscGVkZXN0cmlhbnNpbXBhaXJlZCxkcml2ZXJzaW1wYWlyZWQsIHNwZWVkaW5nX2ludm9sdmVkLCBsYXN0dXBkYXRlZGF0ZSkpIA0KDQpgYGANCg0KIyMgQ29udmVydGluZyB0aGUgQ3Jhc2ggRGF0YSBpbnRvIGEgU2Ygb2JqZWN0IGZvciBQbG90dGluZw0KDQpgYGB7cn0NCnNmX2Jpa2VfY3Jhc2hlcyA8LSBkZjFfYmlrZV9jcmFzaGVzICU+JQ0KICBzdF9hc19zZihjb29yZHMgPSBjKCJsb25naXR1ZGUiLCJsYXRpdHVkZSIpLCBjcnMgPSA0MzI2KSAlPiUNCiAgc3RfY2FzdCgiUE9JTlQiKQ0KDQpjbGFzcyhzZl9iaWtlX2NyYXNoZXMpDQpgYGANCg0KIyMgUGxvdHRpbmcgdGhlIEJpa2UgTGFuZXMgYW5kIENyYXNoIERhdGEgVG9nZXRoZXIgDQoNCmBgYHtyfQ0KbWFwdmlldyhkY19zaGFwZSwgbHdkPTMpICsgDQogIG1hcHZpZXcoYmlrZXNfbGFuZXMsIHpjb2wgPSAic3RyZWV0bmFtZSIsIGx3ZCA9IDMsIGxheWVyLm5hbWUgPSAiYmlrZV9sYW5lcyIsIGxlZ2VuZCA9IEZBTFNFKSArDQogIG1hcHZpZXcoc2ZfYmlrZV9jcmFzaGVzLCBjb2xvciA9ICJvcmFuZ2UiLCBsd2QgPSAwLjUsIGxheWVyLm5hbWUgPSAiYmlrZV9jcmFzaGVzIiwgbGVnZW5kID0gRkFMU0UpDQpgYGANCg0KIyMgRmlsdGVyaW5nIHRoZSBEYXRhIEZ1cnRoZXINCg0KV2Ugd2lsbCBwaXZvdCBsb25nZXIgdGhlIGNyYXNoIGRhdGEgdG8gcmVkdWNlIHRoZSBudW1iZXIgb2YgdmFyaWFibGVzIGFuZCBpbmNyZWFzZSB0aGUgbnVtYmVyIG9mIG9ic2VydmF0aW9ucy4gVGhlIGRhdGEgaXMgb3JpZ2luYWxseSBzZXBhcmF0ZWQgY29sdW1uLXdpc2UgYmFzZWQgb24gdGhlIHR5cGUgb2YgaW5qdXJpZXMgaG93ZXZlciwgd2UgYWltIHRvIGNyZWF0ZSBhIHNpbmdsZSBjb2x1bW4gdGhhdCBsaXN0cyB0aGUgaW5qdXJpZXMgYXMgb2JzZXJ2YXRpb25zIGluc3RlYWQuIEFsc28sIHNpbmNlIGVhY2ggdHlwZSBvZiBpbmp1cnkgd2FzIGxpc3RlZCBmb3IgZXZlcnkgc3RyZWV0IG5hbWUsIGFueSB2YWx1ZXMgZXF1aXZhbGVudCB0byAwLCB3YXMgZHJvcHBlZC4NCg0KYGBge3J9DQpkZjFfcGl2b3RfYmlrZV9jcmFzaGVzID0gZGYxX2Jpa2VfY3Jhc2hlcyAlPiUNCiAgcGl2b3RfbG9uZ2VyKGNvbHM9YygibWFqb3Jpbmp1cmllc19iaWN5Y2xpc3QiLCJtaW5vcmluanVyaWVzX2JpY3ljbGlzdCIsImZhdGFsX2JpY3ljbGlzdCIpLA0KICAgICAgICAgICAgICAgbmFtZXNfdG8gPSAiaW5qdXJpZXMiLA0KICAgICAgICAgICAgICAgdmFsdWVzX3RvID0gIm51bWJlcl9vZl9pbmp1cmllcyIpICU+JQ0KICBkcGx5cjo6c2VsZWN0KC1jKGJpY3ljbGlzdHNpbXBhaXJlZCkpICU+JQ0KICByZWxvY2F0ZShjKGluanVyaWVzLCBudW1iZXJfb2ZfaW5qdXJpZXMpLCAuYWZ0ZXIgPSB3YXJkKSAlPiUNCiAgbXV0YXRlKGluanVyaWVzID0gcmVjb2RlKGluanVyaWVzLCBtYWpvcmluanVyaWVzX2JpY3ljbGlzdCA9ICJtYWpvciIsDQogIG1pbm9yaW5qdXJpZXNfYmljeWNsaXN0ID0gIm1pbm9yIiwNCiAgZmF0YWxfYmljeWNsaXN0ID0gImZhdGFsIiApKSAlPiUNCiAgZmlsdGVyKG51bWJlcl9vZl9pbmp1cmllcyA+PSAiMSIpDQogIA0KYGBgDQoNCk5leHQsIHdlIGZpbHRlciB0aGUgYmlrZSBjcmFzaCBkYXRhIHRvIG9ubHkgc2hvdyBiaWN5Y2xlIHJlbGF0ZWQgY3Jhc2hlcyBpbiBTZXB0ZW1iZXIgMjAyMy4gV2UgY2hvc2UgdGhpcyB0aW1lIHBlcmlvZCBzcGVjaWZpY2FsbHkgYmVjYXVzZSB0aGUgcmlkZXJzaGlwIGRhdGEgaXMgb25seSBhcHBsaWNhYmxlIHRvIHRoaXMgdGltZSByYW5nZSBhcyB3ZWxsLiANCg0KYGBge3J9DQpTZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgPSBkZjFfcGl2b3RfYmlrZV9jcmFzaGVzICU+JQ0KIGZpbHRlcihncmVwbCgiMjAyMy8wOSIsIGZyb21kYXRlKSkNCmBgYA0KDQpXZSB3aWxsIG1vdmUgb24gdG8gZmlsdGVyaW5nIHRoZSBiaWtlIGxhbmUgZGF0YS4gU2ltaWxhcmx5IGZvciB0aGUgY3Jhc2ggZGF0YSwgd2Ugd2lsbCBhbHNvIHBpdm90IGxvbmdlciB0aGlzIHNldCB0byBjcmVhdGUgYSBzaW5nbGUgY29sdW1uIHRoYXQgbGlzdHMgb3V0IHRoZSBkaWZmZXJlbnQgdHlwZSBvZiBiaWtlIGxhbmVzIGludG8gb25lIGNvbHVtbi4gV2Ugd2FudGVkIGNvbHVtbnMgdGhhdCBzZXBhcmF0ZWQgdGhlICJhZGphY2VudF90b19iaWtlbGFuZSIgYW5kICJwcm90ZWN0aW9uX29mX2xhbmUiIG9ic2VydmF0aW9ucyB0aHVzLCB3ZSBoYWQgdG8gcGl2b3QgdGhlIHRhYmxlIHR3aWNlLiANCg0KV2Ugd2lsbCBub3QgbG9vayBhdCB0aGUgY29udHJhZmxvdyBsYW5lIGFzIGl0IGRvZXMgbm90IGZpdCBpbnRvIHRoZSBkYXRhIHdlIHdvdWxkIGxpa2UgdG8gbG9vayBhdCwgd2hpY2ggaW5jbHVkZXMgdGhlIGxvY2F0aW9uIG9mIHRoZSBiaWtlIGxhbmUgYWRqYWNlbnQgdG8gbW90b3JpemVkIHZlaGljbGVzIGxhbmVzIGFuZCB0aGUgZGVzaWduIG9mIHRoZSBsYW5lIHRoYXQgcHJvdmlkZSBwcm90ZWN0aW9uLiBDb250cmFmbG93IG9ubHkgZGVhbHMgd2l0aCB0aGUgZGlyZWN0aW9uIHRoZSBsYW5lIGlzIGZsb3dpbmcgaW4gcmVsYXRpb25zIHRvIHRyYWZmaWMuIEFsc28sIHRoZXJlIGlzIHNpZ25pZmljYW50IE5BIGluIHRoZSBvYnNlcnZhdGlvbnMsIHdoaWNoIHdlIHJlbW92ZWQuIA0KDQpgYGB7cn0NCmRmMV9waXZvdF9iaWtlX2xhbmVzID0gYmlrZXNfbGFuZXMgJT4lDQogIHBpdm90X2xvbmdlcihjb2w9YygiYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnQiLCJiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCIsImJpa2VsYW5lX3BvY2tldGxhbmVfYWRqYWNlbnQiKSwNCiAgbmFtZXNfdG8gPSAiYWRqYWNlbnRfdG9fYmlrZWxhbmUiLA0KICB2YWx1ZXNfdG8gPSAiZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQiKSAlPiUNCnBpdm90X2xvbmdlcihjb2w9YygiYmlrZWxhbmVfY29udmVudGlvbmFsIiwiYmlrZWxhbmVfZHVhbF9idWZmZXJlZCIsImJpa2VsYW5lX3Byb3RlY3RlZCIsICJiaWtlbGFuZV9idWZmZXJlZCIpLA0KICBuYW1lc190byA9ICJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIiwNCiAgdmFsdWVzX3RvID0gImRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24iKSAlPiUNCiAgZHBseXI6OnNlbGVjdCgtYmlrZWxhbmVfY29udHJhZmxvdykgJT4lDQogIHJlbG9jYXRlKGMoYWRqYWNlbnRfdG9fYmlrZWxhbmUsZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQsIHByb3RlY3Rpb25fb2ZfYmlrZWxhbmUsIGRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24pLCAuYWZ0ZXIgPSBzdHJlZXR0eXBlKSAlPiUNCiAgbXV0YXRlKGFkamFjZW50X3RvX2Jpa2VsYW5lID0gcmVjb2RlKGFkamFjZW50X3RvX2Jpa2VsYW5lLCBiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCA9ICJ0aHJvdWdobGFuZSIsIGJpa2VsYW5lX3BvY2tldGxhbmVfYWRqYWNlbnQgPSAicG9ja2V0bGFuZSIsIGJpa2VsYW5lX3BhcmtpbmdsYW5lX2FkamFjZW50ID0gInBhcmtpbmdsYW5lIikpICU+JQ0KICBtdXRhdGUocHJvdGVjdGlvbl9vZl9iaWtlbGFuZSA9IHJlY29kZShwcm90ZWN0aW9uX29mX2Jpa2VsYW5lLCBiaWtlbGFuZV9wcm90ZWN0ZWQgPSAicHJvdGVjdGVkIiwgYmlrZWxhbmVfYnVmZmVyZWQgPSAiYnVmZmVyZWQiLCBiaWtlbGFuZV9jb252ZW50aW9uYWwgPSAiY29udmVudGlvbmFsIiwgYmlrZWxhbmVfZHVhbF9wcm90ZWN0ZWQgPSAiZHVhbF9wcm90ZWN0ZWQiLCBiaWtlbGFuZV9kdWFsX2J1ZmZlcmVkID0gImR1YWxfYnVmZmVyZWQiKSkgJT4lDQogICBkcm9wX25hKGMoZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQsIGRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24pKQ0KDQpgYGANCg0KIyMgUGxvdHRpbmcgdGhlIE5ld2x5IEZpbHRlciBEYXRhIFNldHMgDQoNClNpbmNlIHdlIGZpbHRlciB0aGUgZGF0YSBzZXRzIGFzIGRmIG9iamVjdHMsIHdlIGhhdmUgdG8gbWFrZSBzdXJlIGJvdGggc2V0cyBhcmUgc2V0IHRvIHNmIG9iamVjdHMgYmVmb3JlIHBsb3R0aW5nIGFnYWluLg0KDQpgYGB7cn0NCmNsYXNzKGRmMV9waXZvdF9iaWtlX2xhbmVzKQ0KY2xhc3MoU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzKQ0KYGBgDQpUaGUgY3Jhc2ggZGF0YSBuZWVkcyB0byBiZSBzZXQgdG8gYSBzZiBvYmplY3QuIA0KDQpgYGB7cn0NCnNmX1NlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyA8LSBTZXB0X2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgJT4lDQogIHN0X2FzX3NmKGNvb3JkcyA9IGMoImxvbmdpdHVkZSIsImxhdGl0dWRlIiksIGNycyA9IDQzMjYpICU+JQ0KICBzdF9jYXN0KCJQT0lOVCIpDQoNCnNmX2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgPC0gZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyU+JQ0KICAgc3RfYXNfc2YoY29vcmRzID0gYygibG9uZ2l0dWRlIiwibGF0aXR1ZGUiKSwgY3JzID0gNDMyNikgJT4lDQogIHN0X2Nhc3QoIlBPSU5UIikNCg0KY2xhc3Moc2ZfU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzKQ0KYGBgDQpOb3csIHRoYXQgYm90aCBzZXRzIGFyZSBpbiB0aGUgY29ycmVjdCBjbGFzc2lmaWNhdGlvbiwgd2Ugd2lsbCBhdHRlbXB0IHRvIHBsb3QgdGhlc2Ugc2V0cy4gDQoNCkZpcnN0LCB3ZSB3aWxsIGxvb2sgYXQgdGhlIGRpZmZlcmVudCBjbGFzc2lmaWNhdGlvbiBvZiB0aGUgYmlrZSBsYW5lcywgbWFpbmx5IHRoZSBwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIHZhcmlhYmxlLg0KDQpEZWZpbmluZyBhIHBhbGV0dGUgZm9yIHRoZSBtYXBzDQoNCmBgYHtyfQ0KcGFsID0gbWFwdmlld1BhbGV0dGUoIm1hcHZpZXdTcGVjdHJhbENvbG9ycyIpDQpgYGANCg0KYGBge3J9DQptYXB2aWV3KGRjX3NoYXBlLCBsd2Q9MiwgYWxwaGEgPSAwLjUsIGFscGhhLnJlZ2lvbnMgPSAwLjIpICsgDQogIG1hcHZpZXcoZGYxX3Bpdm90X2Jpa2VfbGFuZXMsIHpjb2wgPSAicHJvdGVjdGlvbl9vZl9iaWtlbGFuZSIsIGJ1cnN0ID0gVFJVRSwgbHdkID0gMywgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSAiYmlrZV9sYW5lcyIsIGxlZ2VuZCA9IFRSVUUpDQpgYGANCg0KDQoNCmBgYHtyfQ0KbWFwdmlldyhkY19zaGFwZSwgbHdkPTIsIGFscGhhID0gMC41LCBhbHBoYS5yZWdpb25zID0gMC4yKSArIA0KICBtYXB2aWV3KGRmMV9waXZvdF9iaWtlX2xhbmVzLCBsd2QgPSAyLCB6Y29sID0icHJvdGVjdGlvbl9vZl9iaWtlbGFuZSIsYnVyc3Q9IFRSVUUsIGFscGhhID0gMC44LCBsYXllci5uYW1lID0gImJpa2VfbGFuZXMiLCBsZWdlbmQgPSBUUlVFKSArDQogIG1hcHZpZXcoc2ZfU2VwdF9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzLCB6Y29sID0gImluanVyaWVzIiwgYnVyc3Q9IFRSVUUsIGNvbC5yZWdpb24gPSBwYWwsIGx3ZCA9IDIsIGxheWVyLm5hbWUgPSAiYmlrZV9jcmFzaGVzIiwgbGVnZW5kID0gVFJVRSkNCmBgYA0KDQojIyBBcHB5bGluZyBDb2RlIEJhY2sgdG8gYSBMYXJnZXIgU2V0IG9mIENyYXNoIERhdGEgDQoNCkFmdGVyIHJlZHVjaW5nIHRoZSBjcmFzaCBkYXRhLCB3ZSB3ZXJlIGFibGUgdG8gZ2V0IG91ciBjb2RlIHRvIHdvcmssIHRodXMgd2Ugd2lsbCBwbG90IGFub3RoZXIgbWFwIGluY2x1ZGluZyBtb3JlIG9ic2VydmF0aW9ucyBmcm9tIHRoZSBjcmFzaCBkYXRhLiANCg0KYGBge3J9DQptYXB2aWV3KGRjX3NoYXBlLCBsd2Q9MiwgYWxwaGEgPSAwLjUsIGFscGhhLnJlZ2lvbnMgPSAwLjIpICsgDQogIG1hcHZpZXcoZGYxX3Bpdm90X2Jpa2VfbGFuZXMsIGx3ZCA9IDIsIHpjb2wgPSJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIixidXJzdD0gVFJVRSwgYWxwaGEgPSAwLjgsIGxheWVyLm5hbWUgPSAiYmlrZV9sYW5lcyIsIGxlZ2VuZCA9IFRSVUUpICsNCiAgbWFwdmlldyhzZl9kZjFfcGl2b3RfYmlrZV9jcmFzaGVzLCB6Y29sID0gImluanVyaWVzIiwgYnVyc3Q9IFRSVUUsIGNvbC5yZWdpb24gPSBwYWwsIGx3ZCA9IDIsIGxheWVyLm5hbWUgPSAiYmlrZV9jcmFzaGVzIiwgbGVnZW5kID0gVFJVRSkNCmBgYA0KDQoNCg0KIyMgVHJ5aW5nIGEgRGlmZmVyZW50IFBsb3R0aW5nIE1ldGhvZCAtIFN0YXJ0aW5nIHdpdGggYSBTbWFsbGVyIERhdGEgU2V0IA0KDQpgYGB7cn0NCnRtYXBfbW9kZSgidmlldyIpDQoNCnNmX1NlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiUNCnRtX3NoYXBlKCkrDQogIHRtX2ZhY2V0cygiaW5qdXJpZXMiKSsNCiAgdG1fZG90cygiaW5qdXJpZXMiLCBsZWdlbmQuc2hvdyA9IEZBTFNFKQ0KDQpgYGANCg0KQXBwbHlpbmcgdGhlIGZvbGxvd2luZyBjb2RlIHRvIHRoZSBlbnRpcmUgZGF0YSBzZXQ6DQpTZWUgdGhlIGRpdmlzaW9uIG9mIGluanVyaWVzfg0KDQpgYGB7cn0NCg0Kc2ZfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiUNCnRtX3NoYXBlKCkrDQogIHRtX2ZhY2V0cygiaW5qdXJpZXMiKSsNCiAgdG1fZG90cygiaW5qdXJpZXMiLCBsZWdlbmQuc2hvdyA9IEZBTFNFKQ0KDQpgYGANCg0KDQpBcHBseWluZyB0aGUgc2FtZSBjb2RlIHRvIHRoZSBiaWtlIGxhbmUgZGF0YToNCg0KYGBge3J9DQpkZjFfcGl2b3RfYmlrZV9sYW5lcyAlPiUNCnRtX3NoYXBlKCkrDQogIHRtX2ZhY2V0cygicHJvdGVjdGlvbl9vZl9iaWtlbGFuZSIpKw0KICB0bV9kb3RzKCJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIiwgbGVnZW5kLnNob3cgPSBGQUxTRSkNCmBgYA0KDQojIyBDcmVhdGluZyBhIFBsb3QgdG8gU2hvdyBhIENsZWFyZXIgQ29tcGFyaXNvbiBvZiBCaWtlIExhbmVzIHZzLiBJbmp1cnkgVHlwZQ0KDQpGaXJzdCwgd2Ugd2lsbCBhdHRlbXB0IHRvIGpvaW4gdGhlIGJpa2UgbGFuZSBhbmQgY3Jhc2ggZGF0YSB0byBjcmVhdGUgc29tZSBzb3J0IHNjYXR0ZXIgb3IgYmFyIGdyYXBoIHRvIG51bWVyaWNhbCByZXByZXNlbnQgdGhpcyByZWxhdGlvbnNoaXAuIA0KDQpTdGFydGluZyBvZmYgd2l0aCB0aGUgc21hbGxlciBTZXB0ZW1iZXIgYmlrZSBjcmFzaCBkYXRhIHNldCBhbmQgZ3JvdXBpbmcgdGhlIGRhdGEgYmFzZWQgb24gdGhlIHN0cmVldCBuYW1lLiBUaGVuLCB3ZSB3aWxsIGNyZWF0ZSBhIG5ldyB2YXJpYWJsZSB0aGF0IGNvdW50cyB0aGUgbnVtYmVyIG9mIGFjY2lkZW50cyBwZXIgc3RyZWV0LiANCg0KYGBge3J9DQp0ZXN0X1NlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyA9IFNlcHRfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiUgDQogIGNvdW50KG5lYXJlc3RpbnRzdHJlZXRuYW1lKSAlPiUNCiAgcmVuYW1lKG51bWJlcl9vZl9hY2NpZGVudHMgPSBuKQ0KDQpgYGANCg0KU2luY2UgdGhpcyBjb2RlIHdvcmtlZCBmb3IgdGhlIHNtYWxsZXIgZGF0YSBzZXQsIHdlIHdpbGwgYXBwbHkgaXQgdG8gdGhlIGxhcmdlciBjcmFzaCBkYXRhLiBBbHNvLCBOQSwgdW5rbm93biB2YWx1ZXMsIGFsbGV5cywgYW5kIGRyaXZld2F5cyB3aWxsIGJlIHJlbW92ZWQgYXMgd2UgYXJlIG9ubHkgY29uY2VybmVkIHdpdGggdGhlIHN0cmVldHMuIFdlIGFyZSBmb2N1cyBwcmltYXJpbHkgb24gdGhlIGludGVyYWN0aW9uIG9mIGJpa2VzIG9uIHRoZSByb2Fkcy4gDQoNCmBgYHtyfQ0KYWNjaWRlbnRzX2RmMV9waXZvdF9iaWtlX2NyYXNoZXMgPSBkZjFfYmlrZV9jcmFzaGVzICU+JQ0KICAgY291bnQobmVhcmVzdGludHN0cmVldG5hbWUpICU+JQ0KICByZW5hbWUobnVtYmVyX29mX2FjY2lkZW50cyA9IG4pICU+JQ0KICByZW5hbWUocm91dGVuYW1lID0gbmVhcmVzdGludHN0cmVldG5hbWUpICU+JQ0KICBkcm9wX25hKCkgJT4lDQogIGZpbHRlcighZ3JlcGwoIk5vdCBGb3VuZHxBbGxleXxEcml2ZXdheSIscm91dGVuYW1lKSkNCmBgYA0KDQpNb3Zpbmcgb24gdG8gdGhlIGJpa2UgbGFuZSBkYXRhLiBHcm91cGluZyB0aGUgcm91dGUgbmFtZSB0b2dldGhlciBhbmQgY291bnRpbmcgdGhlIG51bWJlciBvZiBsYW5lIHByb3RlY3Rpb24gZm9yIGVhY2ggcm91dGUuIFJlbW92aW5nIGNvbnZlbnRpb25hbCBiaWtlIGxhbmVzIGZyb20gdGhlIGRhdGEgc2V0LCB3ZSB3YW50IHRvIHNlZSBpZiB0aGVyZSBhcmUgbGVzcyBhY2NpZGVudHMgaWYgdGhlcmUgYXJlIHByb3RlY3RlZCBsYW5lcy4gTmVlZCB0byBtYWtlIHN1cmUgdGhhdCB0aGUgZGF0YSBzZXQgaXMgYSBkYXRhIGZyYW1lIGFuZCBub3QgYSBzZiBvYmplY3QuDQoNCmBgYHtyfQ0KZGYyX3Bpdm90X2Jpa2VfbGFuZXMgPSBjc3ZfYmlrZXNfbGFuZXMgJT4lDQogIHBpdm90X2xvbmdlcihjb2w9YygiYmlrZWxhbmVfcGFya2luZ2xhbmVfYWRqYWNlbnQiLCJiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCIsImJpa2VsYW5lX3BvY2tldGxhbmVfYWRqYWNlbnQiKSwNCiAgbmFtZXNfdG8gPSAiYWRqYWNlbnRfdG9fYmlrZWxhbmUiLA0KICB2YWx1ZXNfdG8gPSAiZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQiKSAlPiUNCnBpdm90X2xvbmdlcihjb2w9YygiYmlrZWxhbmVfY29udmVudGlvbmFsIiwiYmlrZWxhbmVfZHVhbF9idWZmZXJlZCIsImJpa2VsYW5lX3Byb3RlY3RlZCIsICJiaWtlbGFuZV9idWZmZXJlZCIpLA0KICBuYW1lc190byA9ICJwcm90ZWN0aW9uX29mX2Jpa2VsYW5lIiwNCiAgdmFsdWVzX3RvID0gImRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24iKSAlPiUNCiAgZHBseXI6OnNlbGVjdCgtYmlrZWxhbmVfY29udHJhZmxvdykgJT4lDQogIHJlbG9jYXRlKGMoYWRqYWNlbnRfdG9fYmlrZWxhbmUsZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQsIHByb3RlY3Rpb25fb2ZfYmlrZWxhbmUsIGRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24pLCAuYWZ0ZXIgPSBzdHJlZXR0eXBlKSAlPiUNCiAgbXV0YXRlKGFkamFjZW50X3RvX2Jpa2VsYW5lID0gcmVjb2RlKGFkamFjZW50X3RvX2Jpa2VsYW5lLCBiaWtlbGFuZV90aHJvdWdobGFuZV9hZGphY2VudCA9ICJ0aHJvdWdobGFuZSIsIGJpa2VsYW5lX3BvY2tldGxhbmVfYWRqYWNlbnQgPSAicG9ja2V0bGFuZSIsIGJpa2VsYW5lX3BhcmtpbmdsYW5lX2FkamFjZW50ID0gInBhcmtpbmdsYW5lIikpICU+JQ0KICBtdXRhdGUocHJvdGVjdGlvbl9vZl9iaWtlbGFuZSA9IHJlY29kZShwcm90ZWN0aW9uX29mX2Jpa2VsYW5lLCBiaWtlbGFuZV9wcm90ZWN0ZWQgPSAicHJvdGVjdGVkIiwgYmlrZWxhbmVfYnVmZmVyZWQgPSAiYnVmZmVyZWQiLCBiaWtlbGFuZV9jb252ZW50aW9uYWwgPSAiY29udmVudGlvbmFsIiwgYmlrZWxhbmVfZHVhbF9wcm90ZWN0ZWQgPSAiZHVhbF9wcm90ZWN0ZWQiLCBiaWtlbGFuZV9kdWFsX2J1ZmZlcmVkID0gImR1YWxfYnVmZmVyZWQiKSkgJT4lDQogICBkcm9wX25hKGMoZGlyZWN0aW9uX29mX2xhbmVfYWRqYWNlbnQsIGRpcmVjdGlvbl9vZl9sYW5lX3Byb3RlY3Rpb24pKQ0KYGBgDQoNCg0KYGBge3J9DQp0ZXN0X2RmMl9waXZvdF9iaWtlX2xhbmVzID0gZGYyX3Bpdm90X2Jpa2VfbGFuZXMgJT4lIA0KICBmaWx0ZXIoIWdyZXBsKCJjb252ZW50aW9uYWwiLCBwcm90ZWN0aW9uX29mX2Jpa2VsYW5lKSkgJT4lDQogIGNvdW50KHJvdXRlbmFtZSkgJT4lDQogIHJlbmFtZShudW1iZXJfb2ZfcHJvdGVjdGVkX2xhbmVzID0gbikNCg0KYGBgDQoNCkpvaW5pbmcgdGhlIHR3byBkYXRhIGZyYW1lcyB0b2dldGhlciANCg0KYGBge3J9DQp0ZXN0MV9kZjJfcGl2b3RfYmlrZV9sYW5lcyA9IHRlc3RfZGYyX3Bpdm90X2Jpa2VfbGFuZXMgJT4lDQogIGxlZnRfam9pbihhY2NpZGVudHNfZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcywgYnkgPSAicm91dGVuYW1lIikNCnRlc3QxX2RmMl9waXZvdF9iaWtlX2xhbmVzW2lzLm5hKHRlc3QxX2RmMl9waXZvdF9iaWtlX2xhbmVzKV0gPC0gMA0KYGBgDQoNCg0KQ3JlYXRpbmcgYSBiYXNpYyBwbG90IHRvIHNlZSB0aGUgcmVsYXRpb25zaGlwIGJldHdlZW4gbnVtYmVyIG9mIGFjY2lkZW50cyBhbmQgcHJvdGVjdGVkIGxhbmVzLg0KDQpgYGB7cn0NCnRlc3QxX2RmMl9waXZvdF9iaWtlX2xhbmVzICU+JQ0KZ2dwbG90KGFlcyhudW1iZXJfb2ZfcHJvdGVjdGVkX2xhbmVzLCByb3V0ZW5hbWUpKSArDQogIGdlb21fYmFyKHN0YXQ9ImlkZW50aXR5IikNCmBgYA0KDQojIyBBbm90aGVyIFRlc3QgDQoNCmBgYHtyfQ0KdGVzdF9kZjFfYmlrZV9jcmFzaGVzID0gZGYxX3Bpdm90X2Jpa2VfY3Jhc2hlcyAlPiUNCiAgcmVuYW1lKHJvdXRlbmFtZSA9IG5lYXJlc3RpbnRzdHJlZXRuYW1lKSAlPiUNCiAgZHJvcF9uYSgpICU+JQ0KICBmaWx0ZXIoIWdyZXBsKCJOb3QgRm91bmR8QWxsZXl8RHJpdmV3YXkiLHJvdXRlbmFtZSkpICU+JQ0KICBsZWZ0X2pvaW4odGVzdF9kZjJfcGl2b3RfYmlrZV9sYW5lcywgYnkgPSAicm91dGVuYW1lIikNCg0KdGVzdF9kZjFfYmlrZV9jcmFzaGVzW2lzLm5hKHRlc3RfZGYxX2Jpa2VfY3Jhc2hlcyldIDwtIDANCmBgYA0KDQpgYGB7cn0NCnRlc3RfZGYxX2Jpa2VfY3Jhc2hlcyRmcm9tZGF0ZSA8LSBhcy5EYXRlKHRlc3RfZGYxX2Jpa2VfY3Jhc2hlcyRmcm9tZGF0ZSkNCnRlc3RfZGYxX2Jpa2VfY3Jhc2hlcyRmcm9tZGF0ZSA8LSBhcy5QT1NJWGN0KHRlc3RfZGYxX2Jpa2VfY3Jhc2hlcyRmcm9tZGF0ZSwgZm9ybWF0ID0gIiVZLSVtLSVkIikNCmBgYA0KDQoNCmBgYHtyfQ0KdGVzdF9kZjFfYmlrZV9jcmFzaGVzICU+JQ0KICANCmdncGxvdChhZXMoZnJvbWRhdGUsIGluanVyaWVzLCBmaWxsPWluanVyaWVzKSkgKw0KICBnZW9tX3F1YXNpcmFuZG9tKGJhbmR3aWR0aCA9IC4wNSxhbHBoYT0uMikrDQogICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAibm9uZSIpKw0KICBzY2FsZV94X2RhdGV0aW1lKGRhdGVfYnJlYWtzPSIxIG1vbnRoIiwgZGF0ZV9sYWJlbHM9IiViIikNCmBgYA0KDQoNCkdlbmVyYWxseSwgYXMgdGhlIHRvdGFsIG51bWJlciBvZiBwcm90ZWN0ZWQgbGFuZSBkZWNyZWFzZXMgYnkgcm91dGUsIHRoZSBudW1iZXIgb2YgYWNjaWRlbnRzIGluY3JlYXNlcyBhcyBzaG93biBpbiAgdGhlIGdyYXBoIGJlbG93Lg0KDQpgYGB7cn0NCnRlc3QxX2RmMl9waXZvdF9iaWtlX2xhbmVzICU+JQ0KZ2dwbG90KGFlcyhudW1iZXJfb2ZfcHJvdGVjdGVkX2xhbmVzLCByb3V0ZW5hbWUsIGZpbGwgPSBudW1iZXJfb2ZfYWNjaWRlbnRzKSkrDQogIGdlb21fYmFyKHN0YXQ9ImlkZW50aXR5IikrDQogIHNjYWxlX2ZpbGxfZ3JhZGllbnQobG93ID0gImFudGlxdWV3aGl0ZTIiLCBoaWdoPSJjb3JhbDQiKSsNCiAgbGFicyh4PSJUb3RhbCBOdW1iZXIgb2YgUHJvdGVjdGVkIExhbmVzIiwgeSA9ICJSb3V0ZSBOYW1lIiwgDQogICAgICAgdGl0bGUgPSAiUmVsYXRpb25zaGlwIEJldHdlZW4gdGhlIE51bWJlciBvZiBQcm90ZWN0ZWQgTGFuZXMgYW5kIEFjY2lkZW50IE9jY3VyZW5jZSBiYXNlZCBvbiB0aGUgQmlrZSBSb3V0ZSIsIGZpbGwgPSAiTnVtYmVyIG9mIEFjY2lkZW50cyIpDQoNCmBgYA0KDQo=</div>
 
 
 
