@@ -1,8 +1,6 @@
 ---
-title: "DS241 Final Proeject - DC Bikeshare "
+title: "Alexis Alexander Final Bikeshare Analysis: Draft 3 "
 output: html_notebook
-author: "Alexis Alexander, Gianna Capoccia, Morgan Eaton, and Mateo Sarabia"
-date: "09 December 2023"
 ---
 
 ## Background Information
@@ -36,6 +34,8 @@ install.packages("stingr")
 install.packages("maps")
 install.packages("spData")
 install.packages("viridis")
+install.packages("ggridges")
+install.packages("ggbeeswarm")
 ```
 
 Baseline packages for our analysis: 
@@ -56,6 +56,8 @@ library(readr)
 library(maps)
 library(spData)
 library(viridis)
+library(ggridges)
+library(ggbeeswarm)
 ```
 
 ## Accessing and Loading the Databases 
@@ -89,7 +91,11 @@ class(csv_bikes_lanes)
 
 ```{r}
 mapview(dc_shape, lwd=3, alpha=0.2) + 
+  mapview(bikes_lanes, zcol = "streetname", lwd = 3, layer.name = "bike_lanes", legend = FALSE)
+
+street_lane_map <- mapview(dc_shape, lwd=3, alpha=0.2) + 
   mapview(bikes_lanes, zcol = "streetname", lwd = 3, layer.name = "bike_lanes", legend = FALSE) 
+
 ```
 
 ## Filtering the Crash Data
@@ -203,7 +209,6 @@ mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) +
 ```
 
 
-
 ```{r}
 mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) + 
   mapview(df1_pivot_bike_lanes, lwd = 2, zcol ="protection_of_bikelane",burst= TRUE, alpha = 0.8, layer.name = "bike_lanes", legend = TRUE) +
@@ -219,7 +224,6 @@ mapview(dc_shape, lwd=2, alpha = 0.5, alpha.regions = 0.2) +
   mapview(df1_pivot_bike_lanes, lwd = 2, zcol ="protection_of_bikelane",burst= TRUE, alpha = 0.8, layer.name = "bike_lanes", legend = TRUE) +
   mapview(sf_df1_pivot_bike_crashes, zcol = "injuries", burst= TRUE, col.region = pal, lwd = 2, layer.name = "bike_crashes", legend = TRUE)
 ```
-
 
 
 ## Trying a Different Plotting Method - Starting with a Smaller Data Set 
@@ -255,5 +259,145 @@ tm_shape()+
   tm_facets("protection_of_bikelane")+
   tm_dots("protection_of_bikelane", legend.show = FALSE)
 ```
+
+## Creating a Plot to Show a Clearer Comparison of Bike Lanes vs. Injury Type
+
+First, we will attempt to join the bike lane and crash data to create some sort scatter or bar graph to numerical represent this relationship. 
+
+Starting off with the smaller September bike crash data set and grouping the data based on the street name. Then, we will create a new variable that counts the number of accidents per street. 
+
+```{r}
+test_Sept_df1_pivot_bike_crashes = Sept_df1_pivot_bike_crashes %>% 
+  count(nearestintstreetname) %>%
+  rename(number_of_accidents = n)
+
+```
+
+Since this code worked for the smaller data set, we will apply it to the larger crash data. Also, NA, unknown values, alleys, and driveways will be removed as we are only concerned with the streets. We are focus primarily on the interaction of bikes on the roads. 
+
+```{r}
+accidents_df1_pivot_bike_crashes = df1_bike_crashes %>%
+   count(nearestintstreetname) %>%
+  rename(number_of_accidents = n) %>%
+  rename(routename = nearestintstreetname) %>%
+  drop_na() %>%
+  filter(!grepl("Not Found|Alley|Driveway",routename))
+```
+
+Moving on to the bike lane data. Grouping the route name together and counting the number of lane protection for each route. Removing convential bike lanes from the data set, we want to see if there are less accidents if there are protected lanes. Need to make sure that the dataset is a dataframe and not a sf object .
+
+```{r}
+df2_pivot_bike_lanes = csv_bikes_lanes %>%
+  pivot_longer(col=c("bikelane_parkinglane_adjacent","bikelane_throughlane_adjacent","bikelane_pocketlane_adjacent"),
+  names_to = "adjacent_to_bikelane",
+  values_to = "direction_of_lane_adjacent") %>%
+pivot_longer(col=c("bikelane_conventional","bikelane_dual_buffered","bikelane_protected", "bikelane_buffered"),
+  names_to = "protection_of_bikelane",
+  values_to = "direction_of_lane_protection") %>%
+  dplyr::select(-bikelane_contraflow) %>%
+  relocate(c(adjacent_to_bikelane,direction_of_lane_adjacent, protection_of_bikelane, direction_of_lane_protection), .after = streettype) %>%
+  mutate(adjacent_to_bikelane = recode(adjacent_to_bikelane, bikelane_throughlane_adjacent = "throughlane", bikelane_pocketlane_adjacent = "pocketlane", bikelane_parkinglane_adjacent = "parkinglane")) %>%
+  mutate(protection_of_bikelane = recode(protection_of_bikelane, bikelane_protected = "protected", bikelane_buffered = "buffered", bikelane_conventional = "conventional", bikelane_dual_protected = "dual_protected", bikelane_dual_buffered = "dual_buffered")) %>%
+   drop_na(c(direction_of_lane_adjacent, direction_of_lane_protection))
+```
+
+
+```{r}
+test_df2_pivot_bike_lanes = df2_pivot_bike_lanes %>% 
+  filter(!grepl("conventional", protection_of_bikelane)) %>%
+  count(routename) %>%
+  rename(number_of_protected_lanes = n)
+
+```
+
+Joining the two data frames together 
+
+```{r}
+test1_df2_pivot_bike_lanes = test_df2_pivot_bike_lanes %>%
+  left_join(accidents_df1_pivot_bike_crashes, by = "routename")
+test1_df2_pivot_bike_lanes[is.na(test1_df2_pivot_bike_lanes)] <- 0
+```
+
+
+Creating a basic plot to see the relationship between number of accidents and protected lanes.
+
+```{r}
+test1_df2_pivot_bike_lanes %>%
+ggplot(aes(number_of_protected_lanes, routename)) +
+  geom_bar(stat="identity")
+```
+## Another Test 
+
+```{r}
+test_df1_bike_crashes = df1_pivot_bike_crashes %>%
+  rename(routename = nearestintstreetname) %>%
+  drop_na() %>%
+  filter(!grepl("Not Found|Alley|Driveway",routename)) %>%
+  left_join(test_df2_pivot_bike_lanes, by = "routename")
+
+test_df1_bike_crashes[is.na(test_df1_bike_crashes)] <- 0
+```
+
+```{r}
+test_df1_bike_crashes$fromdate <- as.Date(test_df1_bike_crashes$fromdate)
+test_df1_bike_crashes$fromdate <- as.POSIXct(test_df1_bike_crashes$fromdate, format = "%Y-%m-%d")
+```
+
+
+
+```{r}
+test_df1_bike_crashes %>%
+  
+ggplot(aes(fromdate, injuries, fill=injuries)) +
+  geom_quasirandom(bandwidth = .05,alpha=.2)+
+   theme(legend.position = "none")+
+  scale_x_datetime(date_breaks="1 month", date_labels="%b")
+```
+
+```{r}
+test_df1_bike_crashes %>%
+  slice_head(n=1000)
+
+test_df1_bike_crashes %>%
+ggplot(aes(number_of_injuries,routename,fill=number_of_protected_lanes)) +geom_bar(stat = "identity")
+
+   theme(legend.position = "none")
+```
+
+
+
+Generally, as the number of protected lane decreases, the number of accidents decrease as well. 
+
+```{r}
+test1_df2_pivot_bike_lanes %>%
+ggplot(aes(number_of_protected_lanes, number_of_accidents))+
+  geom_bar(stat="identity")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
