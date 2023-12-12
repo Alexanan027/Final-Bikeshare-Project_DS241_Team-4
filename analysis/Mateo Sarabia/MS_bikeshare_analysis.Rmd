@@ -101,37 +101,37 @@ df3 = bikes_crashes2 |> filter(fatal_bicyclist>=1)
 
 ```{r}
 ## contraflow bikelanes"
-df4 = bikes_lanes |> filter(bikelane_contraflow != "NA")
+df4 = bikes_lanesgeo |> filter(bikelane_contraflow != "NA")
 
  ## seperate the desired column
   df4a <- df4[ -c(1:7,9:26) ]
 
 ## conventional bikelanes 
-df5 = bikes_lanes |> filter(bikelane_conventional != "NA")
+df5 = bikes_lanesgeo |> filter(bikelane_conventional != "NA")
 
  ## seperate the desired column
   df5a <- df5[ -c(1:8,10:26) ]
 
 ## dual protected bikelanes
-df6 = bikes_lanes |> filter(bikelane_dual_protected != "NA")
+df6 = bikes_lanesgeo |> filter(bikelane_dual_protected != "NA")
 
  ## seperate the desired column
   df6a <- df6[ -c(1:9,11:26) ]
 
 ## dual buffered bikelanes 
-df7 = bikes_lanes |> filter(bikelane_dual_buffered != "NA")
+df7 = bikes_lanesgeo |> filter(bikelane_dual_buffered != "NA")
 
  ## seperate the desired column
   df7a <- df7[ -c(1:10,12:26) ]
 
 ## protected bikelanes
-df8 = bikes_lanes |> filter(bikelane_protected != "NA")
+df8 = bikes_lanesgeo |> filter(bikelane_protected != "NA")
 
  ## seperate the desired column
   df8a <- df8[ -c(1:11,13:26) ]
 
 ## buffered bikelanes 
-df9 = bikes_lanes |> filter(bikelane_buffered != "NA")
+df9 = bikes_lanesgeo |> filter(bikelane_buffered != "NA")
 
  ## seperate the desired column
   df9a <- df9[ -c(1:12,14:26) ]
@@ -160,27 +160,64 @@ tmap_mode("view")
 ```
 
 ```{r}
-bikes_lanesgeo %>%
+
+bikes_lanesgeo2 %>%
+  tm_shape()+
+  tm_lines(c("bikelane_contraflow"))
+```
+
+
+
+
+
+
+
+```{r}
+## bikelane contraflow
+df4 %>%
+  tm_shape()+
+  tm_lines("red")
+
+```
+
+
+```{r}
+#bikelane conventional
+df5 %>%
+  tm_shape()+
+  tm_lines("red")
+```
+
+```{r}
+#bikelane dual protected
+df6 %>%
+  tm_shape()+
+  tm_lines("red")
+
+```
+
+```{r}
+#bikelane dual buffered
+df7 %>%
+  tm_shape()+
+  tm_lines("red")
+```
+
+```{r}
+#bikelane protected
+df8 %>%
+  tm_shape()+
+  tm_lines("red")
+```
+
+```{r}
+#bikelane buffered
+df9 %>%
   tm_shape()+
   tm_lines("red")
 ```
 
 
-```{r}
- bikes_lanesgeo2 <- bikes_lanesgeo[ -c(1:7,14:27) ]
 
-class(bikes_lanesgeo2)
-bikes_lanesgeo2$geometry[1000]
-plot(bikes_lanesgeo2)#+geom_sf(data =, size = .1, color = "black")
 
-```
-```{r}
- bikes_crashesgeo2 <- bikes_crashesgeo[ -c(1:11,25:58) ]
-#set_crs(longitude,latitude)
-class(bikes_crashesgeo2)
-bikes_crashesgeo2$geometry[1000]
-bikes_crashesgeo2$geometry[1000]$POLYGON
-plot(bikes_crashesgeo2)
-max.plot = 24
-```
 
