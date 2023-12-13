@@ -2,5 +2,75 @@
 title: "Team Contribution"
 output: html_notebook
 ---
+Note: the meta file is our final analysis 
 
-Team Contribution Notebook
+## Team Contribution Notebook
+
+```{r}
+
+```
+
+# Alexis Alexander:
+
+In terms of coding, 
+- Filtered, clean, and organized the data
+- Created map of the division of bike lane protection - faceted graph between protected, buffered, dual-protected, dual-buffered, and conventional lanes 
+- Created map of bike lane classifications onto one map
+- Created map of the division of injury severity as it relates to the crash data
+- Created map  that combine the bike lane types vs. crash/injuries data
+- Created the graph that shows the relationship between the number of protected lanes and accident occurence based on the bike route 
+- Added description to code to make the code reproducible - shown in meta file 
+
+In terms of the report,
+- Created the initial outline
+- Fully wrote out the following sections: Memo, Introduction, Business Understanding, Databases, Project Plan, Results/Discussion (5a, 5b, 5c, 5f, 5e), Conclusion, Appendix.
+- Mapped each of the graphs that corresponds to the parts in the Results/Discussion listed above.
+- Edited, reviewed, and finalized the document. 
+
+```{r}
+
+```
+
+# Gianna Capoccia:
+
+In terms of coding,
+- Created bar graph that compares location of the lane vs number of crashes
+- Attempted to create a map for bike ridership vs. bike lanes
+
+
+In terms of the report,
+- Added graph for Results/Discussion 5d
+- Reviewed the document 
+
+```{r}
+
+```
+
+# Mateo Sarabia:
+
+In terms of coding,
+- Filtered, clean, and organized the data
+- Created the initial framework maps of bike injuries vs. crashes
+- Created initial framework maps of bike lanes vs. crashes
+Note, these graphs set the foundation / framework to the finalized graphs 
+
+In terms of the report,
+- Created the framework graphs of bike injuries / lane vs. crashes that did not make it into the final draft of the document. These were 9 original graphs that mapped the injuries vs. crashes and lane vs. crashes data all into separate graphs. These graphs were later redone by another member to have the data combined more concisely.
+- Reviewed the document 
+
+
+```{r}
+
+```
+
+# Morgan Eaton: 
+
+In terms of coding,
+- Aided in creating the initial framework graphs of bike injuries vs. crashes
+
+In terms of the report, 
+- Authored a part of the Introduction and Business Understanding section
+- Formatted the Reference Section 
+- Reviewed and edited the following sections: Introduction, Business Understanding, and Databases
+- For the Results/Discussion section, authored an explanation for graph in 5d
+

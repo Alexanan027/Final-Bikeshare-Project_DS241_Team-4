@@ -57,7 +57,7 @@ We are initially looking at the following three data sets:
 3. The DC Crimes and Accidents Dataset: https://opendata.dc.gov/datasets/crashes-in-dc/explore
 
 ```{r}
-bikes_september <- read_csv("data_raw/202309-capitalbikeshare-tripdata.csv", show_col_types = FALSE) %>% clean_names() 
+bikes_september <- read_csv(here("data_raw","202309-capitalbikeshare-tripdata.csv"))%>% clean_names() 
 ```
 
 ```{r}
@@ -67,10 +67,209 @@ bikes_lanes = st_read(here("data_raw", "Bicycle_Lanes.geojson")) %>% clean_names
 ```{r}
 bikes_crashes = st_read(here("data_raw", "Crashes_in_DC.geojson")) %>% clean_names()
 ```
+## Comparsion of Bicycle Related Crashes to Major Bike Station 
+
+Comparing Bike Lanes and Crashes 
+
+Filtering the crash data to work with a smaller time frame, looking specifically at the month of September 2023. First, we selected variables that we are interested in looking at from the total data set. We then filtered the data to only look at accidents relating the bicycles. This was determined by setting a requirement that there must be at least 1 bicycle involved in the accident. 
+
+For the bike lane data set, we also reduced the number of variables to only the ones we were interested in analyzing. We also noticed that the "Ward" was common variable that was included in both the crash and bike lane data set. This will be useful when we later inter-join the two data sets. 
+
+```{r}
+simplified_bike_crashes = bikes_crashes %>%
+  select(fromdate, address, latitude, longitude, xcoord, ycoord, ward, majorinjuries_bicyclist, minorinjuries_bicyclist, fatal_bicyclist, total_bicycles, total_vehicles, bicyclistsimpaired, speeding_involved) %>%
+   filter(total_bicycles >= "1") 
+
+simplified_bike_lanes = bikes_lanes %>% 
+  select(routename, bikelane_parkinglane_adjacent, bikelane_throughlane_adjacent, bikelane_pocketlane_adjacent, bikelane_contraflow, bikelane_conventional, bikelane_dual_protected, bikelane_dual_buffered, bikelane_protected, bikelane_buffered, streetname, streettype, totalbikelanes, totalbikelanewidth, ward_id, geometry, objectid)
+```
+
+
+Now that we have a simplified data set, we are interested in the crash data that occur in September 2023. First, we will separate the date and time from each other, as they are initially recorded in the same column together. 
+
+```{r}
+simplified_bike_crashes$date <- as.Date(simplified_bike_crashes$fromdate)
+simplified_bike_crashes$time <- format(simplified_bike_crashes$fromdate, "%H: %M: %S")
+simplified_bike_crashes$month <- format(simplified_bike_crashes$date, "%m")
+simplified_bike_crashes$year <- format(simplified_bike_crashes$date, "%y")
+```
+
+Next, we will filter the data to look at the data from September 2023 
+
+```{r}
+Sept_simplified_bike_crashes = simplified_bike_crashes %>%
+  filter(month == "09" & year =="23")
+```
+
+Reducing our data set is essential to making it easier for us to analyze our data. We will later look at a longer time period. 
+
+We will now inter_join the bike lane and crash data based on the Ward specified. However, the Ward columns of the two dataset does not match for each observation recorded. The crash data uses "Ward #" while, the lane data just reports the #. First, we will make sure that each observation is recorded similarly. We also removed any NA from the data as well. 
+
+```{r}
+Sept_simplified_bike_crashes_ward = Sept_simplified_bike_crashes %>%
+  separate(ward, c(NA, "Ward"))
+```
+
+Now, that the observations are recorded in the same way. We will attempt to inter_join the two data sets. Later, we recognized that our data set is a sf class thus, we need to use st_join to join the two data sets. 
+
+
+```{r}
+bike_crashes_lanes = Sept_simplified_bike_crashes_ward %>%
+  st_join(simplified_bike_lanes)
+class(bike_crashes_lanes)
+```
+
+We will create an initial map of our data. First, we are setting the tmap mode to interactive viewing 
+
+```{r}
+tmap_mode("view")
+```
+
+%% Mapping of Our Initial Data 
+
+Plotting the crash data spatially 
+
+```{r}
+Sept_simplified_bike_crashes_ward %>%
+  tm_shape()+
+  tm_dots()
+
+```
+
+```{r}
+simplified_bike_lanes %>%
+  tm_shape()+
+  tm_dots()
+```
+
+
+
+```{r}
+bike_crashes_lanes %>%
+  tm_shape()+
+  tm_dots()
+```
+
+
+## Issue with Joining the Crash and Bike Lane Together - Try Using the CSV files instead
+
+We will come back to the mapping data at a later date. 
+
+We noticed that after using the st_join, the bike lane data did not join correctly with the crash data. To re-evaluate our data, we decided to load the data as csv instead of using the geosjeon file. 
+
+```{r}
+csv_bike_lane <- read_csv(here("data_raw","Bicycle_Lanes.csv"))%>% clean_names() 
+csv_bike_crashes <- read_csv(here("data_raw","Crashes_in_DC.csv"))
+```
+
+
+```{r}
+csv_simplified_bike_crashes = csv_bike_crashes %>%
+  select(FROMDATE, ADDRESS, LATITUDE, LONGITUDE, XCOORD, YCOORD, WARD, MAJORINJURIES_BICYCLIST, MINORINJURIES_BICYCLIST, FATAL_BICYCLIST, TOTAL_BICYCLES, TOTAL_VEHICLES, BICYCLISTSIMPAIRED, SPEEDING_INVOLVED) %>%
+   filter(TOTAL_BICYCLES >= "1") 
+
+csv_simplified_bike_lanes = csv_bike_lane %>% 
+  select(routename, bikelane_parkinglane_adjacent, bikelane_throughlane_adjacent, bikelane_pocketlane_adjacent, bikelane_contraflow, bikelane_conventional, bikelane_dual_protected, bikelane_dual_buffered, bikelane_protected, bikelane_buffered, streetname, streettype, totalbikelanes, totalbikelanewidth, ward_id, objectid)
+```
+
+
+```{r}
+csv_simplified_bike_crashes$date <- as.Date(csv_simplified_bike_crashes$FROMDATE)
+# csv_simplified_bike_crashes$time <- format(csv_simplified_bike_crashes$FROMDATE, "%H: %M: %S")
+csv_simplified_bike_crashes$month <- format(csv_simplified_bike_crashes$date, "%m")
+csv_simplified_bike_crashes$year <- format(csv_simplified_bike_crashes$date, "%y")
+```
+
+
+```{r}
+csv_Sept_simplified_bike_crashes = simplified_bike_crashes %>%
+  filter(month == "09" & year =="23")
+```
+
+
+```{r}
+csv_Sept_simplified_bike_crashes_ward = Sept_simplified_bike_crashes %>%
+  separate(ward, c(NA, "Ward"))
+```
+
+Want to join the two data sets based on the route name or the street name that is given. 
+
+```{r}
+csv_crash_address = csv_Sept_simplified_bike_crashes_ward %>%
+  separate(address, c("address number", "streetname","street type","quadrant"))
+```
+Choosing to delete rows that did not separate correctly as shown in the error above 
+
+```{r}
+csv_removed_crash_address = csv_crash_address[-c(2,8,10,15,37), ]
+```
+
+Simplify the bike lane data so that instead of defining the lane as a collection of points, we instead want it to count only once in our data. The bike  lane data can be split to differentiate between how the bike lane flows with traffic vs. whether there are any physical barriers or distinct separations in place. Right now, we will solely look at the physical barriers and the code below filters our data as such. 
+
+```{r}
+csv_bike_lanes_reduced = csv_simplified_bike_lanes %>%
+  count(streetname, bikelane_dual_protected, bikelane_dual_buffered, bikelane_protected, bikelane_buffered) %>%
+  drop_na(streetname) %>%
+  group_by(streetname) 
+
+```
+
+
+States the number of bike lanes associated with each street 
+```{r}
+test2 = csv_simplified_bike_lanes %>%
+  count(streetname)
+```
+
+
+```{r}
+test3 = csv_simplified_bike_lanes %>%
+  select(streetname, bikelane_dual_protected)
+
+ # test3$bikelane_dual_protected <- replace_na("None")
+```
+
+
+Testing code to obtain the number of bike lanes for each type that is associated with each street
+
+```{r}
+test = csv_simplified_bike_lanes %>%
+  count(streetname, bikelane_conventional) %>%
+  drop_na(bikelane_conventional) %>%
+  group_by(streetname) %>%
+  summarise(bikelane_conventional_total = sum(n))
+```
 
 
 
 
+
+Left_join the crash and bike lane data set based on the street name 
+```{r}
+csv_crash_lanes = csv_removed_crash_address %>%
+  left_join(csv_simplified_bike_lanes, "streetname")
+glimpse(csv_crash_lanes)
+```
+
+
+
+
+## Finding the Number of Accidents Associated with Each Bike Lane  
+
+
+## Creating a Variable for Classifying the Type of Accident
+
+
+
+
+Calculating the number of accidents that occurred for each bike lane 
+
+```{r}
+
+```
+
+Calculate the a sum crashes that occurs along the bike lane line. 
+The bike lane is a geometric line, while each crash is recorded as a geometric point. 
 
 
 
