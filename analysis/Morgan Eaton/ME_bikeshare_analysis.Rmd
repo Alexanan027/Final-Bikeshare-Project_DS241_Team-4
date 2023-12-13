@@ -95,37 +95,37 @@ df3a <- df3[ -c(1:25,27:58) ]
 
 ```{r}
 ## contraflow bikelanes"
-df4 = bikes_lanesgeo |> filter(bikelane_contraflow != "NA")
+df4 = bikes_lanes |> filter(bikelane_contraflow != "NA")
 
 ## seperate the desired column
 df4a <- df4[ -c(1:7,9:26) ]
 
 ## conventional bikelanes 
-df5 = bikes_lanesgeo |> filter(bikelane_conventional != "NA")
+df5 = bikes_lanes |> filter(bikelane_conventional != "NA")
 
 ## seperate the desired column
 df5a <- df5[ -c(1:8,10:26) ]
 
 ## dual protected bikelanes
-df6 = bikes_lanesgeo |> filter(bikelane_dual_protected != "NA")
+df6 = bikes_lanes |> filter(bikelane_dual_protected != "NA")
 
 ## seperate the desired column
 df6a <- df6[ -c(1:9,11:26) ]
 
 ## dual buffered bikelanes 
-df7 = bikes_lanesgeo |> filter(bikelane_dual_buffered != "NA")
+df7 = bikes_lanes |> filter(bikelane_dual_buffered != "NA")
 
 ## seperate the desired column
 df7a <- df7[ -c(1:10,12:26) ]
 
 ## protected bikelanes
-df8 = bikes_lanesgeo |> filter(bikelane_protected != "NA")
+df8 = bikes_lanes |> filter(bikelane_protected != "NA")
 
 ## seperate the desired column
 df8a <- df8[ -c(1:11,13:26) ]
 
 ## buffered bikelanes 
-df9 = bikes_lanesgeo |> filter(bikelane_buffered != "NA")
+df9 = bikes_lanes |> filter(bikelane_buffered != "NA")
 
 ## seperate the desired column
 df9a <- df9[ -c(1:12,14:26) ]
@@ -233,7 +233,4 @@ majorinjuries %>%
   tm_shape()+
   tm_dots("majorinjuries_bicyclist")
 ```
-
-
-
 
